@@ -65,6 +65,8 @@
   <ItemGroup>
     <Compile Include="Assets\Chanks\ChankVisible.cs" />
     <Compile Include="Assets\Chanks\SeePlayerChanks.cs" />
+    <Compile Include="Assets\FPSScripts\FirstPersonAIO.cs" />
+    <Compile Include="Assets\FPSScripts\PlayerStatements.cs" />
     <Compile Include="Assets\Menu\InputMenu.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Test\BaseBlock.cs" />

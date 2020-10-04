@@ -16,7 +16,7 @@ public class InputMenu : MonoBehaviour
                 break;
 
             case 2:
-                SceneManager.LoadScene("Test");
+                SceneManager.LoadScene("Map");
                 break;
 
             default: break;

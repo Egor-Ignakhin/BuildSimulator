@@ -122,6 +122,7 @@ public class BuildHouse : MonoBehaviour
         Transform block = Instantiate(_blocks[_blocksCount].transform, hitGreed.Pos, hit.transform.rotation);
         block.gameObject.layer = 8;
         block.GetComponent<BaseBlock>().enabled = true;
+        block.GetComponent<BoxCollider>().isTrigger = false;
         foreach (Transform child in block.GetComponentsInChildren<Transform>())
         {
             child.gameObject.layer = 8;

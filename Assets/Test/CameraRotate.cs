@@ -2,9 +2,9 @@
 
 public class CameraRotate : MonoBehaviour
 {
-	public float sensitivity = 5f; // чувствительность мыши
-	public float headMinY = -90f; // ограничение угла для головы
-	public float headMaxY = 90f;
+	public float sensitivity = 0f; // чувствительность мыши
+	public float headMinY = 0f; // ограничение угла для головы
+	public float headMaxY = 0f;
 
 	private Vector3 direction;
 	private float rotationY;
