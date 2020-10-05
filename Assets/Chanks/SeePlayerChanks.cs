@@ -14,9 +14,6 @@ public class SeePlayerChanks : MonoBehaviour
         }
         else
             Debug.LogError("Player collider empty!");
-
-
-
     }
     private void ResizeCollider()
     {

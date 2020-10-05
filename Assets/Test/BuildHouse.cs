@@ -27,8 +27,9 @@ public class BuildHouse : MonoBehaviour
 
     private void Update()
     {
-        if (!GameMenu.ActiveGameMenu)
-        {
+        if (GameMenu.ActiveGameMenu)
+            return;
+
             if (Input.GetKeyDown(KeyCode.B))
             {
                 _isBuild = !_isBuild;
@@ -71,18 +72,18 @@ public class BuildHouse : MonoBehaviour
                 }
                 _blocksCount = 0;
             }
-            if (_isDestroy)
+        if (_isDestroy)
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit = new RaycastHit();
+            if (Physics.Raycast(ray, out hit, 10, layer))
             {
-                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit = new RaycastHit();
-                if (Physics.Raycast(ray, out hit, 10, layer))
+                if (Input.GetMouseButtonDown(0))
                 {
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        DestroyBlock(hit);
-                    }
+                    DestroyBlock(hit);
                 }
             }
+
         }
     }
     private void Build()

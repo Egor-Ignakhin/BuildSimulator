@@ -25,6 +25,8 @@ public class ObjectDown : MonoBehaviour
 
     private void Update()
     {
+        if (GameMenu.ActiveGameMenu)
+            return;
         if (_realise)
         {
             _boomEffect.SetActive(true);

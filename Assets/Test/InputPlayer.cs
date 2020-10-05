@@ -23,7 +23,6 @@ public class InputPlayer : MonoBehaviour
         if (_bH._isBuild)
         {
             AnimBuild.SetActive(true);
-
         }
         else
         {

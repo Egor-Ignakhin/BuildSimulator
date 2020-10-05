@@ -3,7 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class GameMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject QuestionsTrello,Activer;// лист управления и лист меню
+    [SerializeField] private GameObject QuestionsTrello, Activer;// лист управления и лист меню
+    [SerializeField] private Inventory _inventory;
 
     public static bool ActiveGameMenu;
     public void OnClick(int num)
@@ -19,6 +20,8 @@ public class GameMenu : MonoBehaviour
                 break;
             case 2:
                 Activer.SetActive(false);
+                ActiveGameMenu = false;
+                Cursor.visible = false;
                 break;
 
         }
@@ -26,29 +29,42 @@ public class GameMenu : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)&&! QuestionsTrello.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            Activer.SetActive(!Activer.activeSelf);
+            _inventory.TurnOffOn();
+            ActiveGameMenu = _inventory.IsActive;
+            Cursor.visible = _inventory.IsActive;
         }
-        if (Activer.activeInHierarchy|| QuestionsTrello.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ActiveGameMenu = true;
-            Cursor.visible = true;
-        }
-        else
-        {
-            ActiveGameMenu = false;
-            Cursor.visible = false;
-        }
-
-        if (QuestionsTrello.activeInHierarchy)
-        {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (_inventory.IsActive == true)
+            {
+                _inventory.TurnOffOn();
+                ActiveGameMenu = false;
+                Cursor.visible = false;
+                return;
+            }
+            if (QuestionsTrello.activeInHierarchy)
             {
                 QuestionsTrello.SetActive(false);
-                Activer.SetActive(true);
+                ActiveGameMenu = false;
+                Cursor.visible = false;
             }
+            if (Activer.activeInHierarchy)
+            {
+                Activer.SetActive(false);
+                ActiveGameMenu = false;
+                Cursor.visible = false;
+            }
+            else
+            {
+                Activer.SetActive(true);
+                ActiveGameMenu = true;
+                Cursor.visible = true;
+            }
+            return;
         }
+
         if (ActiveGameMenu)
         {
             Cursor.lockState = CursorLockMode.None;

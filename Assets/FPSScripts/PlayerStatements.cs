@@ -15,9 +15,11 @@ public sealed class PlayerStatements : MonoBehaviour
 
     [SerializeField] private float sensitivity = 3f; // чувствительность мыши
     [SerializeField] private float headMinY = -90f; // ограничение угла для головы
-    [SerializeField] private float headMaxY = 90f;
+    [SerializeField] private float headMaxY = 60f;
 
     private bool _fpsMode;
+
+   
 
     private void Awake()
     {
@@ -49,7 +51,10 @@ public sealed class PlayerStatements : MonoBehaviour
 
     // Update is called once per frame
     private void Update()
-    {
+    {        
+        if (GameMenu.ActiveGameMenu)
+            return;
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             _fpsMode = !_fpsMode;
@@ -86,6 +91,7 @@ public sealed class PlayerStatements : MonoBehaviour
             {
                 _fPSScripts[i].enabled = false;
             }
+
             transform.SetParent(_viewPlayer);
             transform.localPosition = new Vector3(0, 0, 0);
 
