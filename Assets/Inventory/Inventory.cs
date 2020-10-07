@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class Inventory : MonoBehaviour
+public sealed class Inventory : MonoBehaviour
 {
+    public const byte TypesCount = 3;//всего блоков в игре
+
     private RectTransform _myRt;
+    public static Inventory GetInventory { get; private set; }
     // TODD : 0
     // скрипт работает, но сбивается каждый второй раз, когда я пытаюсь сразу поменять 1 объект на другой и снова 
     public delegate void ChangePosition();// событие  определения положения
@@ -16,6 +19,103 @@ public class Inventory : MonoBehaviour
 
     private GameObject _activer;
     public bool IsActive { get; private set; } = false;
+
+    [SerializeField] private Sprite[] _allImages = new Sprite[TypesCount];
+    public static Sprite[] AllImages { get; private set; } = new Sprite[TypesCount];
+
+    public int ItemsCount0;//brick
+    public int ItemsCount1;//wood
+    public int ItemsCount2;//glas
+    public List<ImageInv> ItemsCs = new List<ImageInv>();
+
+    private void Awake()
+    {
+        GetInventory = this;
+        AllImages = _allImages;
+    }
+
+    public void AddItems(byte type,byte count)
+    {
+        switch (type)
+        {
+            case 0:
+                ItemsCount0 += count;
+                break;
+            case 1:
+                ItemsCount1 += count;
+                break;
+            case 2:
+                ItemsCount2 += count;
+                break;
+            default:
+                break;
+        }
+    }
+    public bool GetItem(byte type, byte count)
+    {
+        switch (type)
+        {
+            case 0:
+                if (count <= ItemsCount0)//если сумма меньше всего количества
+                {
+                    ItemsCount0 -= count;
+                    for (int i = 0; i < ItemsCs.Count; i++)
+                    {
+                        if (ItemsCs[i].Type == type)
+                        {
+                            if (ItemsCs[i].PosInInventory == i)
+                            {
+                                ItemsCs[i].GetItem(count);
+                                break;
+                            }
+                        }
+                    }
+                    return true;
+                }
+                break;
+            case 1:
+                if (count <= ItemsCount1)//если сумма меньше всего количества
+                {
+                    ItemsCount1 -= count;
+                    for (int i = 0; i < ItemsCs.Count; i++)
+                    {
+                        if (ItemsCs[i].Type == type)
+                        {
+                            if (ItemsCs[i].PosInInventory == i)
+                            {
+                                ItemsCs[i].GetItem(count);
+                                break;
+                            }
+                        }
+                    }
+                    return true;
+                }
+                break;
+            case 2:
+                if (count <= ItemsCount2)//если сумма меньше всего количества
+                {
+                    ItemsCount2 -= count;
+                    for (int i = 0; i < ItemsCs.Count; i++)
+                    {
+                        if (ItemsCs[i].Type == type)
+                        {
+                            if (ItemsCs[i].PosInInventory == i)
+                            {
+                                ItemsCs[i].GetItem(count);
+                                break;
+                            }
+                        }
+                    }
+                    return true;
+                }
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
+  
     void Start()
     {
         _myRt = GetComponent<RectTransform>();
@@ -87,8 +187,29 @@ public class Inventory : MonoBehaviour
         Item.position = _lastParentOfObject.position;
         Item.SetParent(_lastParentOfObject);
 
-        Debug.Log(_lastParentOfObject);
         RectTransform rrt = LastItem;
         return rrt;
+    }
+    public static void MergeItems(ref ImageInv item, ref ImageInv newItem, bool isFullMerge)
+    {
+        if (isFullMerge)
+        {
+            item.ItemsCount += newItem.ItemsCount;
+            Debug.Log(_lastParentOfObject.name);
+            _lastParentOfObject.GetComponent<SlotLocation>().ClearSlot();
+
+            Debug.Log("Full merge success");
+        }
+        else
+        {
+            //200 and 70
+            byte countItems = (byte)((item.ItemsCount + newItem.ItemsCount) - 255);
+            Debug.Log(countItems);
+            item.ItemsCount = 255;
+            newItem.ItemsCount = countItems;
+
+            Debug.Log("Dont full merge success");
+        }
+        Debug.Log(item + " /" + newItem);
     }
 }

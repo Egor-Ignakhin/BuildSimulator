@@ -10,14 +10,16 @@ public class BuildHouse : MonoBehaviour
     [SerializeField] private List<AudioClip> SoundsChange;
     [SerializeField] private List<AudioClip> SoundsDestroy;
     [SerializeField] private ObjectDown _obDown;
+    private Inventory _inventory;
 
     private AudioSource AudioS;
-    private int _blocksCount = 0;
+    private byte _blocksCount = 0;
     public bool _isBuild, _isDestroy;
     [SerializeField] private LayerMask layer;
 
     private void Start()
     {
+        _inventory = Inventory.GetInventory;
         AudioS = GetComponent<AudioSource>();
         for (int i = 0; i < _sprites.Count; i++)
         {
@@ -101,7 +103,9 @@ public class BuildHouse : MonoBehaviour
                     _blocks[_blocksCount].transform.rotation = hit.transform.rotation;
                     if (Input.GetMouseButtonDown(0))
                     {
-                        ChangeBlock(hit, hitGreed);
+                        if (_inventory.GetItem(_blocksCount, 1) == true)
+                            ChangeBlock(hit, hitGreed);
+                        else Debug.Log("Count items = 0");
                     }
                 }
             }

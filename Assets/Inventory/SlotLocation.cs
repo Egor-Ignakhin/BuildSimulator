@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlotLocation : MonoBehaviour
+public sealed class SlotLocation : MonoBehaviour
 {
     private RectTransform _myRt;
-    private RectTransform _item;
+    public RectTransform _item;
+    private ImageInv _itemCs;
     void Start()
     {
         _myRt = GetComponent<RectTransform>();
@@ -15,6 +16,7 @@ public class SlotLocation : MonoBehaviour
             if (transform.GetChild(i).GetComponent<ImageInv>())
             {
                 _item = transform.GetChild(i).GetComponent<RectTransform>();
+                _itemCs = _item.GetComponent<ImageInv>();
             }
         }
     }
@@ -28,16 +30,35 @@ public class SlotLocation : MonoBehaviour
             RectTransform _newItem = Inventory.LastItem;
             if (_item == null)
             {
-                Debug.Log(dist + gameObject.name);
                 _newItem.position = _myRt.position;
                 _newItem.SetParent(_myRt);
                 _item = _newItem;
+                _itemCs = _item.GetComponent<ImageInv>();
             }
             else//меняем местами предметы
             {
-               _item = Inventory.RevertItem(_item);
-                _item = _newItem;
+                ImageInv newItemCs = _newItem.GetComponent<ImageInv>();
+                sbyte isMerge = _itemCs.Merge(newItemCs.ItemsCount, newItemCs.Type);
+
+                if (isMerge == 0)//если нельзя слиять
+                {
+                    _item = Inventory.RevertItem(_item);//поменять местами
+                    _item = _newItem;// новый объект теперь "мой"
+                    _itemCs = _item.GetComponent<ImageInv>();// как и его скрипт
+                }
+                else if (isMerge == 1)//складываем предметы полностью
+                {
+                    Inventory.MergeItems(ref _itemCs, ref newItemCs, true);
+                }
+                else if (isMerge == 2)//складываем предметы пока есть возможность
+                {
+                    Inventory.MergeItems(ref _itemCs, ref newItemCs, false);
+                }
             }
         }
+    }
+    public void ClearSlot()
+    {
+        _itemCs.ChangeItemImage(255);//code key for clear
     }
 }
