@@ -8,8 +8,7 @@ using TMPro;
 public sealed class ImageInv : MonoBehaviour
 {
     private TextMeshProUGUI TextCount;
-
-    public  byte PosInInventory;
+    public byte PosInInventory;
     private Inventory _inventory;
     private RectTransform _myRt;
     public byte Type { get; private set; }
@@ -20,23 +19,22 @@ public sealed class ImageInv : MonoBehaviour
 
         set
         {
-            if (value != 0)
-                TextCount.text = value.ToString();
-            else
+            if (value == 0)
             {
                 TextCount.text = "";
                 ChangeItemImage(255);
             }
+            else
+                TextCount.text = value.ToString();
+
             _itemsCount = value;
             return;
         }
     }
     private void Start()
     {
-        _myRt = GetComponent<RectTransform>();
-        _inventory = _myRt.parent.parent.parent.parent.GetComponent<Inventory>();//весьма херовый способ находить объект, исправить
-        _inventory.ItemsCs.Add(this);
-        //Debug.Log(gameObject.GetComponent<RectTransform>().parent.parent.parent.parent.name);
+
+
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).GetComponent<TextMeshProUGUI>())
@@ -45,11 +43,16 @@ public sealed class ImageInv : MonoBehaviour
                 break;
             }
         }
+        _inventory = Inventory.GetInventory;
 
         Type = (byte)Random.Range(0, 3);
-        ItemsCount = (byte)Random.Range(1, 255/2);
+        ItemsCount = (byte)Random.Range(1, 255 / 20);
         ChangeItemImage(Type);
         _inventory.AddItems(Type, ItemsCount);
+        _myRt = GetComponent<RectTransform>();
+
+        _inventory.ItemsCs.Add(this);
+        _inventory.LastimInv[Type] = this;
 
 
         EventTrigger ev = gameObject.AddComponent<EventTrigger>();
@@ -60,17 +63,17 @@ public sealed class ImageInv : MonoBehaviour
         entry.callback.AddListener((data) => { OnPointerDownDelegate((PointerEventData)data); });
         ev.triggers.Add(entry);
 
-        
-       _myRt.localScale = new Vector2(0.9f, 0.9f);
 
-       // TextCount.rectTransform.position = new Vector2(20, -35); bug
+        _myRt.localScale = new Vector2(0.9f, 0.9f);
+
+        // TextCount.rectTransform.position = new Vector2(20, -35); bug
         TextCount.rectTransform.sizeDelta = new Vector2(61, 40);
         TextCount.color = Color.gray;
     }
 
     public void OnPointerDownDelegate(PointerEventData data)
     {
-        if(Type != 255)
+        if (Type != 255)
             _inventory.DownClick(_myRt);
     }
     public sbyte Merge(byte newItemCount, byte newItemType)
@@ -92,20 +95,16 @@ public sealed class ImageInv : MonoBehaviour
         Type = newType;
         if (Type == 255)
         {
-            ItemsCount = 0;
+            _itemsCount = 0;
+            TextCount.text = "";
             GetComponent<Image>().sprite = null;
             return;
         }
-            GetComponent<Image>().sprite = Inventory.AllImages[Type];
+        GetComponent<Image>().sprite = Inventory.AllImages[Type];
     }
     public void GetItem(byte count)//delete item
     {
-        if (ItemsCount > count)
-        {
-            ItemsCount -= count;
-        }
-        else
-        {
-        }
+        ItemsCount -= count;
+        Debug.Log(ItemsCount);
     }
 }

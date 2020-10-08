@@ -1818,9 +1818,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 137dc15132a091e43b7fae099335519f, type: 3}
   - {fileID: 21300000, guid: 2bb369c7cc094cf4fb9036cc77f31c5a, type: 3}
   - {fileID: 21300000, guid: 17e2f853ce4bdb242a4e566b6fd0adee, type: 3}
-  ItemsCount0: 0
-  ItemsCount1: 0
-  ItemsCount2: 0
   ItemsCs: []
 --- !u!1 &72824809
 GameObject:
@@ -30382,7 +30379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a3a905a79563148ab10538fe1dfa0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 0}
   Type: 0
 --- !u!65 &927064941
 BoxCollider:
@@ -43484,7 +43481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a3a905a79563148ab10538fe1dfa0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 1}
+  _color: {r: 1, g: 1, b: 1, a: 0}
   Type: 1
 --- !u!65 &1333420738
 BoxCollider:
@@ -49922,7 +49919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12a3a905a79563148ab10538fe1dfa0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  _color: {r: 1, g: 1, b: 1, a: 0}
   Type: 2
 --- !u!65 &1549205998
 BoxCollider:
@@ -62153,6 +62150,7 @@ MonoBehaviour:
   - {fileID: 927064938}
   - {fileID: 1333420733}
   - {fileID: 1549205993}
+  _blocksCs: []
   _sprites:
   - {fileID: 1580489238}
   - {fileID: 2140744859}

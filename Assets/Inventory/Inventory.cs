@@ -23,10 +23,9 @@ public sealed class Inventory : MonoBehaviour
     [SerializeField] private Sprite[] _allImages = new Sprite[TypesCount];
     public static Sprite[] AllImages { get; private set; } = new Sprite[TypesCount];
 
-    public int ItemsCount0;//brick
-    public int ItemsCount1;//wood
-    public int ItemsCount2;//glas
+    public static int[] ItemsCount = new int[TypesCount];
     public List<ImageInv> ItemsCs = new List<ImageInv>();
+    public ImageInv[] LastimInv = new ImageInv[TypesCount];
 
     private void Awake()
     {
@@ -39,78 +38,43 @@ public sealed class Inventory : MonoBehaviour
         switch (type)
         {
             case 0:
-                ItemsCount0 += count;
+                ItemsCount[0] += count;
                 break;
             case 1:
-                ItemsCount1 += count;
+                ItemsCount[1] += count;
                 break;
             case 2:
-                ItemsCount2 += count;
+                ItemsCount[2] += count;
                 break;
             default:
                 break;
         }
     }
+
     public bool GetItem(byte type, byte count)
     {
-        switch (type)
+        if (LastimInv[type].ItemsCount >= count)
         {
-            case 0:
-                if (count <= ItemsCount0)//если сумма меньше всего количества
+            LastimInv[type].GetItem(count);
+            ItemsCount[type] -= count;//вычитаем из общего числа сумму
+            return true;
+        }
+        else
+        {
+            for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
+            {
+                if (ItemsCs[i].Type == type)//если тип объекта подходящий, например кирпич == кирпич
                 {
-                    ItemsCount0 -= count;
-                    for (int i = 0; i < ItemsCs.Count; i++)
+                    LastimInv[type] = ItemsCs[i];
+                    if (LastimInv[type].ItemsCount > count)
                     {
-                        if (ItemsCs[i].Type == type)
-                        {
-                            if (ItemsCs[i].PosInInventory == i)
-                            {
-                                ItemsCs[i].GetItem(count);
-                                break;
-                            }
-                        }
+                        ItemsCs[i].GetItem(count);
+
+                        ItemsCount[type] -= count;//вычитаем из общего числа сумму
+                        return true;
                     }
-                    return true;
                 }
-                break;
-            case 1:
-                if (count <= ItemsCount1)//если сумма меньше всего количества
-                {
-                    ItemsCount1 -= count;
-                    for (int i = 0; i < ItemsCs.Count; i++)
-                    {
-                        if (ItemsCs[i].Type == type)
-                        {
-                            if (ItemsCs[i].PosInInventory == i)
-                            {
-                                ItemsCs[i].GetItem(count);
-                                break;
-                            }
-                        }
-                    }
-                    return true;
-                }
-                break;
-            case 2:
-                if (count <= ItemsCount2)//если сумма меньше всего количества
-                {
-                    ItemsCount2 -= count;
-                    for (int i = 0; i < ItemsCs.Count; i++)
-                    {
-                        if (ItemsCs[i].Type == type)
-                        {
-                            if (ItemsCs[i].PosInInventory == i)
-                            {
-                                ItemsCs[i].GetItem(count);
-                                break;
-                            }
-                        }
-                    }
-                    return true;
-                }
-                break;
-            default:
-                break;
+            }
         }
         return false;
     }
