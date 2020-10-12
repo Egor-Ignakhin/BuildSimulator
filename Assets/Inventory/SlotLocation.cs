@@ -28,6 +28,7 @@ public sealed class SlotLocation : MonoBehaviour
         if (dist < 30f)
         {
             RectTransform _newItem = Inventory.LastItem;
+
             if (_item == null)
             {
                 _newItem.position = _myRt.position;

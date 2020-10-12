@@ -37,7 +37,6 @@ public class FirstPersonAIO : MonoBehaviour {
     #endregion
 
     #region Movement Settings
-    public bool IsPause;
     public bool playerCanMove = true;
     public bool Sprint = false;
     public float walkSpeed = 4f;
@@ -148,7 +147,7 @@ public class FirstPersonAIO : MonoBehaviour {
 
     private void Update()
     {
-        if (IsPause)
+        if (GameMenu.ActiveGameMenu)
             return;
         #region Look Settings - Update
 
@@ -203,7 +202,7 @@ public class FirstPersonAIO : MonoBehaviour {
     private void FixedUpdate()
     {
         #region Movement Settings - FixedUpdate
-        if (IsPause)
+        if (GameMenu.ActiveGameMenu)
             return;
 
         Vector3 MoveDirection = Vector3.zero;

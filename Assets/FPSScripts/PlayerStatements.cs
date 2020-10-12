@@ -17,7 +17,7 @@ public sealed class PlayerStatements : MonoBehaviour
     [SerializeField] private float headMinY = -90f; // ограничение угла для головы
     [SerializeField] private float headMaxY = 60f;
 
-    private bool _fpsMode;
+    public bool _fpsMode { get; private set; }
 
    
 
@@ -49,7 +49,6 @@ public sealed class PlayerStatements : MonoBehaviour
         ChangeMode();
     }
 
-    // Update is called once per frame
     private void Update()
     {        
         if (GameMenu.ActiveGameMenu)

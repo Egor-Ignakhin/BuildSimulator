@@ -15,7 +15,7 @@ sealed class ChankVisible : MonoBehaviour
             }
         }
         GetComponent<BoxCollider>().isTrigger = true;
-        gameObject.layer = 3;//ignore raycast
+        gameObject.layer = 2;//ignore raycast
     }
     private void OnTriggerEnter(Collider other)
     {

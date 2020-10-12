@@ -65,7 +65,7 @@ public class BuildHouse : MonoBehaviour
                 {
                     _sprites[_selectBlock].color = new Color(1, 1, 1, 0.5f);
                     _blocks[_selectBlock].SetActive(false);
-                _selectBlock++;
+                    _selectBlock++;
                     if (_selectBlock == _blocks.Count)
                     _selectBlock = 0;
                     _sprites[_selectBlock].color = new Color(1, 1, 1, 1);
@@ -97,6 +97,11 @@ public class BuildHouse : MonoBehaviour
                     BaseBlock hitBlock = hit.transform.parent.GetComponent<BaseBlock>();
                     if (_lastSelectedBlock != null)
                         _lastSelectedBlock.ChangeColor(0);
+
+                    // оператор ?
+                    // проверяем с опетатором ? 
+                    //string companyName = _itemCs?.myString;
+                    //
 
                     hitBlock.ChangeColor(3);
                     _lastSelectedBlock = hitBlock;
