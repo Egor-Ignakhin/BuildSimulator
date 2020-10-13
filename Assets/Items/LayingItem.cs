@@ -28,8 +28,9 @@ public sealed class LayingItem : MonoBehaviour
         Debug.Log(_manager);
         layer = 9;// ground
        _myIndex = _manager.AddInList(this);
-        ChangeType(2, 3);
+        ChangeType(2, 100);
 
+        
     }
     public void RotateObject()
     {
@@ -40,7 +41,7 @@ public sealed class LayingItem : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, Vector3.down);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 10, layer))
+        if (Physics.Raycast(ray, out hit, 100, layer))
         {
             if (transform.position.y - hit.transform.position.y > _stayPosY)
                 transform.position += new Vector3(0, -0.5f, 0);
@@ -49,11 +50,17 @@ public sealed class LayingItem : MonoBehaviour
     private void OnDisable()
     {
         _manager.RemoveInList(_myIndex);
+      // GameObject gm = Instantiate(gameObject, transform.position + new Vector3(1, 2, 1), transform.rotation);
+       // gm.SetActive(true);
     }
     private void ChangeType(byte type,byte itemsCount)
     {
         Type = type;
         ItemsCount = itemsCount;
         GetComponent<Renderer>().material = _manager.GetMaterial(Type);
+    }
+    public void GetItem()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -1,64 +1,85 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 
 public sealed class InputPlayer : MonoBehaviour
 {
-    public delegate void PickUpTextEnabled();
-    public static event PickUpTextEnabled TextEnabled;
-
-    [SerializeField] private GameObject AnimCircle,AnimBuild;
+    [SerializeField] private TextMeshProUGUI _pickUpText;
+    [SerializeField] private GameObject AnimCircle, AnimBuild;
     private BuildHouse _bH;
     private Ray ray;
     private Camera _cam;
     private PlayerStatements _statements;
-    [SerializeField] private KeyCode _getItem = KeyCode.F;
+    [SerializeField] private KeyCode _getItemKey = KeyCode.F;
     private Inventory _inventory;
+    [SerializeField] private float _getItemDistance = 4f;
 
-   private void Start()
+    private void Start()
     {
         _inventory = Inventory.GetInventory;
-           _bH = GetComponent<BuildHouse>();
+        _bH = GetComponent<BuildHouse>();
         _cam = Camera.main;
         _statements = GetComponent<PlayerStatements>();
     }
-
+    private LayingItem item;
+    private bool _isEndedHit;
     private void Update()
     {
-        if (!_statements._fpsMode)//if fly
-        {
-            if (_bH._isDestroy)
-            {
-                AnimCircle.SetActive(true);
-            }
-            else
-            {
-                AnimCircle.SetActive(false);
-            }
-            if (_bH._isBuild)
-            {
-                AnimBuild.SetActive(true);
-            }
-            else
-            {
-                AnimBuild.SetActive(false);
-            }
-        }
-
         ray = _cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit = new RaycastHit();
-        if (Physics.Raycast(ray, out hit, 10))
+        if (Physics.Raycast(ray, out hit, _getItemDistance))
         {
-            LayingItem item;
+
             if (item = hit.transform.GetComponent<LayingItem>())
             {
-                TextEnabled?.Invoke();
-
-                if (Input.GetKeyDown(_getItem))
+                if (Input.GetKeyDown(_getItemKey))
                 {
-                    _inventory.AddItems(item.Type, item.ItemsCount);
-                    Debug.Log("Add item");
+                    if (_inventory.AddItems(item.Type, item.ItemsCount) == true)
+                    {
+                        item.GetItem();
+
+                        Debug.Log("Add item");
+                    }
                 }
+                if (_isEndedHit)
+                    return;
+
+                _pickUpText.enabled = true;
+                _pickUpText.text = "Pick up ( x" + item.ItemsCount + " )";
+               
+                _isEndedHit = true;
+            }
+            else
+            {
+                _isEndedHit = false;
+                _pickUpText.enabled = false;
             }
         }
-        Debug.DrawRay(ray.origin, transform.forward * 5,Color.green);
+        else
+        {
+            _isEndedHit = false;
+            _pickUpText.enabled = false;
+        }
+        Debug.DrawRay(ray.origin, transform.forward * 5, Color.green);
+
+        if (_statements._fpsMode)//if fly
+            return;
+
+        if (_bH.IsDestroy)
+        {
+            AnimCircle.SetActive(true);
+        }
+        else
+        {
+            AnimCircle.SetActive(false);
+        }
+        if (_bH.IsBuild)
+        {
+            AnimBuild.SetActive(true);
+        }
+        else
+        {
+            AnimBuild.SetActive(false);
+        }
+
     }
 }

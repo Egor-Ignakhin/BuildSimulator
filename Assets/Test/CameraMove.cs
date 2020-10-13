@@ -2,8 +2,8 @@
 
 public class CameraMove : MonoBehaviour
 {
-    public float speed = 3f;
-    private Vector3 transfer;
+    public float speed { get; private set; } = 3f;
+    private Vector3 _transfer;
 
     private void Awake()
     {
@@ -28,14 +28,14 @@ public class CameraMove : MonoBehaviour
 
             // Ускорение при нажатии клавиши Shift
             if (Input.GetKeyDown(KeyCode.LeftShift))
-                speed *= 5;
+                Speed *= 5;
             else if (Input.GetKeyUp(KeyCode.LeftShift))
-                speed /= 5;
+                Speed /= 5;
 
             // перемещение камеры
-            transfer = transform.forward * Input.GetAxis("Vertical");
-            transfer += transform.right * Input.GetAxis("Horizontal");
-            transform.position += transfer * speed * Time.deltaTime;
+            _transfer = transform.forward * Input.GetAxis("Vertical");
+            _transfer += transform.right * Input.GetAxis("Horizontal");
+            transform.position += _transfer * speed * Time.deltaTime;
         }
     }
 

@@ -38,9 +38,9 @@ public sealed class PlayerStatements : MonoBehaviour
             if (_flyScripts[i] is CameraRotate)
             {
                 CameraRotate cam = (CameraRotate)_flyScripts[i];
-                cam.sensitivity = this.sensitivity;
-                cam.headMinY = this.headMinY;
-                cam.headMaxY = this.headMaxY;
+                cam.Sensitivity = this.sensitivity;
+                cam.HeadMinY = this.headMinY;
+                cam.HeadMaxY = this.headMaxY;
             }
         }
     }

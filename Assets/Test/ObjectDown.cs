@@ -50,8 +50,8 @@ public class ObjectDown : MonoBehaviour
         if (Input.GetKey(KeyCode.P) && !_realise)
         {
             _timeToBoom += 1 * Time.deltaTime;
-            _bH._isBuild = false;
-            _bH._isDestroy = false;
+            _bH.IsBuild = false;
+            _bH.IsDestroy = false;
             if (_timeToBoom > 1f)
             {
                     DestroyBlocks();

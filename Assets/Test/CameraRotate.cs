@@ -2,9 +2,9 @@
 
 public class CameraRotate : MonoBehaviour
 {
-	public float sensitivity = 0f; // чувствительность мыши
-	public float headMinY = 0f; // ограничение угла для головы
-	public float headMaxY = 0f;
+	public float Sensitivity { get; set; } = 0f; // чувствительность мыши
+	public float HeadMinY { get; set; } = 0f; // ограничение угла для головы
+	public float HeadMaxY { get; set; } = 0f;
 
 	private Vector3 direction;
 	private float rotationY;
@@ -18,9 +18,9 @@ public class CameraRotate : MonoBehaviour
 		float v = Input.GetAxis("Vertical");
 
 		// управление головой (камерой)
-		float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * sensitivity;
-		rotationY += Input.GetAxis("Mouse Y") * sensitivity;
-		rotationY = Mathf.Clamp(rotationY, headMinY, headMaxY);
+		float rotationX = transform.localEulerAngles.y + Input.GetAxis("Mouse X") * Sensitivity;
+		rotationY += Input.GetAxis("Mouse Y") * Sensitivity;
+		rotationY = Mathf.Clamp(rotationY, HeadMinY, HeadMaxY);
 		transform.localEulerAngles = new Vector3(-rotationY, rotationX, 0);
 
 		// вектор направления движения

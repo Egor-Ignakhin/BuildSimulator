@@ -5,11 +5,11 @@ using UnityEngine;
 public sealed class SlotLocation : MonoBehaviour
 {
     private RectTransform _myRt;
-    public RectTransform _item;
+    public RectTransform _item { get; set; }
     private ImageInv _itemCs;
-    void Start()
+    private void Start()
     {
-        _myRt = GetComponent<RectTransform>();
+           _myRt = GetComponent<RectTransform>();
         Inventory.ChangePositionItem += this.NewDistance;
         for(int i = 0; i < transform.childCount; i++)
         {

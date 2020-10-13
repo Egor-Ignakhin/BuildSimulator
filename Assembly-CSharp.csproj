@@ -71,8 +71,8 @@
     <Compile Include="Assets\Inventory\Inventory.cs" />
     <Compile Include="Assets\Inventory\SlotLocation.cs" />
     <Compile Include="Assets\Items\AllLayingObjectsManager.cs" />
+    <Compile Include="Assets\Items\InventoryActivator.cs" />
     <Compile Include="Assets\Items\LayingItem.cs" />
-    <Compile Include="Assets\Items\PickUpTextCs.cs" />
     <Compile Include="Assets\Menu\InputMenu.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Test\BaseBlock.cs" />

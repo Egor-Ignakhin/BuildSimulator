@@ -15,18 +15,19 @@ public class BuildHouse : MonoBehaviour
     private Inventory _inventory;
     private Camera _cam;
 
-    private AudioSource AudioS;
+    private AudioSource _myAudioSource;
     private BaseBlock _lastSelectedBlock;
 
     private byte _selectBlock = 0;
-    public bool _isBuild, _isDestroy;
-    [SerializeField] private LayerMask layer;
+    public bool IsBuild { get; set; }
+    public bool IsDestroy { get; set; }
+    [SerializeField] private LayerMask _layer;
 
     private void Start()
     {
         _cam = Camera.main;
         _inventory = Inventory.GetInventory;
-        AudioS = GetComponent<AudioSource>();
+        _myAudioSource = GetComponent<AudioSource>();
 
         for (int i = 0; i < _sprites.Count; i++)
         {
@@ -38,63 +39,58 @@ public class BuildHouse : MonoBehaviour
             _blocksCs[i].OnEnable();
         }
     }
-
+    private BaseBlock _hitBlock;
     private void Update()
     {
         if (GameMenu.ActiveGameMenu)
             return;
 
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                _isBuild = !_isBuild;
-                _isDestroy = false;
-            }
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            IsBuild = !IsBuild;
+            IsDestroy = false;
+        }
 
-            if (Input.GetKeyDown(KeyCode.X))
-            {
-                _isDestroy = !_isDestroy;
-                _isBuild = false;
-            }
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            IsDestroy = !IsDestroy;
+            IsBuild = false;
+        }
 
-            if (_isBuild)
+        if (IsBuild)
+        {
+            _sprites[_selectBlock].color = Color.white;
+            _blocks[_selectBlock].SetActive(true);
+
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                _sprites[_selectBlock].color = new Color(1, 1, 1, 1);
-                _blocks[_selectBlock].SetActive(true);
-               
-                if (Input.GetKeyDown(KeyCode.R))
-                {
-                    _sprites[_selectBlock].color = new Color(1, 1, 1, 0.5f);
-                    _blocks[_selectBlock].SetActive(false);
-                    _selectBlock++;
-                    if (_selectBlock == _blocks.Count)
+                _sprites[_selectBlock].color = new TransparentColors(0).color;
+                _blocks[_selectBlock].SetActive(false);
+                _selectBlock++;
+
+                if (_selectBlock == _blocks.Count)
                     _selectBlock = 0;
-                    _sprites[_selectBlock].color = new Color(1, 1, 1, 1);
-                    _blocks[_selectBlock].SetActive(true);
-                }
-                Build();
-            }
-            else
-            {
-                for (int i = 0; i < _sprites.Count; i++)
-                {
-                    _sprites[i].color = new Color(1, 1, 1, 0.5f);
-                }
-                for (int i = 0; i < _blocks.Count; i++)
-                {
-                    _blocks[i].SetActive(false);
 
-                }
-            _selectBlock = 0;
+                _sprites[_selectBlock].color = Color.white;
+                _blocks[_selectBlock].SetActive(true);
             }
-        if (_isDestroy)
+            Build();
+        }
+        else
+        {
+            _sprites[_selectBlock].color = new TransparentColors(0).color;
+            _blocks[_selectBlock].SetActive(false);
+
+            _selectBlock = 0;
+        }
+        if (IsDestroy)
         {
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(ray, out hit, 10, layer))
+            if (Physics.Raycast(ray, out hit, 10, _layer))
             {
-                if (hit.transform.parent.GetComponent<BaseBlock>())
+                if (_hitBlock =  hit.transform.parent.GetComponent<BaseBlock>())
                 {
-                    BaseBlock hitBlock = hit.transform.parent.GetComponent<BaseBlock>();
                     if (_lastSelectedBlock != null)
                         _lastSelectedBlock.ChangeColor(0);
 
@@ -103,8 +99,8 @@ public class BuildHouse : MonoBehaviour
                     //string companyName = _itemCs?.myString;
                     //
 
-                    hitBlock.ChangeColor(3);
-                    _lastSelectedBlock = hitBlock;
+                    _hitBlock.ChangeColor(3);
+                    _lastSelectedBlock = _hitBlock;
                 }
                 else
                 {
@@ -123,30 +119,30 @@ public class BuildHouse : MonoBehaviour
                 _lastSelectedBlock.ChangeColor(0);
         }
     }
+    private Greed _hitGreed;
     private void Build()
     {
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit = new RaycastHit();
-        if (Physics.Raycast(ray, out hit, 10, layer))
+        if (Physics.Raycast(ray, out hit, 10, _layer))
         {
-            if (hit.transform.GetComponent<Greed>())
+            if (_hitGreed = hit.transform.GetComponent<Greed>())
             {
-                Greed hitGreed = hit.transform.GetComponent<Greed>();
-                if (hitGreed.enabled)
+                if (_hitGreed.enabled)
                 {
-                    if(Inventory.ItemsCount[_selectBlock] > 0)
+                    if (_inventory.ItemsCount[_selectBlock] > 0)
                         _blocksCs[_selectBlock].ChangeColor(1);
                     else
                         _blocksCs[_selectBlock].ChangeColor(2);
 
-                    _blocks[_selectBlock].transform.position = hitGreed.Pos;
+                    _blocks[_selectBlock].transform.position = _hitGreed.Pos;
                     _blocks[_selectBlock].transform.rotation = hit.transform.rotation;
 
                     if (Input.GetMouseButtonDown(0))
                     {
                         if (_inventory.GetItem(_selectBlock, 1) == true)
                         {
-                            ChangeBlock(hit, hitGreed);
+                            ChangeBlock(hit, _hitGreed);
                         }
                         else
                         {
@@ -160,49 +156,62 @@ public class BuildHouse : MonoBehaviour
         {
             _blocks[_selectBlock].transform.localPosition = new Vector3(0, 0, 4f);
             _blocks[_selectBlock].transform.rotation = Quaternion.identity;
-        }                
+        }
     }
     private void ChangeBlock(RaycastHit hit, Greed hitGreed)
     {
-        float Volume = Random.Range(50,100);
-        AudioS.volume = Volume/95;
-        AudioS.spatialBlend = Volume/95;
-        AudioS.clip = SoundsChange[_selectBlock];
-        AudioS.Play();
+        float Volume = Random.Range(50, 100);
+        _myAudioSource.volume = Volume / 95;
+        _myAudioSource.spatialBlend = Volume / 95;
+        _myAudioSource.clip = SoundsChange[_selectBlock];
+        _myAudioSource.Play();
 
         Transform block = Instantiate(_blocks[_selectBlock].transform, hitGreed.Pos, hit.transform.rotation);
+
         block.gameObject.layer = 8;
         block.GetComponent<BaseBlock>().enabled = true;
         block.GetComponent<BoxCollider>().isTrigger = false;
-        foreach (Transform child in block.GetComponentsInChildren<Transform>())
+        for(int i = 0; i < block.childCount; i++)
         {
-            child.gameObject.layer = 8;
-            if (child.GetComponent<Greed>())
+            block.GetChild(i).gameObject.layer = 8;
+            if (block.GetChild(i).GetComponent<Greed>())
             {
-                child.GetComponent<Greed>().OnSet();
+                block.GetChild(i).GetComponent<Greed>().OnSet();
             }
         }
         hitGreed.enabled = false;
-        _obDown.AddObjects(block.gameObject,hit.transform);
+        _obDown.AddObjects(block.gameObject, hit.transform);
     }
     private void DestroyBlock(RaycastHit hit)
     {
-        if (hit.transform.GetComponent<Greed>())
+        if (_hitGreed = hit.transform.GetComponent<Greed>())
         {
-            Greed greed = hit.transform.GetComponent<Greed>();
-            if (greed.IsPlatformBlock)
+            if (_hitGreed.IsPlatformBlock)
                 return;
-            if (hit.transform.parent.GetComponent<BaseBlock>())
+            if (_hitBlock = hit.transform.parent.GetComponent<BaseBlock>())
             {
-                BaseBlock baseBlock = hit.transform.parent.GetComponent<BaseBlock>();
-               
-                AudioS.clip = SoundsDestroy[baseBlock.Type];
-                AudioS.Play();
-                greed.DestroyParent();
+                _myAudioSource.clip = SoundsDestroy[_hitBlock.Type];
+                _myAudioSource.Play();
+                _hitGreed.DestroyParent();
                 float Volume = Random.Range(50, 100);
-                AudioS.volume = Volume / 95;
-                AudioS.spatialBlend = Volume / 95;
+                _myAudioSource.volume = Volume / 95;
+                _myAudioSource.spatialBlend = Volume / 95;
             }
         }
+    }
+}
+struct TransparentColors
+{
+    public Color color;
+
+    public TransparentColors(byte colorType)
+    {
+        switch (colorType)
+        {
+            case 0:
+                this.color = new Color(1, 1, 1, 0.5f);
+                return;
+        }
+        this.color = new Color(1, 1, 1, 1);
     }
 }
