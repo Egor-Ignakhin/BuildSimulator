@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Chanks\ChankVisible.cs" />
     <Compile Include="Assets\Chanks\SeePlayerChanks.cs" />
-    <Compile Include="Assets\FPSScripts\FirstPersonAIO.cs" />
+    <Compile Include="Assets\FPSScripts\FirstPersonController.cs" />
     <Compile Include="Assets\FPSScripts\PlayerStatements.cs" />
     <Compile Include="Assets\Inventory\ImageInv.cs" />
     <Compile Include="Assets\Inventory\Inventory.cs" />

@@ -25,8 +25,7 @@ public sealed class InputPlayer : MonoBehaviour
     private void Update()
     {
         ray = _cam.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit = new RaycastHit();
-        if (Physics.Raycast(ray, out hit, _getItemDistance))
+        if (Physics.Raycast(ray, out RaycastHit hit, _getItemDistance))
         {
 
             if (item = hit.transform.GetComponent<LayingItem>())
@@ -61,7 +60,7 @@ public sealed class InputPlayer : MonoBehaviour
         }
         Debug.DrawRay(ray.origin, transform.forward * 5, Color.green);
 
-        if (_statements._fpsMode)//if fly
+        if (_statements.FpsMode)//if fly
             return;
 
         if (_bH.IsDestroy)

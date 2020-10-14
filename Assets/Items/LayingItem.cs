@@ -28,7 +28,7 @@ public sealed class LayingItem : MonoBehaviour
         Debug.Log(_manager);
         layer = 9;// ground
        _myIndex = _manager.AddInList(this);
-        ChangeType(2, 100);
+        ChangeType((byte)Random.Range(0,3), (byte)Random.Range(1,255));
 
         
     }

@@ -17,7 +17,7 @@ public sealed class PlayerStatements : MonoBehaviour
     [SerializeField] private float headMinY = -90f; // ограничение угла для головы
     [SerializeField] private float headMaxY = 60f;
 
-    public bool _fpsMode { get; private set; }
+    public bool FpsMode { get; private set; }
 
    
 
@@ -25,12 +25,12 @@ public sealed class PlayerStatements : MonoBehaviour
     {
         for (int i = 0; i < _fPSScripts.Length; i++)
         {
-            if (_fPSScripts[i] is FirstPersonAIO)
+            if (_fPSScripts[i] is FirstPersonController)
             {
-                FirstPersonAIO fps = (FirstPersonAIO)_fPSScripts[i];
-                fps.playerCamera = GetComponent<Camera>();
-                fps.mouseSensitivity = sensitivity;
-                fps.verticalRotationRange = 1.75f * headMaxY + Mathf.Clamp(0, headMinY, 0);
+                FirstPersonController fps = (FirstPersonController)_fPSScripts[i];
+                fps.PlayerCamera = GetComponent<Camera>();
+                fps.MouseSensitivity = sensitivity;
+                fps.VerticalRotationRange = 1.75f * headMaxY + Mathf.Clamp(0, headMinY, 0);
             }
         }
         for (int i = 0; i < _flyScripts.Length; i++)
@@ -56,13 +56,13 @@ public sealed class PlayerStatements : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            _fpsMode = !_fpsMode;
+            FpsMode = !FpsMode;
             ChangeMode();
         }
     }
     private void ChangeMode()
     {
-        if(_fpsMode == true)// if fps is active and can moving
+        if(FpsMode == true)// if fps is active and can moving
         {
             _fPSObjects.SetActive(true);
             _flyObjects.SetActive(false);
