@@ -6,6 +6,9 @@ public class GameMenu : MonoBehaviour
     [SerializeField] private GameObject QuestionsTrello, Activer;// лист управления и лист меню
     [SerializeField] private Inventory _inventory;
 
+    public delegate void ActiveMenu();// событие  определения положения
+    public static event ActiveMenu ActiveMenuEvent;// событие  определения положения
+
     public static bool ActiveGameMenu;
     public void OnClick(int num)
     {
@@ -37,6 +40,7 @@ public class GameMenu : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            ActiveMenuEvent();
             if (_inventory.IsActive == true)
             {
                 _inventory.TurnOffOn();

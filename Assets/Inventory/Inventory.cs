@@ -13,7 +13,7 @@ public sealed class Inventory : MonoBehaviour
     public static RectTransform LastItem { get; private set; }// последний предмет который был передвинут
     private static RectTransform _lastParentOfObject;//последний родитель сдвинутого объетка
 
-    private GameObject _activer;//активатор остальных слотов инвентаря
+    public GameObject _activer { get; private set; }//активатор остальных слотов инвентаря
     public bool IsActive { get; private set; } = false;
 
     public Sprite[] AllImages = new Sprite[TypesCount];//все спрайты для строительных объектов
@@ -21,6 +21,8 @@ public sealed class Inventory : MonoBehaviour
     public int[] ItemsCount { get; private set; } = new int[TypesCount];//число объектов каждого типа
     public List<ImageInv> ItemsCs { get; } = new List<ImageInv>();// все классы со слотов
     public ImageInv[] LastimInv { get; set; } = new ImageInv[TypesCount];//последний открытый класс каждого типа
+
+    public bool ActiveTrade { get; set; }
 
     private void Awake()
     {
@@ -108,6 +110,16 @@ public sealed class Inventory : MonoBehaviour
 
         _activer.SetActive(IsActive);
         GameMenu.ActiveGameMenu = IsActive;
+
+        if (ActiveTrade)
+        {
+            _activer.GetComponent<RectTransform>().localPosition = new Vector2(-400, 175);
+            Cursor.visible = true;
+        }
+        else
+        {
+            _activer.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
+        }
     }
     public void DownClick(RectTransform item)//пока удерживается слот
     {

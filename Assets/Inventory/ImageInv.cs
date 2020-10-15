@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
@@ -8,7 +6,6 @@ using TMPro;
 public sealed class ImageInv : MonoBehaviour
 {
     private TextMeshProUGUI TextCount;
-    public byte PosInInventory;
     private Inventory _inventory;
     private RectTransform _myRt;
     public byte Type { get; private set; }

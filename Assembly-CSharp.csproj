@@ -75,6 +75,8 @@
     <Compile Include="Assets\Items\LayingItem.cs" />
     <Compile Include="Assets\Menu\InputMenu.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
+    <Compile Include="Assets\Shop\Trader.cs" />
+    <Compile Include="Assets\Shop\TraderInventory.cs" />
     <Compile Include="Assets\Test\BaseBlock.cs" />
     <Compile Include="Assets\Test\BuildHouse.cs" />
     <Compile Include="Assets\Test\CameraMove.cs" />

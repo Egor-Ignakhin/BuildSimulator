@@ -3,7 +3,7 @@ using UnityEngine;
 
 public sealed class InputPlayer : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _pickUpText;
+    [SerializeField] private TextMeshProUGUI _helpingText;
     [SerializeField] private GameObject AnimCircle, AnimBuild;
     private BuildHouse _bH;
     private Ray ray;
@@ -12,51 +12,45 @@ public sealed class InputPlayer : MonoBehaviour
     [SerializeField] private KeyCode _getItemKey = KeyCode.F;
     private Inventory _inventory;
     [SerializeField] private float _getItemDistance = 4f;
+    private RectTransform _activerOfInventorySlots;
 
     private void Start()
     {
         _inventory = Inventory.GetInventory;
+        _activerOfInventorySlots = _inventory._activer.GetComponent<RectTransform>();
         _bH = GetComponent<BuildHouse>();
         _cam = Camera.main;
         _statements = GetComponent<PlayerStatements>();
     }
+
+    private void OnEnable()
+    {
+        _helpingText.enabled = false;
+    }
     private LayingItem item;
-    private bool _isEndedHit;
+    private Trader _lastTrader;
+    private MonoBehaviour[] components;
     private void Update()
     {
         ray = _cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, _getItemDistance))
         {
-
-            if (item = hit.transform.GetComponent<LayingItem>())
+            components = hit.transform.GetComponents<MonoBehaviour>();
+            bool checkHit = false;
+            for (int i = 0; i < components.Length; i++)
             {
-                if (Input.GetKeyDown(_getItemKey))
+                if (components[i] is LayingItem)
                 {
-                    if (_inventory.AddItems(item.Type, item.ItemsCount) == true)
-                    {
-                        item.GetItem();
-
-                        Debug.Log("Add item");
-                    }
+                    checkHit = TakeItem(ref hit);
+                    break;
                 }
-                if (_isEndedHit)
-                    return;
-
-                _pickUpText.enabled = true;
-                _pickUpText.text = "Pick up ( x" + item.ItemsCount + " )";
-               
-                _isEndedHit = true;
+                if (components[i] is Trader)
+                {
+                    checkHit = BuyItem(ref hit);
+                    break;
+                }
             }
-            else
-            {
-                _isEndedHit = false;
-                _pickUpText.enabled = false;
-            }
-        }
-        else
-        {
-            _isEndedHit = false;
-            _pickUpText.enabled = false;
+            _helpingText.enabled = checkHit;
         }
         Debug.DrawRay(ray.origin, transform.forward * 5, Color.green);
 
@@ -80,5 +74,34 @@ public sealed class InputPlayer : MonoBehaviour
             AnimBuild.SetActive(false);
         }
 
+    }
+    private bool TakeItem(ref RaycastHit hit)
+    {
+        item = hit.transform.GetComponent<LayingItem>();
+        _helpingText.text = "Pick up (x" + item.ItemsCount + ") [" + _getItemKey + ']';
+        if (Input.GetKeyDown(_getItemKey))
+        {
+            if (_inventory.AddItems(item.Type, item.ItemsCount) == true)
+            {
+                item.GetItem();
+
+                Debug.Log("Add item");
+            }
+        }
+
+        return true;
+    }
+    private bool BuyItem(ref RaycastHit hit)
+    {
+        _lastTrader = hit.transform.GetComponent<Trader>();
+        _helpingText.text = "Trade [" + _getItemKey + ']';
+        if (Input.GetKeyDown(_getItemKey))
+        {
+            _inventory.ActiveTrade = true;
+            _inventory.TurnOffOn();
+            _lastTrader.OpenShop();
+            Debug.Log("it's trader.");
+        }
+        return true;
     }
 }
