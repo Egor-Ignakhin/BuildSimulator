@@ -390,7 +390,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &6588063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -837,7 +836,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &37131136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -946,7 +944,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &41230390
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1055,7 +1052,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &42644782
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1164,7 +1160,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &46331638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1508,7 +1503,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &51288911
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1696,7 +1690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &54638673
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1757,66 +1750,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54638670}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &54948093
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 54948094}
-  - component: {fileID: 54948096}
-  - component: {fileID: 54948095}
-  m_Layer: 2
-  m_Name: layer (7)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &54948094
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54948093}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1333420734}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &54948095
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54948093}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0.5}
---- !u!114 &54948096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54948093}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 0, z: 1}
-  IsPlatformBlock: 0
 --- !u!1 &56140183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1865,7 +1798,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &56140186
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1974,7 +1906,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &56551485
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2083,7 +2014,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &67135790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2287,7 +2217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &72824812
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2396,7 +2325,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &75534740
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2593,7 +2521,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &84581507
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2702,7 +2629,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &85083427
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2867,7 +2793,7 @@ RectTransform:
   - {fileID: 71071383}
   - {fileID: 309796096}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2958,7 +2884,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &88744168
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3067,7 +2992,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &91130590
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3176,7 +3100,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &92246508
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3469,7 +3392,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &96377178
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3578,7 +3500,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &97444666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3687,7 +3608,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &102026733
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3796,7 +3716,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &104803943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3905,7 +3824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &106584680
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3998,7 +3916,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &107190945
 BoxCollider:
@@ -4027,7 +3945,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &107190947
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4123,7 +4040,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &114311692
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4387,7 +4303,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &126428970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4496,7 +4411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &126826786
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4598,7 +4512,7 @@ Transform:
   - {fileID: 1496099238}
   - {fileID: 363467705}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &131354918
 GameObject:
@@ -4648,7 +4562,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &131354921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4832,7 +4745,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &135310249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4893,66 +4805,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 135310246}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &136155922
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 136155923}
-  - component: {fileID: 136155925}
-  - component: {fileID: 136155924}
-  m_Layer: 2
-  m_Name: layer (13)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &136155923
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136155922}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1549205996}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &136155924
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136155922}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0.5}
---- !u!114 &136155925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 136155922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 0, z: 1}
-  IsPlatformBlock: 0
 --- !u!1 &139082030
 GameObject:
   m_ObjectHideFlags: 0
@@ -5080,7 +4932,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &140045960
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5189,7 +5040,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &142674063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5386,7 +5236,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &147147403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5739,7 +5588,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &157495464
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5972,7 +5820,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &169424281
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6081,7 +5928,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &169441929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6190,7 +6036,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &171651516
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6299,7 +6144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &172566141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6923,7 +6767,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &193827843
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7120,7 +6963,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &200223245
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7213,7 +7055,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &200555808
 BoxCollider:
@@ -7242,7 +7084,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &200555810
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7396,7 +7237,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &204441858
 BoxCollider:
@@ -7425,7 +7266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &204441860
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7651,7 +7491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &214099887
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7780,7 +7619,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &214864717
 BoxCollider:
@@ -7856,7 +7695,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &218532334
 GameObject:
   m_ObjectHideFlags: 0
@@ -7905,7 +7743,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &218532337
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8030,7 +7867,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 34
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &227075657
 MonoBehaviour:
@@ -8046,7 +7883,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &227075658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8243,7 +8079,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &234456877
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8394,6 +8229,7 @@ Transform:
   m_LocalPosition: {x: 0, y: -0.009821618, z: 0}
   m_LocalScale: {x: 0.099999994, y: 0.0100000035, z: 0.099999994}
   m_Children:
+  - {fileID: 1679019726}
   - {fileID: 1834731364}
   - {fileID: 315037902}
   - {fileID: 1370484446}
@@ -8582,7 +8418,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &238168658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8691,7 +8526,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &240055597
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8752,66 +8586,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240055594}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &241445485
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 241445486}
-  - component: {fileID: 241445488}
-  - component: {fileID: 241445487}
-  m_Layer: 2
-  m_Name: layer (15)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &241445486
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241445485}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1549205996}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &241445487
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241445485}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01, y: 1, z: 1}
-  m_Center: {x: -0.5, y: 0, z: 0}
---- !u!114 &241445488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241445485}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: -1, y: 0, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &243076344
 GameObject:
   m_ObjectHideFlags: 0
@@ -8860,7 +8634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &243076347
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8969,7 +8742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &244699905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9157,7 +8929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &247124812
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9340,7 +9111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &248282047
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9449,7 +9219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &254267896
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9558,7 +9327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &254777404
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9823,7 +9591,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &259924964
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10089,7 +9856,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &260863742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10247,7 +10013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &268158354
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10356,7 +10121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &270577941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10619,7 +10383,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &275410934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10884,7 +10647,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &281201836
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11117,7 +10879,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &294460150
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11262,7 +11023,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &300849020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11371,7 +11131,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &305470506
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11748,7 +11507,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &310224900
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11857,7 +11615,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &310585046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11950,7 +11707,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &315037903
 BoxCollider:
@@ -12026,7 +11783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &317176812
 GameObject:
   m_ObjectHideFlags: 0
@@ -12217,7 +11973,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &317915563
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12326,7 +12081,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &320076441
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12691,7 +12445,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &344922550
 BoxCollider:
@@ -12720,7 +12474,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &344922552
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12816,7 +12569,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &345059358
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12961,7 +12713,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &348441635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13055,7 +12806,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &350575558
 MonoBehaviour:
@@ -13195,7 +12946,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &352928126
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13304,7 +13054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &354324952
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13397,7 +13146,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &357820000
 BoxCollider:
@@ -13473,7 +13222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &358889161
 GameObject:
   m_ObjectHideFlags: 0
@@ -13601,7 +13349,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &360594104
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13710,7 +13457,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &363340052
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13980,7 +13726,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &367310015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14177,7 +13922,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &370743279
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14365,7 +14109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &372825168
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14474,7 +14217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &378529160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14567,7 +14309,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 48
+  m_RootOrder: 49
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &378622499
 MonoBehaviour:
@@ -14583,7 +14325,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &378622500
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14692,7 +14433,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &379357152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14801,7 +14541,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &383592630
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14910,7 +14649,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &385913476
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14971,66 +14709,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385913473}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &390458851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 390458852}
-  - component: {fileID: 390458854}
-  - component: {fileID: 390458853}
-  m_Layer: 2
-  m_Name: layer (9)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &390458852
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 390458851}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1333420734}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &390458853
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 390458851}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01, y: 1, z: 1}
-  m_Center: {x: -0.5, y: 0, z: 0}
---- !u!114 &390458854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 390458851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: -1, y: 0, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &390867909
 GameObject:
   m_ObjectHideFlags: 0
@@ -15204,7 +14882,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &396423105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15313,7 +14990,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &399586778
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15422,7 +15098,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &401523618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15605,7 +15280,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &404351031
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15793,7 +15467,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &417289918
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15902,7 +15575,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &417898587
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15963,66 +15635,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 417898584}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &420293085
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 420293086}
-  - component: {fileID: 420293088}
-  - component: {fileID: 420293087}
-  m_Layer: 2
-  m_Name: layer (10)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &420293086
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420293085}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1333420734}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &420293087
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420293085}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.01, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &420293088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 420293085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &423939636
 GameObject:
   m_ObjectHideFlags: 0
@@ -16227,7 +15839,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &425983031
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16336,7 +15947,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &426241762
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16601,7 +16211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &431617298
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17031,7 +16640,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &446274743
 BoxCollider:
@@ -17107,7 +16716,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &446927312
 GameObject:
   m_ObjectHideFlags: 0
@@ -17214,7 +16822,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 20
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &448360423
 BoxCollider:
@@ -17290,7 +16898,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &449783658
 GameObject:
   m_ObjectHideFlags: 0
@@ -17339,7 +16946,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &449783661
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17448,7 +17054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &453293429
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17541,7 +17146,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &454118854
 BoxCollider:
@@ -17617,7 +17222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &460911753
 GameObject:
   m_ObjectHideFlags: 0
@@ -17666,7 +17270,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &460911756
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18019,7 +17622,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &469824209
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18128,7 +17730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &480791139
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18273,7 +17874,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &485721317
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18382,7 +17982,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &486213740
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18491,7 +18090,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &486716356
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18673,7 +18271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &487345350
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18782,7 +18379,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &490887603
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18891,7 +18487,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &495199544
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19153,7 +18748,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &502008099
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19295,7 +18889,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &505151637
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19733,7 +19326,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 19
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &516864407
 BoxCollider:
@@ -19809,7 +19402,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &517595188
 GameObject:
   m_ObjectHideFlags: 0
@@ -19858,7 +19450,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &517595191
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19967,7 +19558,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &522594821
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20252,7 +19842,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &528781278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20361,7 +19950,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &530571942
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20549,7 +20137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &535154039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20658,7 +20245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &536579415
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20767,7 +20353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &542265241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20876,7 +20461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &544412139
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20985,7 +20569,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &546140137
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21567,7 +21150,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &565181536
 MonoBehaviour:
@@ -21583,7 +21166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &565181537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21676,7 +21258,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &568671438
 MonoBehaviour:
@@ -21692,7 +21274,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &568671439
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21801,7 +21382,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &570645249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22086,7 +21666,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &572721791
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22504,7 +22083,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &582998541
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22613,7 +22191,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &589958421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22968,7 +22545,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &603211929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23583,7 +23159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &627533459
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23692,7 +23267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &628816357
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24207,7 +23781,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &641551056
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24404,7 +23977,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &644335870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24513,7 +24085,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &645159837
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24606,7 +24177,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &647925965
 MonoBehaviour:
@@ -24622,7 +24193,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &647925966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24731,7 +24301,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &649633368
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24840,7 +24409,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &651942580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24949,7 +24517,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &655694592
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25058,7 +24625,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &656290240
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25206,7 +24772,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &662382524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25457,7 +25022,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 45
+  m_RootOrder: 46
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &669437102
 MonoBehaviour:
@@ -25473,7 +25038,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &669437103
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25582,7 +25146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &669985124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25806,7 +25369,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &683108675
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25899,7 +25461,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 46
+  m_RootOrder: 47
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &687471965
 MonoBehaviour:
@@ -25915,7 +25477,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &687471966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26193,7 +25754,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &694964716
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26302,7 +25862,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &695704313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26526,7 +26085,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &706646626
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26677,7 +26235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &715352928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26846,7 +26403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &719586351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26955,7 +26511,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &719755504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27064,7 +26619,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &719770705
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27173,7 +26727,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &722654746
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27440,7 +26993,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &723204508
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27622,7 +27174,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &731739670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27849,7 +27400,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &735660034
 BoxCollider:
@@ -27878,7 +27429,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &735660036
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28295,7 +27845,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &746226667
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28388,7 +27937,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &747793379
 MonoBehaviour:
@@ -28404,7 +27953,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &747793380
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28811,7 +28359,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &749967124
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29019,7 +28566,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &754795013
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29212,7 +28758,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &756622448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29321,7 +28866,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &756913336
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29586,7 +29130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &759476035
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29695,7 +29238,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &759837029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29965,7 +29507,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &768790932
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30074,7 +29615,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &769960630
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30183,7 +29723,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &770203377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30292,7 +29831,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &772833905
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30684,7 +30222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &777367656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30793,7 +30330,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &780052775
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30908,7 +30444,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &799823160
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31017,7 +30552,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &801248618
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31126,7 +30660,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &802001681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31235,7 +30768,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &803273666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31344,7 +30876,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &803554413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31615,7 +31146,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &817707628
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31724,7 +31254,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &819455278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31833,7 +31362,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &824738053
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31942,7 +31470,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &826271749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32051,7 +31578,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &828527845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32333,7 +31859,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &834521526
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32442,7 +31967,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &834556542
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32879,7 +32403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &844802278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32988,7 +32511,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &849736072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33097,7 +32619,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &851472351
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33206,7 +32727,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &851515739
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33315,7 +32835,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &852181290
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33424,7 +32943,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &853027215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33690,7 +33208,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &857887359
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33835,7 +33352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &860533445
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34092,7 +33608,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &870094118
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34201,7 +33716,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &870169421
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34310,7 +33824,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &870990914
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34407,66 +33920,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &882226391
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 882226392}
-  - component: {fileID: 882226394}
-  - component: {fileID: 882226393}
-  m_Layer: 2
-  m_Name: layer (16)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &882226392
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882226391}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1549205996}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &882226393
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882226391}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.01, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &882226394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 882226391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &883034953
 GameObject:
   m_ObjectHideFlags: 0
@@ -34723,7 +34176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &901593432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34832,7 +34284,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &908669479
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34941,7 +34392,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &910150679
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35050,7 +34500,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &916341568
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35159,7 +34608,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &920655217
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35388,13 +34836,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1813821358}
-  - {fileID: 2070255414}
-  - {fileID: 1865178533}
-  - {fileID: 1824352088}
-  - {fileID: 1079818210}
-  - {fileID: 1532726746}
+  m_Children: []
   m_Father: {fileID: 505147572}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35411,6 +34853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 0
+  _obDown: {fileID: 0}
 --- !u!65 &927064941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35503,7 +34946,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 47
+  m_RootOrder: 48
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &932757025
 MonoBehaviour:
@@ -35519,7 +34962,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &932757026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35752,7 +35194,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &938184640
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35861,7 +35302,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &941809698
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36126,7 +35566,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &945091854
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36235,7 +35674,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &945209580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36344,7 +35782,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &946827172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36453,7 +35890,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &952245888
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36592,7 +36028,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &960581875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36737,7 +36172,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &963558551
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36846,7 +36280,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &965032318
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36955,7 +36388,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &967717710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37064,7 +36496,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &969103126
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37317,7 +36748,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &981093158
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37681,7 +37111,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &989651306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37790,7 +37219,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &992767854
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37899,7 +37327,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &994753452
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38008,7 +37435,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &995109929
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38192,7 +37618,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1003668157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38301,7 +37726,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1004383900
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38410,7 +37834,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1004979144
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38503,7 +37926,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 41
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1011064443
 MonoBehaviour:
@@ -38519,7 +37942,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1011064444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38612,7 +38034,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 42
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1019402094
 MonoBehaviour:
@@ -38628,7 +38050,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1019402095
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38737,7 +38158,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1020496116
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39037,7 +38457,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1031048326
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39234,7 +38653,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1035254028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39343,7 +38761,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1036819539
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39488,7 +38905,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1037472528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39633,7 +39049,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1037919309
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39742,7 +39157,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1041435614
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39930,7 +39344,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1049269786
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40039,7 +39452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1049705280
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40132,7 +39544,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 33
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1053699613
 MonoBehaviour:
@@ -40148,7 +39560,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1053699614
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40257,7 +39668,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1053934602
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40366,7 +39776,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1066245216
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40475,7 +39884,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1074069532
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40584,7 +39992,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1074112737
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40902,7 +40309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1077722983
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41042,66 +40448,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1078292930}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1079818209
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1079818210}
-  - component: {fileID: 1079818212}
-  - component: {fileID: 1079818211}
-  m_Layer: 2
-  m_Name: layer (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1079818210
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079818209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 927064939}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1079818211
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079818209}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.01, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
---- !u!114 &1079818212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1079818209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &1079818554
 GameObject:
   m_ObjectHideFlags: 0
@@ -41134,7 +40480,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 39
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1079818556
 MonoBehaviour:
@@ -41150,7 +40496,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1079818557
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41259,7 +40604,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1087728829
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41320,126 +40664,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1087728826}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1090314020
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1090314021}
-  - component: {fileID: 1090314023}
-  - component: {fileID: 1090314022}
-  m_Layer: 2
-  m_Name: layer (12)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1090314021
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090314020}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1549205996}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1090314022
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090314020}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.01}
-  m_Center: {x: 0, y: 0, z: -0.5}
---- !u!114 &1090314023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1090314020}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 0, z: -1}
-  IsPlatformBlock: 0
---- !u!1 &1095065025
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1095065026}
-  - component: {fileID: 1095065028}
-  - component: {fileID: 1095065027}
-  m_Layer: 2
-  m_Name: layer (17)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1095065026
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095065025}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1549205996}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1095065027
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095065025}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.01, z: 1}
-  m_Center: {x: 0, y: -0.5, z: 0}
---- !u!114 &1095065028
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095065025}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: -1, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &1096497933
 GameObject:
   m_ObjectHideFlags: 0
@@ -41488,7 +40712,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1096497936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41597,7 +40820,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1099829196
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41738,7 +40960,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1105045049
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41847,7 +41068,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1106470797
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41956,7 +41176,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1109903012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42017,66 +41236,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109903009}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1125017310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1125017311}
-  - component: {fileID: 1125017313}
-  - component: {fileID: 1125017312}
-  m_Layer: 2
-  m_Name: layer (8)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1125017311
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125017310}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1333420734}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1125017312
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125017310}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01, y: 1, z: 1}
-  m_Center: {x: 0.5, y: 0, z: 0}
---- !u!114 &1125017313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125017310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 1, y: 0, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &1125634364
 GameObject:
   m_ObjectHideFlags: 0
@@ -42267,7 +41426,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1127326812
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42376,7 +41534,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1129299310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42485,7 +41642,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1131885212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42594,7 +41750,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1138952099
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42703,7 +41858,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1141026831
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42812,7 +41966,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1148566466
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -42905,7 +42058,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1154758526
 BoxCollider:
@@ -42934,7 +42087,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &1154758528
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43044,7 +42196,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1156447712
 BoxCollider:
@@ -43073,7 +42225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &1156447714
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43404,7 +42555,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1157169068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43513,7 +42663,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1159001100
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43701,7 +42850,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1162651530
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43884,7 +43032,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1165245803
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44212,7 +43359,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1176337767
 BoxCollider:
@@ -44241,7 +43388,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &1176337769
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -44337,7 +43483,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1178762576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44520,7 +43665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1180711650
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44629,7 +43773,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1181957358
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -44738,7 +43881,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1183540418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45045,7 +44187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1192738050
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45154,7 +44295,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1195440060
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45263,7 +44403,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1197058941
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45856,7 +44995,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1208336066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45917,66 +45055,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1208336063}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1212472820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1212472821}
-  - component: {fileID: 1212472823}
-  - component: {fileID: 1212472822}
-  m_Layer: 2
-  m_Name: layer (11)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1212472821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212472820}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1333420734}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1212472822
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212472820}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.01, z: 1}
-  m_Center: {x: 0, y: -0.5, z: 0}
---- !u!114 &1212472823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1212472820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: -1, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &1213722303
 GameObject:
   m_ObjectHideFlags: 0
@@ -46025,7 +45103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1213722306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46134,7 +45211,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1216107833
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46372,7 +45448,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1218395064
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -46876,7 +45951,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1251979446
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47059,7 +46133,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1259863349
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47168,7 +46241,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1260993999
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47277,7 +46349,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1263440023
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47370,7 +46441,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1271898008
 BoxCollider:
@@ -47446,7 +46517,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &1275029251
 GameObject:
   m_ObjectHideFlags: 0
@@ -47652,7 +46722,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1275619436
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47761,7 +46830,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1279601818
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47870,7 +46938,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1280034209
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -47979,7 +47046,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1280911216
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48124,7 +47190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1285367371
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48230,7 +47295,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1287832709
 GameObject:
@@ -48280,7 +47345,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1287832712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48389,7 +47453,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1298536206
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48571,7 +47634,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1309586537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48664,7 +47726,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1313442756
 MonoBehaviour:
@@ -48680,7 +47742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1313442757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48868,7 +47929,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1315394860
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -48977,7 +48037,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1316386474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49086,7 +48145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1324719802
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49179,7 +48237,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 36
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1325582943
 MonoBehaviour:
@@ -49195,7 +48253,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1325582944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49392,7 +48449,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1327498205
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49501,7 +48557,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1327884859
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49610,7 +48665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1330522508
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49789,13 +48843,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1874470853}
-  - {fileID: 54948094}
-  - {fileID: 1125017311}
-  - {fileID: 390458852}
-  - {fileID: 420293086}
-  - {fileID: 1212472821}
+  m_Children: []
   m_Father: {fileID: 505147572}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -49859,6 +48907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 1
+  _obDown: {fileID: 0}
 --- !u!65 &1333420738
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -49980,7 +49029,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1339434368
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50089,7 +49137,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1340356703
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50198,7 +49245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1342920141
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50307,7 +49353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1345111988
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50818,7 +49863,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1361113031
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50999,7 +50043,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1370484447
 BoxCollider:
@@ -51028,7 +50072,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &1370484449
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -51203,7 +50246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1373752528
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51493,7 +50535,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1387028204
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51681,7 +50722,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1390162200
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51869,7 +50909,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1393891777
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -51978,7 +51017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1394817211
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52243,7 +51281,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1402132212
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52426,7 +51463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1405534580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52535,7 +51571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1406633756
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52628,7 +51663,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 37
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1406895742
 MonoBehaviour:
@@ -52644,7 +51679,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1406895743
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52789,7 +51823,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1412905451
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -52898,7 +51931,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1417992696
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53167,7 +52199,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1428256466
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53276,7 +52307,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1430253343
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53445,7 +52475,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1440840009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53554,7 +52583,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1444056138
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53663,7 +52691,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1446318991
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53772,7 +52799,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1448290662
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -53881,7 +52907,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1451199074
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54078,7 +53103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1458972050
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54259,7 +53283,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1467845458
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54368,7 +53391,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1468822278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54513,7 +53535,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1469363355
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -54699,7 +53720,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1479465184
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55006,7 +54026,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1483337772
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55115,7 +54134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1491266166
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55224,7 +54242,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1496098071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55410,7 +54427,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 44
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1499713539
 MonoBehaviour:
@@ -55426,7 +54443,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1499713540
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55535,7 +54551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1502789824
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55644,7 +54659,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1504486989
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -55816,7 +54830,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1513646595
 BoxCollider:
@@ -55845,7 +54859,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &1513646597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -56001,7 +55014,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1514985543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56094,7 +55106,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 40
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1520732872
 MonoBehaviour:
@@ -56110,7 +55122,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1520732873
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56219,7 +55230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1521173317
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56311,66 +55321,6 @@ Transform:
   m_Father: {fileID: 174439805}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1532726745
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1532726746}
-  - component: {fileID: 1532726748}
-  - component: {fileID: 1532726747}
-  m_Layer: 2
-  m_Name: layer (5)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1532726746
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532726745}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 927064939}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1532726747
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532726745}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.01, z: 1}
-  m_Center: {x: 0, y: -0.5, z: 0}
---- !u!114 &1532726748
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532726745}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: -1, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &1535050778
 GameObject:
   m_ObjectHideFlags: 0
@@ -56498,7 +55448,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1538078678
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56681,7 +55630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1541540758
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56790,7 +55738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1542275643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -56899,7 +55846,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1546775015
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57037,13 +55983,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1090314021}
-  - {fileID: 136155923}
-  - {fileID: 1679833253}
-  - {fileID: 241445486}
-  - {fileID: 882226392}
-  - {fileID: 1095065026}
+  m_Children: []
   m_Father: {fileID: 505147572}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -57060,6 +56000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Type: 2
+  _obDown: {fileID: 0}
 --- !u!65 &1549205998
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57277,7 +56218,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1557437656
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57386,7 +56326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1558360251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57583,7 +56522,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1571604866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57692,7 +56630,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1574698576
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57801,7 +56738,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1575022387
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -57984,7 +56920,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1577595970
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58331,7 +57266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1595037488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58440,7 +57374,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1598353967
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58549,7 +57482,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1605043985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58658,7 +57590,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1617802854
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -58846,7 +57777,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1618619919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59043,7 +57973,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1627417341
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59152,7 +58081,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1630630407
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59459,7 +58387,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1636914946
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59568,7 +58495,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1641191504
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -59677,7 +58603,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1644384198
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60126,7 +59051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1653046985
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60235,7 +59159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1656561795
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60360,7 +59283,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1658030802
 GameObject:
@@ -60394,7 +59317,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1658030804
 MonoBehaviour:
@@ -60410,7 +59333,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1658030805
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60555,7 +59477,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1667102396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60664,7 +59585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1668999110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60748,9 +59668,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1679019725}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8073478, y: -3.9945512, z: -3.2866998}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.7465415, y: -5.713643, z: -8.257437}
+  m_LocalScale: {x: 1.4285716, y: 1.428571, z: 1.4285716}
   m_Children:
   - {fileID: 1156893763}
   - {fileID: 1954203730}
@@ -60801,69 +59721,9 @@ Transform:
   - {fileID: 593548276}
   - {fileID: 1173928151}
   - {fileID: 509794162}
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 235041955}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1679833252
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1679833253}
-  - component: {fileID: 1679833255}
-  - component: {fileID: 1679833254}
-  m_Layer: 2
-  m_Name: layer (14)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1679833253
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679833252}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1549205996}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1679833254
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679833252}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01, y: 1, z: 1}
-  m_Center: {x: 0.5, y: 0, z: 0}
---- !u!114 &1679833255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679833252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 1, y: 0, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &1682470921
 GameObject:
   m_ObjectHideFlags: 0
@@ -60912,7 +59772,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1682470924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61021,7 +59880,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1684490308
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61130,7 +59988,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1684730463
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61223,7 +60080,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1685842156
 MonoBehaviour:
@@ -61239,7 +60096,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1685842157
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61348,7 +60204,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1688165671
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61457,7 +60312,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1689321073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61566,7 +60420,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1689775334
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61831,7 +60684,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1691815511
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -61940,7 +60792,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1692004111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62049,7 +60900,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1695895964
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62320,7 +61170,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1708646928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62517,7 +61366,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1715972487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62626,7 +61474,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1718538255
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62735,7 +61582,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1721966598
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -62844,7 +61690,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1722985047
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63177,7 +62022,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1724155712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63286,7 +62130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1724883584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63395,7 +62238,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1726322648
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63540,7 +62382,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1731642556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63649,7 +62490,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1740505218
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -63742,7 +62582,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1741256110
 BoxCollider:
@@ -63771,7 +62611,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &1741256112
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63867,7 +62706,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1742429516
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64067,7 +62905,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 31
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1758757004
 MonoBehaviour:
@@ -64083,7 +62921,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1758757005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64192,7 +63029,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1760502943
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64337,7 +63173,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1766732564
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64613,7 +63448,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1770343648
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64753,7 +63587,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1778179278
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -64950,7 +63783,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1780161134
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65059,7 +63891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1781324774
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65220,7 +64051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1784006196
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65633,7 +64463,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1790788937
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66009,7 +64838,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1802677251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66118,7 +64946,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1809746474
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66227,7 +65054,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1810016669
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66444,66 +65270,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813250473}
   m_CullTransparentMesh: 0
---- !u!1 &1813821357
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1813821358}
-  - component: {fileID: 1813821360}
-  - component: {fileID: 1813821359}
-  m_Layer: 2
-  m_Name: layer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1813821358
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813821357}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 927064939}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1813821359
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813821357}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.01}
-  m_Center: {x: 0, y: 0, z: -0.5}
---- !u!114 &1813821360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1813821357}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 0, z: -1}
-  IsPlatformBlock: 0
 --- !u!1 &1820012633
 GameObject:
   m_ObjectHideFlags: 0
@@ -66583,66 +65349,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820012633}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1824352087
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1824352088}
-  - component: {fileID: 1824352090}
-  - component: {fileID: 1824352089}
-  m_Layer: 2
-  m_Name: layer (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1824352088
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824352087}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 927064939}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1824352089
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824352087}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01, y: 1, z: 1}
-  m_Center: {x: -0.5, y: 0, z: 0}
---- !u!114 &1824352090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824352087}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: -1, y: 0, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &1829005677
 GameObject:
   m_ObjectHideFlags: 0
@@ -66675,7 +65381,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 35
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1829005679
 MonoBehaviour:
@@ -66691,7 +65397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1829005680
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66972,7 +65677,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1834731365
 MonoBehaviour:
@@ -66988,7 +65693,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &1835921519
 GameObject:
   m_ObjectHideFlags: 0
@@ -67193,7 +65897,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1838516073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67427,7 +66130,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1848130755
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67644,7 +66346,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1855004704
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -67909,7 +66610,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1858801216
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68018,7 +66718,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1858843378
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68215,7 +66914,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1862201410
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68324,7 +67022,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1864354241
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68385,66 +67082,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1864354238}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1865178532
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1865178533}
-  - component: {fileID: 1865178535}
-  - component: {fileID: 1865178534}
-  m_Layer: 2
-  m_Name: layer (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1865178533
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865178532}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 927064939}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1865178534
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865178532}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.01, y: 1, z: 1}
-  m_Center: {x: 0.5, y: 0, z: 0}
---- !u!114 &1865178535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1865178532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 1, y: 0, z: 0}
-  IsPlatformBlock: 0
 --- !u!1 &1867219941
 GameObject:
   m_ObjectHideFlags: 0
@@ -68560,66 +67197,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1871155782}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &1874470852
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1874470853}
-  - component: {fileID: 1874470855}
-  - component: {fileID: 1874470854}
-  m_Layer: 2
-  m_Name: layer (6)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1874470853
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874470852}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1333420734}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1874470854
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874470852}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.01}
-  m_Center: {x: 0, y: 0, z: -0.5}
---- !u!114 &1874470855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1874470852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 0, z: -1}
-  IsPlatformBlock: 0
 --- !u!1 &1879218059
 GameObject:
   m_ObjectHideFlags: 0
@@ -68668,7 +67245,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1879218062
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68777,7 +67353,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1882988152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -68886,7 +67461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1886360771
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69307,7 +67881,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1892800431
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69490,7 +68063,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1907859068
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69687,7 +68259,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1913252386
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69827,7 +68398,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1920208377
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70015,7 +68585,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1935965488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70124,7 +68693,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1939144256
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70233,7 +68801,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1943453819
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70342,7 +68909,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1950227012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70602,7 +69168,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 38
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1958551004
 MonoBehaviour:
@@ -70618,7 +69184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1958551005
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -70727,7 +69292,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1960314271
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71053,12 +69617,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5cd41d3bab4d6e458ef2d85c02cf75d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AllParent: {fileID: 2070194892}
   _blocks:
   - {fileID: 927064938}
   - {fileID: 1333420733}
   - {fileID: 1549205993}
-  _blocksCs: []
   _sprites:
   - {fileID: 1580489238}
   - {fileID: 2140744859}
@@ -71071,7 +69633,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8ac549b912803804c97f91751fd2cca3, type: 3}
   - {fileID: 8300000, guid: ca71f43410b8b7f439f3d1374bdeded7, type: 3}
   - {fileID: 8300000, guid: 9d4d79960b662ed4e82832999169daec, type: 3}
-  _obDown: {fileID: 2070194893}
   _layer:
     serializedVersion: 2
     m_Bits: 256
@@ -71371,7 +69932,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1983344090
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71500,7 +70060,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1983601201
 BoxCollider:
@@ -71576,7 +70136,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &1985001607
 GameObject:
   m_ObjectHideFlags: 0
@@ -71781,7 +70340,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1985780624
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71874,7 +70432,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1985859403
 BoxCollider:
@@ -71903,7 +70461,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &1985859405
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -71999,7 +70556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1987284821
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72108,7 +70664,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1988358487
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72217,7 +70772,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &1993903947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72515,7 +71069,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2011018392
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72624,7 +71177,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2015116076
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -72812,7 +71364,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2020869760
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73036,7 +71587,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2023937009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73129,7 +71679,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2027362881
 BoxCollider:
@@ -73158,7 +71708,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &2027362883
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -73254,7 +71803,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2028105701
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73363,7 +71911,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2031439588
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73546,7 +72093,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2036083524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73655,7 +72201,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2037128105
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73852,7 +72397,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2044968382
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -73961,7 +72505,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2045282269
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74237,7 +72780,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2053775039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74346,7 +72888,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2054137060
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74513,7 +73054,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 43
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2063462196
 MonoBehaviour:
@@ -74529,7 +73070,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2063462197
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74786,7 +73326,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2068393045
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74897,67 +73436,6 @@ MonoBehaviour:
   _bH: {fileID: 1964644674}
   _boomEffect: {fileID: 892941565}
   _tNTs: {fileID: 1679019725}
-  Objects: []
---- !u!1 &2070255413
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2070255414}
-  - component: {fileID: 2070255416}
-  - component: {fileID: 2070255415}
-  m_Layer: 2
-  m_Name: layer (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2070255414
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070255413}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 927064939}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &2070255415
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070255413}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.01}
-  m_Center: {x: 0, y: 0, z: 0.5}
---- !u!114 &2070255416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2070255413}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75bfa3bfbabdf4f478e888aec0c2dee2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Pos: {x: 0, y: 0, z: 0}
-  _plusPos: {x: 0, y: 0, z: 1}
-  IsPlatformBlock: 0
 --- !u!1 &2070860372
 GameObject:
   m_ObjectHideFlags: 0
@@ -75211,7 +73689,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2071296665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75320,7 +73797,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2074555131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75429,7 +73905,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2083262986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75538,7 +74013,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2083878947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -75631,7 +74105,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2084860367
 BoxCollider:
@@ -75660,7 +74134,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!23 &2084860369
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -75888,7 +74361,7 @@ Transform:
   m_LocalScale: {x: 1.4285713, y: 1.4285713, z: 1.4285713}
   m_Children: []
   m_Father: {fileID: 235041955}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2090534190
 BoxCollider:
@@ -75964,7 +74437,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!1 &2091631266
 GameObject:
   m_ObjectHideFlags: 0
@@ -76044,7 +74516,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2091637562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76196,7 +74667,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -76251,7 +74722,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2100753249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76360,7 +74830,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2100899291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76548,7 +75017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2104647306
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76657,7 +75125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2110696489
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76826,7 +75293,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2111710921
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -76935,7 +75401,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2117917296
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77044,7 +75509,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2120315659
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77416,7 +75880,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2131489074
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77525,7 +75988,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2132523722
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -77975,7 +76437,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pos: {x: 0, y: 0, z: 0}
   _plusPos: {x: 0, y: 1, z: 0}
-  IsPlatformBlock: 1
 --- !u!65 &2146216112
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -78086,7 +76547,7 @@ PrefabInstance:
     - target: {fileID: 8197309432338340573, guid: 2fa544f60b648d84c893001ae14ca3d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8197309432338340573, guid: 2fa544f60b648d84c893001ae14ca3d1,
         type: 3}

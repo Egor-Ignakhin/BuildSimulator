@@ -8,6 +8,7 @@ public sealed class ImageInv : MonoBehaviour
     private TextMeshProUGUI TextCount;
     private Inventory _inventory;
     private RectTransform _myRt;
+    private Image _myImage;
     public byte Type { get; private set; }
     private byte _itemsCount;
     public byte ItemsCount
@@ -42,6 +43,7 @@ public sealed class ImageInv : MonoBehaviour
 
         Type = (byte)Random.Range(0, 3);
         ItemsCount = (byte)Random.Range(1, 255 / 20);
+        _myImage = GetComponent<Image>();
         ChangeItemImage(Type);
 
         _inventory.LastimInv[Type] = this;
@@ -86,8 +88,7 @@ public sealed class ImageInv : MonoBehaviour
             {
                 return 1;
             }
-            else
-                if (ItemsCount < 255)
+            else if (ItemsCount < 255)
                 return 2;//return example 80% + 20% 
         }
         return 0;
@@ -99,14 +100,14 @@ public sealed class ImageInv : MonoBehaviour
         {
             _itemsCount = 0;
             TextCount.text = "";
-            GetComponent<Image>().sprite = null;
+            _myImage.sprite = null;
             return;
         }
-        GetComponent<Image>().sprite = _inventory.AllImages[Type];
+        _myImage.sprite = _inventory.AllImages[Type];
     }
     public void GetItem(byte count)//delete item
     {
         ItemsCount -= count;
-        Debug.Log(ItemsCount);
+       // Debug.Log(ItemsCount);
     }
 }

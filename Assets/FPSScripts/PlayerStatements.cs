@@ -19,7 +19,6 @@ public sealed class PlayerStatements : MonoBehaviour
 
     public bool FpsMode { get; private set; }
 
-   
 
     private void Awake()
     {
@@ -62,7 +61,7 @@ public sealed class PlayerStatements : MonoBehaviour
     }
     private void ChangeMode()
     {
-        if(FpsMode == true)// if fps is active and can moving
+        if(FpsMode)// if fps is active and can moving
         {
             _fPSObjects.SetActive(true);
             _flyObjects.SetActive(false);
@@ -92,7 +91,7 @@ public sealed class PlayerStatements : MonoBehaviour
             }
 
             transform.SetParent(_viewPlayer);
-            transform.localPosition = new Vector3(0, 0, 0);
+            transform.localPosition = Vector3.zero;
 
         }
     }

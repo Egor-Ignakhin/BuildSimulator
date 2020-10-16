@@ -4,7 +4,6 @@ using UnityEngine;
 
 public sealed class LayingItem : MonoBehaviour
 {
-    private float _lastRotateY = 0;
     private LayerMask layer;
     private float _stayPosY  = 0.5f;
     private AllLayingObjectsManager _manager;
@@ -15,17 +14,14 @@ public sealed class LayingItem : MonoBehaviour
     public byte ItemsCount
     {
         get => _itemsCount;
-        set
-        {
+        set =>
             _itemsCount = value;
-            return;
-        }
     }
 
     private void OnEnable()
     {
         _manager = (AllLayingObjectsManager)FindObjectOfType(typeof(AllLayingObjectsManager));
-        Debug.Log(_manager);
+        //Debug.Log(_manager);
         layer = 9;// ground
        _myIndex = _manager.AddInList(this);
         ChangeType((byte)Random.Range(0,3), (byte)Random.Range(1,255));
@@ -34,8 +30,7 @@ public sealed class LayingItem : MonoBehaviour
     }
     public void RotateObject()
     {
-        _lastRotateY++;
-        transform.eulerAngles = new Vector3(0, _lastRotateY, 0);
+        transform.eulerAngles += new Vector3(0, 1, 0);
     }
     public void FindFloor()
     {
@@ -50,8 +45,6 @@ public sealed class LayingItem : MonoBehaviour
     private void OnDisable()
     {
         _manager.RemoveInList(_myIndex);
-      // GameObject gm = Instantiate(gameObject, transform.position + new Vector3(1, 2, 1), transform.rotation);
-       // gm.SetActive(true);
     }
     private void ChangeType(byte type,byte itemsCount)
     {

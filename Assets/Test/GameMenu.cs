@@ -69,13 +69,6 @@ public class GameMenu : MonoBehaviour
             return;
         }
 
-        if (ActiveGameMenu)
-        {
-            Cursor.lockState = CursorLockMode.None;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
+        Cursor.lockState = ActiveGameMenu ? CursorLockMode.None : CursorLockMode.Locked;
     }
 }

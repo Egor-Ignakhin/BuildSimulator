@@ -47,14 +47,8 @@ public sealed class SlotLocation : MonoBehaviour
                     _item = _newItem;// новый объект теперь "мой"
                     _itemCs = _item.GetComponent<ImageInv>();// как и его скрипт
                 }
-                else if (isMerge == 1)//складываем предметы полностью
-                {
-                    Inventory.MergeItems(ref _itemCs, ref newItemCs, true);
-                }
-                else if (isMerge == 2)//складываем предметы пока есть возможность
-                {
-                    Inventory.MergeItems(ref _itemCs, ref newItemCs, false);
-                }
+                else 
+                    Inventory.MergeItems(ref _itemCs, ref newItemCs, isMerge == 1 ? true : false);
             }
         }
     }

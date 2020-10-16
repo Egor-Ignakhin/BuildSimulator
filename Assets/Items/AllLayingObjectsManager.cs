@@ -6,7 +6,7 @@ public sealed class AllLayingObjectsManager : MonoBehaviour
 {
     private List<LayingItem> _layingItems = new List<LayingItem>();
     private float _multiply = 0.025f;
-    public static AllLayingObjectsManager manager { get; private set; }
+    public static AllLayingObjectsManager Manager { get; private set; }
 
     public Material[] Materials = new Material[Inventory.TypesCount];
 
@@ -25,13 +25,13 @@ public sealed class AllLayingObjectsManager : MonoBehaviour
     }
     private void Awake()
     {
-        manager = this;
+        Manager = this;
         StartCoroutine(nameof(Rotater));
     }
     public int AddInList(LayingItem item)
     {
         _layingItems.Add(item);
-        Debug.Log(_layingItems.Count);
+       // Debug.Log(_layingItems.Count);
         return _layingItems.Count - 1;
     }
     public void RemoveInList(int index)

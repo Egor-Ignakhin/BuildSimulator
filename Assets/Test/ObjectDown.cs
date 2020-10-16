@@ -3,21 +3,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ObjectDown : MonoBehaviour
+public sealed class ObjectDown : MonoBehaviour
 {
     [SerializeField] private AudioSource _bgAudio, _boomSource;
     [SerializeField] private Image _bGImage;
 
     private bool _realise = false;
 
-    [SerializeField] private Slider slider;
+    public Slider slider;
 
     private float _timeToBoom, _timerToMenu;
 
     [SerializeField] private BuildHouse _bH;
 
     [SerializeField] private GameObject _boomEffect, _tNTs;
-    [HideInInspector] public List<BaseBlock> Objects = new List<BaseBlock>();
+
+    public List<BaseBlock> Objects { get; private set; } = new List<BaseBlock>();
     private void Start()
     {
         slider.value = _timeToBoom;
@@ -54,23 +55,19 @@ public class ObjectDown : MonoBehaviour
             _bH.IsDestroy = false;
             if (_timeToBoom > 1f)
             {
-                    DestroyBlocks();
+                DestroyBlocks();
                 _realise = true;
             }
         }
         else
             _timeToBoom = 0;
     }
-    public void AddObjects(GameObject @object,Transform parent)
-    {
-        Objects.Add(@object.GetComponent<BaseBlock>());
-        @object.transform.SetParent(parent);
-    }
+    public void AddObjects(BaseBlock @object) => Objects.Add(@object);
     private void DestroyBlocks()
     {
-        foreach(var i in Objects)
+        for (int i = 0; i < Objects.Count; i++)
         {
-            i.Destroy();
+            Objects[i].Destroy();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 public class CameraMove : MonoBehaviour
 {
-    public float speed { get; private set; } = 3f;
+    public float speed { get; private set; } = 10f;
     private Vector3 _transfer;
 
     private void Awake()
