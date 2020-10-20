@@ -1,0 +1,4 @@
+﻿[ChunksCount]
+1
+[TitleWorld]
+NewWorld

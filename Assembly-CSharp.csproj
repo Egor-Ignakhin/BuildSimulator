@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AdvancedSettings.cs" />
     <Compile Include="Assets\Buildings\BaseBlock.cs" />
     <Compile Include="Assets\Buildings\BuildHouse.cs" />
     <Compile Include="Assets\Chanks\ChankVisible.cs" />
@@ -75,7 +76,12 @@
     <Compile Include="Assets\Items\AllLayingObjectsManager.cs" />
     <Compile Include="Assets\Items\InventoryActivator.cs" />
     <Compile Include="Assets\Items\LayingItem.cs" />
-    <Compile Include="Assets\Menu\InputMenu.cs" />
+    <Compile Include="Assets\LoadManager.cs" />
+    <Compile Include="Assets\Menu\ErrorImage.cs" />
+    <Compile Include="Assets\Menu\MenuManager.cs" />
+    <Compile Include="Assets\Menu\SettingsMenu.cs" />
+    <Compile Include="Assets\SHA1_Encode.cs" />
+    <Compile Include="Assets\SaverLoader.cs" />
     <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Shop\Trader.cs" />
     <Compile Include="Assets\Shop\TraderInventory.cs" />

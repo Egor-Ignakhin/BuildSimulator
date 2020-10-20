@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class SeePlayerChanks : MonoBehaviour
+public sealed class SeePlayerChanks : MonoBehaviour
 {
-   [Range(1,10)] [SerializeField] private int _colliderRange = 1;
+    private int _colliderRange;
     [HideInInspector] public CapsuleCollider Collider;
     private void Awake()
     {
+        _colliderRange = AdvancedSettings.ViewDistance*5;
         if (GetComponent<Collider>() != null)
         {
             Collider = GetComponent<CapsuleCollider>();
@@ -17,9 +18,9 @@ public class SeePlayerChanks : MonoBehaviour
     }
     private void ResizeCollider()
     {
-        Collider.radius = _colliderRange * 30;
-        Collider.height = _colliderRange * 30;
+        Collider.radius = _colliderRange;
+        Collider.height = _colliderRange;
         Collider.isTrigger = true;
+        Collider.enabled = true;
     }
-
 }
