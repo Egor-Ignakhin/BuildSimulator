@@ -6,15 +6,17 @@
 
 [RequireComponent(typeof(CapsuleCollider)), RequireComponent(typeof(Rigidbody)), AddComponentMenu("First Person Controller")]
 
-public sealed class FirstPersonController : MonoBehaviour
+public sealed class FirstPersonController : MonoBehaviour,ILooking
 {
     #region Variables
 
     #region Look Settings
     private bool EnableCameraMovement = true;//возможность вращать камеру
 
-    public float VerticalRotationRange { get; set; } = 170f;
-    public float MouseSensitivity { get; set; } = 10f;
+    public float VerticalRotationRange { get; set; } = 0f;
+    public float HeadMaxY { get; set; } = 0f;
+    public float HeadMinY { get; set; } = 0f;
+    public int Sensitivity { get; set; } = 10;
     public float FOVToMouseSensitivity { get; private set; } = 1f;
     public float CameraSmoothing { get; private set; } = 5f;
 
@@ -25,7 +27,7 @@ public sealed class FirstPersonController : MonoBehaviour
     private Vector3 targetAngles;
     private Vector3 followAngles;
     private Vector3 followVelocity;
-    private Vector3 originalRotation;
+    internal Vector3 originalRotation;
     #endregion
 
     #region Movement Settings
@@ -95,12 +97,6 @@ public sealed class FirstPersonController : MonoBehaviour
 
     private void Awake()
     {
-        #region Look Settings - Awake
-
-        originalRotation = transform.localRotation.eulerAngles;
-
-        #endregion 
-
         #region Movement Settings - Awake
         WalkSpeedInternal = WalkSpeed;
         SprintSpeedInternal = SprintSpeed;
@@ -118,7 +114,7 @@ public sealed class FirstPersonController : MonoBehaviour
     private void Start()
     {
         #region Look Settings - Start
-
+        VerticalRotationRange = 1.75f * HeadMaxY + Mathf.Clamp(0, HeadMinY, 0);
         baseCamFOV = PlayerCamera.fieldOfView;
         #endregion
 
@@ -157,9 +153,9 @@ public sealed class FirstPersonController : MonoBehaviour
             if (targetAngles.y > 180) { targetAngles.y -= 360; followAngles.y -= 360; } else if (targetAngles.y < -180) { targetAngles.y += 360; followAngles.y += 360; }
             if (targetAngles.x > 180) { targetAngles.x -= 360; followAngles.x -= 360; } else if (targetAngles.x < -180) { targetAngles.x += 360; followAngles.x += 360; }
 
-            targetAngles.y += mouseXInput * (MouseSensitivity - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);//rotate camera
+            targetAngles.y += mouseXInput * (Sensitivity - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);//rotate camera
 
-            targetAngles.x += mouseYInput * (MouseSensitivity - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);
+            targetAngles.x += mouseYInput * (Sensitivity - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);
 
             targetAngles.x = Mathf.Clamp(targetAngles.x, -0.5f * VerticalRotationRange, 0.5f * VerticalRotationRange);
             followAngles = Vector3.SmoothDamp(followAngles, targetAngles, ref followVelocity, (CameraSmoothing) / 100);

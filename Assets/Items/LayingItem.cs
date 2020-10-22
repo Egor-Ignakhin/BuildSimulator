@@ -4,7 +4,7 @@ using UnityEngine;
 
 public sealed class LayingItem : MonoBehaviour
 {
-    private LayerMask layer;
+    private LayerMask layers;
     private float _stayPosY  = 0.5f;
     private AllLayingObjectsManager _manager;
     private int _myIndex;
@@ -21,12 +21,10 @@ public sealed class LayingItem : MonoBehaviour
     private void OnEnable()
     {
         _manager = (AllLayingObjectsManager)FindObjectOfType(typeof(AllLayingObjectsManager));
-        //Debug.Log(_manager);
-        layer = 9;// ground
        _myIndex = _manager.AddInList(this);
         ChangeType((byte)Random.Range(0,3), (byte)Random.Range(1,255));
 
-        
+        layers = 1 << LayerMask.NameToLayer("Ground");
     }
     public void RotateObject()
     {
@@ -35,12 +33,13 @@ public sealed class LayingItem : MonoBehaviour
     public void FindFloor()
     {
         Ray ray = new Ray(transform.position, Vector3.down);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100, layer))
+
+        if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layers))
         {
             if (transform.position.y - hit.transform.position.y > _stayPosY)
                 transform.position += new Vector3(0, -0.5f, 0);
         }
+        Debug.DrawRay(transform.position, Vector3.down, Color.green);
     }
     private void OnDisable()
     {

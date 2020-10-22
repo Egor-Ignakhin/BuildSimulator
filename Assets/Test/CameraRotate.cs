@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class CameraRotate : MonoBehaviour
+public sealed class CameraRotate : MonoBehaviour,ILooking
 {
-	public float Sensitivity { get; set; } = 0f; // чувствительность мыши
-	public float HeadMinY { get; set; } = 0f; // ограничение угла для головы
+	public int Sensitivity { get; set; }
+	public float HeadMinY { get; set; } = 0f;
 	public float HeadMaxY { get; set; } = 0f;
 
-	private Vector3 direction;
+    private Vector3 direction;
 	private float rotationY;
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class PlayerStatements : MonoBehaviour
+public sealed class PlayerStatements : MonoBehaviour,ILooking
 {
     [SerializeField] private Transform _fPSPlayer;
     [SerializeField] private Transform _viewPlayer;
@@ -13,9 +13,9 @@ public sealed class PlayerStatements : MonoBehaviour
     [SerializeField] private GameObject _fPSObjects;
     [SerializeField] private GameObject _flyObjects;
 
-    [SerializeField] private float sensitivity = 3f; // чувствительность мыши
-    [SerializeField] private float headMinY = -90f; // ограничение угла для головы
-    [SerializeField] private float headMaxY = 60f;
+    public int Sensitivity { get; set; } = 3;
+    public float HeadMinY { get; set; } = -90f;
+    public float HeadMaxY { get; set; } = 90f;
 
     public bool FpsMode { get; private set; }
 
@@ -24,22 +24,21 @@ public sealed class PlayerStatements : MonoBehaviour
     {
         for (int i = 0; i < _fPSScripts.Length; i++)
         {
-            if (_fPSScripts[i] is FirstPersonController)
+            if (_fPSScripts[i] is FirstPersonController fps)
             {
-                FirstPersonController fps = (FirstPersonController)_fPSScripts[i];
                 fps.PlayerCamera = GetComponent<Camera>();
-                fps.MouseSensitivity = sensitivity;
-                fps.VerticalRotationRange = 1.75f * headMaxY + Mathf.Clamp(0, headMinY, 0);
+                fps.Sensitivity = Sensitivity;
+                fps.HeadMaxY = HeadMaxY;
+                fps.HeadMinY = HeadMinY;
             }
         }
         for (int i = 0; i < _flyScripts.Length; i++)
         {
-            if (_flyScripts[i] is CameraRotate)
+            if (_flyScripts[i] is CameraRotate cam)
             {
-                CameraRotate cam = (CameraRotate)_flyScripts[i];
-                cam.Sensitivity = this.sensitivity;
-                cam.HeadMinY = this.headMinY;
-                cam.HeadMaxY = this.headMaxY;
+                cam.Sensitivity = this.Sensitivity;
+                cam.HeadMinY = this.HeadMinY;
+                cam.HeadMaxY = this.HeadMaxY;
             }
         }
     }

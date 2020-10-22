@@ -15,7 +15,10 @@ public sealed class Trader : MonoBehaviour
     }
     public void OpenShop()
     {
-        _traderInventory.IsOpen = true;
-        _traderInventory.TurnOffOn();
+        if (_traderInventory != null)
+        {
+            _traderInventory.IsOpen = true;
+            _traderInventory.TurnOffOn();
+        }
     }
 }

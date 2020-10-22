@@ -51,11 +51,21 @@ public sealed class MenuManager : MonoBehaviour
                 LastActiveObject.SetActive(false);
                 break;
             case 1:
+                LastActiveObject = MainMenu;
+                CurrentActiveObject = GameSettings;
+                GameSettings.SetActive(true);
+                MainMenu.SetActive(false);
                 break;
             case 2:
                 Application.Quit();
                 break;
             case 3://back
+                if (GameSettings.activeInHierarchy)
+                {
+                    LastActiveObject.SetActive(true);
+                    CurrentActiveObject.SetActive(false);
+                    CurrentActiveObject = MainMenu;
+                }
                 if (PlaySettingsPart1.activeInHierarchy)
                 {
                     LastActiveObject = MainMenu;
@@ -126,6 +136,8 @@ public sealed class MenuManager : MonoBehaviour
         saveLog[1] = (_chunksCount > 0 ? ChunksCount : 1).ToString();
         saveLog[2] = "[TitleWorld]";
         saveLog[3] = _titleWorld;
+        saveLog[4] = "[IsFirstGame]";
+        saveLog[5] = "true"; 
 
         for (int i = 0; i < saveLog.Length; i++)
         {

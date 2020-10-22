@@ -7,9 +7,9 @@ sealed class ChankVisible : MonoBehaviour
     private void Start()
     {
         this._playerCollider = FindObjectOfType<SeePlayerChanks>().Collider;
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
-            if(transform.GetChild(i).name == "Plane")//only for dev
+            if (transform.GetChild(i).name == "Plane")//only for dev
             {
                 _activer = transform.GetChild(i).gameObject;
             }
@@ -19,7 +19,7 @@ sealed class ChankVisible : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other == _playerCollider)
+        if (other == _playerCollider)
         {
             _activer.SetActive(true);
         }
@@ -31,5 +31,4 @@ sealed class ChankVisible : MonoBehaviour
             _activer.SetActive(false);
         }
     }
-
 }

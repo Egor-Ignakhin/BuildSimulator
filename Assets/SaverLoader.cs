@@ -5,9 +5,13 @@ public sealed class SaverLoader : LoadManager
 {
     [SerializeField] private int _lineNum;
     [SerializeField] private bool _isFoundation;
-
+    protected override void Awake()
+    {
+    }
     protected override void Start()
     {
+        Saver.saveGame += this.SaveObject;
+
         if (_isFoundation)
         {
             Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser;
@@ -22,16 +26,19 @@ public sealed class SaverLoader : LoadManager
             string[] save = File.ReadAllLines(path);
             string count = SHA1_Encode.Decryption(save[1], "password");
 
-            Debug.Log(count);
-            BuildPlatforms(System.Convert.ToInt16(count));
-
+            Debug.Log("Chunks count - " + count);
+            string isFp = SHA1_Encode.Decryption(save[5], "password");
+            Debug.Log(isFp);
+            bool isFirstGame = System.Convert.ToBoolean(isFp);
+            BuildPlatforms(System.Convert.ToInt16(count), isFirstGame);
         }
     }
-    private void BuildPlatforms(int count)
+    private void BuildPlatforms(int count, bool isFirstGame)
     {
-        count = 4*4;
+        Transform player = ((FirstPersonController)FindObjectOfType(typeof(FirstPersonController))).transform;
         GameObject[] MyObj = Resources.LoadAll<GameObject>("Prefabs");
         GameObject platform = null;
+
         for (int i = 0; i < MyObj.Length; i++)
         {
             if (MyObj[i].name == "FoundationPref")
@@ -46,32 +53,40 @@ public sealed class SaverLoader : LoadManager
             return;
         }
 
-        Vector3 lastPos = new Vector3(0, 0, 0);
+        float EndX = 0, EndZ = 0;
 
+        //Создание пустышки 
+        Transform transfChilding = new GameObject().transform;
+        transfChilding.position = transform.position;
+
+        Transform newPlatform;
+
+        //Спавн участка
         for (int i = 0; i < count; i++)
         {
-            GameObject gm = Instantiate(MyObj[0], Vector3.zero, Quaternion.identity);
-            gm.name = "Platform " + i;
-            gm.transform.SetParent(transform);
-            gm.transform.localPosition = Vector3.zero;
+            int pointMultiply = 7;
 
-
-
-
-            gm.transform.position = new Vector3(lastPos.x, gm.transform.position.y, lastPos.z);
-
-            if ((count / 2)  - (count/count) > i)
+            for (int h = 0; h < count - 1; h++)
             {
-                lastPos += new Vector3(7, gm.transform.position.y, 0);
+                newPlatform = Instantiate(MyObj[0].transform, transfChilding.position + new Vector3(pointMultiply, 0, 0), transfChilding.rotation);
+                pointMultiply += 7;
+                newPlatform.SetParent(transform);
+                EndX = newPlatform.position.x;
             }
-            else
-            {
-                if ((count / 2) > i)
-                    lastPos = new Vector3(0, gm.transform.position.y, 7);
-                else
-                    lastPos = new Vector3(7, gm.transform.position.y, 7);
+            newPlatform = Instantiate(MyObj[0].transform, transfChilding.position, transfChilding.rotation);
 
-            }
+            newPlatform.SetParent(transform);
+            transfChilding.position += new Vector3(0, 0, 7);
         }
+        EndZ = transfChilding.position.z;
+        if (isFirstGame)
+        {
+            player.position = new Vector3(EndX / 2, 1.06f, EndZ / 2);
+        }
+        Destroy(transfChilding.gameObject);
+    }
+    private void SaveObject()
+    {
+        Debug.Log("save");
     }
 }

@@ -15,4 +15,8 @@ public sealed class TraderInventory : MonoBehaviour
         if (IsOpen)
             IsOpen = false;
     }
+    private void OnDestroy()
+    {
+        GameMenu.ActiveMenuEvent -= this.TurnOffOn;
+    }
 }

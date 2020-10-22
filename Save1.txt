@@ -2,3 +2,9 @@
 1
 [TitleWorld]
 NewWorld
+[IsFirstGame]
+true
+[PlayerTransform]
+000
+000
+000

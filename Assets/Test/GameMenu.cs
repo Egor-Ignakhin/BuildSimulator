@@ -40,7 +40,7 @@ public class GameMenu : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ActiveMenuEvent();
+            ActiveMenuEvent?.Invoke();
             if (_inventory.IsActive == true)
             {
                 _inventory.TurnOffOn();

@@ -22,5 +22,6 @@ public sealed class SeePlayerChanks : MonoBehaviour
         Collider.height = _colliderRange;
         Collider.isTrigger = true;
         Collider.enabled = true;
-    }
+    }  
 }
+
