@@ -1,31 +1,29 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
 public class LoadManager : MonoBehaviour, IStorable
 {
-    private string _titleWorld;
-
+    [HideInInspector] public string _titleWorld;
     protected virtual void Awake()
     {
         Saver.saveGame += this.Save;
-        RegistryKey key = Registry.CurrentUser;
+        
         string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
-        key = key.OpenSubKey(keyPath);
-        string s = key.GetValue("LoadWorld", keyPath).ToString();
 
-        key.Close();
+        RegKey.GetValue("LoadWorld", out _titleWorld, keyPath);
 
-        s = SHA1_Encode.Decryption(s, "password");
-        _titleWorld = s;
-        Debug.Log("Title world - " + s);
+        _titleWorld = SHA1_Encode.Decryption(_titleWorld, "password");
+        Debug.Log("Title world - " + _titleWorld);
     }
 
     protected virtual void Start()
     {
         Load();
     }
+   
     public virtual void Save()
     {
         string savePath = Directory.GetCurrentDirectory() + "\\Saves\\" + _titleWorld + ".txt";
@@ -51,7 +49,11 @@ public class LoadManager : MonoBehaviour, IStorable
             saveLog[i] = SHA1_Encode.Encryption(saveLog[i], "password");
         }
         File.WriteAllLines(savePath, saveLog);
-
+        SaveObj();
+    }
+    private void SaveObj()
+    {
+        Debug.Log("Save objects");
     }
     public virtual void Load()
     {
@@ -68,33 +70,81 @@ public class LoadManager : MonoBehaviour, IStorable
         saveLog[6] = "[PlayerTransform]";
         #region SetPosition
         Transform player = ((FirstPersonController)FindObjectOfType(typeof(FirstPersonController))).transform;
-        LoadPosition loadPosition = new LoadPosition();
+        LoadTransformation load = new LoadTransformation();
 
 
-        player.position = loadPosition.Load(saveLog[7]);
-        player.GetComponent<FirstPersonController>().originalRotation = loadPosition.Load(saveLog[8]);
-        player.eulerAngles = loadPosition.Load(saveLog[8]);
-        player.localScale = loadPosition.Load(saveLog[9]);
+        load.GetTransform(ref player, saveLog[7],saveLog[8], saveLog[9]);//загрузка трансформа игрока
+        player.GetComponent<FirstPersonController>().originalRotation = player.transform.eulerAngles;
         #endregion
     }
 }
-public sealed class LoadPosition
+public sealed class LoadTransformation
 {
-    internal Vector3 Load(string position)//метод возвращает вектор, например позицию из зашифрованной строки
+    internal Transform GetTransform(ref Transform transform,string position,string eulers, string scale)
     {
-        position = SHA1_Encode.Decryption(position, "password");
+        transform.position = GetVector(position);
+        transform.eulerAngles = GetVector(eulers);
+        transform.localScale = GetVector(scale);
+        return transform;
+    }
+    private Vector3 GetVector(string vector)//метод возвращает вектор, например позицию из зашифрованной строки
+    {
+        vector = SHA1_Encode.Decryption(vector, "password");
         Vector3 playerPos = new Vector3(0, 0, 0);
         string x = "", y = "", z = "";
 
         string posYStr = "";
-        for (int i = 0; i < position.Length; i++)
+        for (int i = 0; i < vector.Length; i++)
         {
-            if (position[i] != '|')
-                x += position[i] != ',' ? position[i] : '.';
+            if (vector[i] != '|')
+                x += vector[i] != ',' ? vector[i] : '.';
             else
             {
-                for (int k = i + 1; k < position.Length; k++)
-                    posYStr += position[k];
+                for (int k = i + 1; k < vector.Length; k++)
+                    posYStr += vector[k];
+                break;
+            }
+        }
+        playerPos.x = Convert.ToSingle(x, System.Globalization.CultureInfo.InvariantCulture);
+
+        string posZStr = "";
+        for (int i = 0; i < posYStr.Length; i++)
+        {
+            if (posYStr[i] != '|')
+                y += posYStr[i] != ',' ? posYStr[i] : '.';
+            else
+            {
+                for (int k = i + 1; k < posYStr.Length; k++)
+                    posZStr += posYStr[k];
+                break;
+            }
+        }
+        playerPos.y = Convert.ToSingle(y, System.Globalization.CultureInfo.InvariantCulture);
+
+        for (int i = 0; i < posZStr.Length; i++)
+        {
+            if (posZStr[i] != '|')
+                z += posZStr[i] != ',' ? posZStr[i] : '.';
+            else
+                break;
+        }
+        playerPos.z = Convert.ToSingle(z, System.Globalization.CultureInfo.InvariantCulture);
+        return playerPos;
+    }
+    public Vector3 GetPosition(string vector)
+    {
+        Vector3 playerPos = new Vector3(0, 0, 0);
+        string x = "", y = "", z = "";
+
+        string posYStr = "";
+        for (int i = 0; i < vector.Length; i++)
+        {
+            if (vector[i] != '|')
+                x += vector[i] != ',' ? vector[i] : '.';
+            else
+            {
+                for (int k = i + 1; k < vector.Length; k++)
+                    posYStr += vector[k];
                 break;
             }
         }

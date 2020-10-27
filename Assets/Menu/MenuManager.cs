@@ -5,18 +5,8 @@ using UnityEngine.UI;
 
 public sealed class MenuManager : MonoBehaviour
 {
-    public ErrorImage _errorImage;
-    private int _maxChunksCount = 50;
-
-    public GameObject LastActiveObject;
-    public GameObject CurrentActiveObject;
-    #region GameObjects
-    [Space(5)]
-    public GameObject MainMenu;
-    public GameObject PlaySettingsPart1;
-    public GameObject PlaySettingsPart2;
-    public GameObject GameSettings;
-    #endregion
+    private ErrorImage _errorImage;
+    private readonly int _maxChunksCount = 50;
 
     #region New World Settings
     private int _chunksCount;
@@ -38,57 +28,27 @@ public sealed class MenuManager : MonoBehaviour
     public TextMeshProUGUI ChunksText;
     private void OnEnable()
     {
+        _errorImage = ErrorImage.Singleton;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+    public void Clickk(ButtonInMenu button)
+    {
+        button.ActiveObject.SetActive(true);
+        button.transform.parent.gameObject.SetActive(false);
     }
     public void Click(int num)
     {
         switch (num)
         {
-            case 0:
-                CurrentActiveObject = PlaySettingsPart1;
-                CurrentActiveObject.SetActive(true);
-                LastActiveObject.SetActive(false);
-                break;
-            case 1:
-                LastActiveObject = MainMenu;
-                CurrentActiveObject = GameSettings;
-                GameSettings.SetActive(true);
-                MainMenu.SetActive(false);
-                break;
             case 2:
                 Application.Quit();
                 break;
-            case 3://back
-                if (GameSettings.activeInHierarchy)
-                {
-                    LastActiveObject.SetActive(true);
-                    CurrentActiveObject.SetActive(false);
-                    CurrentActiveObject = MainMenu;
-                }
-                if (PlaySettingsPart1.activeInHierarchy)
-                {
-                    LastActiveObject = MainMenu;
-                    PlaySettingsPart1.SetActive(false);
-                    MainMenu.SetActive(true);
-                }
-                else if (PlaySettingsPart2.activeInHierarchy)
-                {
-                    LastActiveObject = PlaySettingsPart2;
-                    CurrentActiveObject = PlaySettingsPart1;
-                    CurrentActiveObject.SetActive(true);
-                    LastActiveObject.SetActive(false);
-                }
-                break;
-            case 4://create
-                LastActiveObject = PlaySettingsPart1;
-                CurrentActiveObject = PlaySettingsPart2;
-                CurrentActiveObject.SetActive(true);
-                LastActiveObject.SetActive(false);
-                break;
             case 5://Create World
                 if (Save())
+                {
                     UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
+                }
                 else
                 {
                     Debug.Log("World already exists");
@@ -96,6 +56,22 @@ public sealed class MenuManager : MonoBehaviour
                     _errorImage.TitleError = "World already exists";
                     _errorImage.OnEnableColor();
                 }
+                break;
+
+            case 10:
+
+                string path = Directory.GetCurrentDirectory() + "\\Saves";
+                Directory.Delete(path, true); //true - если директория не пуста удаляем все ее содержимое
+                Directory.CreateDirectory(path);
+
+
+                Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\BuildingSimulator\\Settings", true); // << открываем ключ с правами на запись
+                key.DeleteValue("LoadWorld");
+                key.Close();
+
+                _errorImage.enabled = true;
+                _errorImage.TitleError = "All the worlds have been removed";
+                _errorImage.OnEnableColor();
 
                 break;
             default:
@@ -121,11 +97,12 @@ public sealed class MenuManager : MonoBehaviour
 
     private bool WriteSave()
     {
-        string savePath = path + "\\" + _titleWorld + ".txt";
-        string savePathDefault = path + "\\" + "NewWorld" + ".txt";
+        if (string.IsNullOrEmpty(_titleWorld))
+        {
+            _titleWorld = "NewWorld";
+        }
+            string savePath = path + "\\" + _titleWorld + ".txt";
         if (File.Exists(savePath))
-            return false;
-        if (File.Exists(savePathDefault) && _titleWorld == "NewWorld")
             return false;
 
         StreamWriter sw = File.CreateText(savePath);
@@ -145,17 +122,16 @@ public sealed class MenuManager : MonoBehaviour
         }
         File.WriteAllLines(savePath, saveLog);
 
-
-        Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser;
         string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
+        Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser;
         if (Microsoft.Win32.Registry.GetValue("HKEY_CURRENT_USER\\" + keyPath + "LoadWorld", "Value-Name", null) == null)
             key = key.CreateSubKey(keyPath, true);
         else
             key = key.OpenSubKey(keyPath, true);
 
         _titleWorld = SHA1_Encode.Encryption(_titleWorld, "password");
-        key.SetValue("LoadWorld", _titleWorld);
 
+        RegKey.SetValue("LoadWorld", _titleWorld, keyPath);
         key.Close();
 
         return true;

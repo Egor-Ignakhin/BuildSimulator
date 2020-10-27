@@ -1,20 +1,27 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameMenu : MonoBehaviour
+public sealed class GameMenu : MonoBehaviour
 {
     [SerializeField] private GameObject QuestionsTrello, Activer;// лист управления и лист меню
-    [SerializeField] private Inventory _inventory;
+    private Inventory _inventory;
 
     public delegate void ActiveMenu();// событие  определения положения
     public static event ActiveMenu ActiveMenuEvent;// событие  определения положения
 
     public static bool ActiveGameMenu;
+    [SerializeField] private Saver _saver;
+    private void Start()
+    {
+        _inventory = Inventory.Singleton;
+    }
+
     public void OnClick(int num)
     {
         switch (num)
         {
             case 0:
+                _saver.Save();
                 SceneManager.LoadScene(0);
                 break;
             case 1:

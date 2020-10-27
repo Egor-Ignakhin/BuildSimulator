@@ -12,12 +12,10 @@ public sealed class InputPlayer : MonoBehaviour
     [SerializeField] private KeyCode _getItemKey = KeyCode.F;
     private Inventory _inventory;
     [SerializeField] private float _getItemDistance = 4f;
-    private RectTransform _activerOfInventorySlots;
 
     private void Start()
     {
-        _inventory = Inventory.GetInventory;
-        _activerOfInventorySlots = _inventory._activer.GetComponent<RectTransform>();
+        _inventory = Inventory.Singleton;
         _bH = GetComponent<BuildHouse>();
         _cam = Camera.main;
         _statements = GetComponent<PlayerStatements>();

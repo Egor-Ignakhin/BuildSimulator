@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public sealed class LayingItem : MonoBehaviour
 {
@@ -10,13 +8,7 @@ public sealed class LayingItem : MonoBehaviour
     private int _myIndex;
 
     public byte Type { get; private set; }
-    private byte _itemsCount;
-    public byte ItemsCount
-    {
-        get => _itemsCount;
-        set =>
-            _itemsCount = value;
-    }
+    public byte ItemsCount { get; set; }
 
     private void OnEnable()
     {
@@ -30,9 +22,10 @@ public sealed class LayingItem : MonoBehaviour
     {
         transform.eulerAngles += new Vector3(0, 1, 0);
     }
+    Ray ray;
     public void FindFloor()
     {
-        Ray ray = new Ray(transform.position, Vector3.down);
+        ray = new Ray(transform.position, Vector3.down);
 
         if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, layers))
         {

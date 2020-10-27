@@ -22,6 +22,8 @@ public sealed class PlayerStatements : MonoBehaviour,ILooking
 
     private void Awake()
     {
+
+        Sensitivity = AdvancedSettings.Sensitvity;
         for (int i = 0; i < _fPSScripts.Length; i++)
         {
             if (_fPSScripts[i] is FirstPersonController fps)
@@ -91,7 +93,6 @@ public sealed class PlayerStatements : MonoBehaviour,ILooking
 
             transform.SetParent(_viewPlayer);
             transform.localPosition = Vector3.zero;
-
         }
     }
 }

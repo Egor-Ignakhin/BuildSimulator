@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public sealed class Trader : MonoBehaviour
 {
@@ -10,7 +8,7 @@ public sealed class Trader : MonoBehaviour
     {
         _traderInventory = (TraderInventory)FindObjectOfType(typeof(TraderInventory));
 
-        _inventory = Inventory.GetInventory;
+        _inventory = Inventory.Singleton;
         _traderInventory.gameObject.SetActive(_inventory.ActiveTrade);
     }
     public void OpenShop()

@@ -7,22 +7,18 @@ public sealed class SaverLoader : LoadManager
     [SerializeField] private bool _isFoundation;
     protected override void Awake()
     {
-    }
-    protected override void Start()
-    {
         Saver.saveGame += this.SaveObject;
 
         if (_isFoundation)
         {
-            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser;
             string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
-            key = key.OpenSubKey(keyPath);
-            string s = key.GetValue("LoadWorld", keyPath).ToString();
+            string loadWrld = "";
 
-            key.Close();
+            RegKey.GetValue("LoadWorld", out loadWrld, keyPath);
 
-            s = SHA1_Encode.Decryption(s, "password");
-            string path = Directory.GetCurrentDirectory() + "\\Saves\\" + s + ".txt";
+
+            loadWrld = SHA1_Encode.Decryption(loadWrld, "password");
+            string path = Directory.GetCurrentDirectory() + "\\Saves\\" + loadWrld + ".txt";
             string[] save = File.ReadAllLines(path);
             string count = SHA1_Encode.Decryption(save[1], "password");
 
@@ -32,6 +28,10 @@ public sealed class SaverLoader : LoadManager
             bool isFirstGame = System.Convert.ToBoolean(isFp);
             BuildPlatforms(System.Convert.ToInt16(count), isFirstGame);
         }
+    }
+    protected override void Start()
+    {
+       
     }
     private void BuildPlatforms(int count, bool isFirstGame)
     {
@@ -43,7 +43,6 @@ public sealed class SaverLoader : LoadManager
         {
             if (MyObj[i].name == "FoundationPref")
             {
-                Debug.Log("Finded");
                 platform = MyObj[i];
             }
         }
@@ -60,7 +59,7 @@ public sealed class SaverLoader : LoadManager
         transfChilding.position = transform.position;
 
         Transform newPlatform;
-
+        int lastPlatform = 0;
         //Спавн участка
         for (int i = 0; i < count; i++)
         {
@@ -72,11 +71,13 @@ public sealed class SaverLoader : LoadManager
                 pointMultiply += 7;
                 newPlatform.SetParent(transform);
                 EndX = newPlatform.position.x;
+                newPlatform.name = "Platform" + ++lastPlatform;
             }
             newPlatform = Instantiate(MyObj[0].transform, transfChilding.position, transfChilding.rotation);
 
             newPlatform.SetParent(transform);
             transfChilding.position += new Vector3(0, 0, 7);
+            newPlatform.name = "Platform" + ++lastPlatform;
         }
         EndZ = transfChilding.position.z;
         if (isFirstGame)
@@ -89,4 +90,5 @@ public sealed class SaverLoader : LoadManager
     {
         Debug.Log("save");
     }
+
 }

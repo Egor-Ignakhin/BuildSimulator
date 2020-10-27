@@ -1,23 +1,32 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public sealed class SlotLocation : MonoBehaviour
 {
     private RectTransform _myRt;
-    public RectTransform _item { get; set; }
-    private ImageInv _itemCs;
+    private RectTransform _item;
+    internal RectTransform Item
+    {
+        get => _item;
+        set
+        {
+            _item = value;
+            if (value == null)
+                return;
+
+            _itemCs = value.GetComponent<ImageInv>();
+        }
+    }
+    private ImageInv _itemCs = null;
+    private Inventory _inventory;
     private void Start()
     {
-           _myRt = GetComponent<RectTransform>();
+        _inventory = Inventory.Singleton;
+        _myRt = GetComponent<RectTransform>();
         Inventory.ChangePositionItem += this.NewDistance;
-        for(int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).GetComponent<ImageInv>())
-            {
-                _item = transform.GetChild(i).GetComponent<RectTransform>();
-                _itemCs = _item.GetComponent<ImageInv>();
-            }
+                Item = transform.GetChild(i).GetComponent<RectTransform>();
         }
     }
 
@@ -27,33 +36,26 @@ public sealed class SlotLocation : MonoBehaviour
         float dist = Vector2.Distance(mousePosition, _myRt.position);
         if (dist < 30f)
         {
-            RectTransform _newItem = Inventory.LastItem;
-
-            if (_item == null)
+            if (Item == null)
             {
+                RectTransform _newItem = _inventory.LastItem;
                 _newItem.position = _myRt.position;
                 _newItem.SetParent(_myRt);
-                _item = _newItem;
-                _itemCs = _item.GetComponent<ImageInv>();
+                Item = _newItem;
             }
             else//меняем местами предметы
             {
+                RectTransform _newItem = _inventory.LastItem;
                 ImageInv newItemCs = _newItem.GetComponent<ImageInv>();
+
                 sbyte isMerge = _itemCs.Merge(newItemCs.ItemsCount, newItemCs.Type);
 
                 if (isMerge == 0)//если нельзя слиять
-                {
-                    _item = Inventory.RevertItem(_item);//поменять местами
-                    _item = _newItem;// новый объект теперь "мой"
-                    _itemCs = _item.GetComponent<ImageInv>();// как и его скрипт
-                }
-                else 
-                    Inventory.MergeItems(ref _itemCs, ref newItemCs, isMerge == 1 ? true : false);
+                    _inventory.RevertItem(Item, this);//поменять местами
+                else
+                    _inventory.MergeItems(ref _itemCs, ref newItemCs, isMerge == 1 ? true : false);
             }
         }
     }
-    public void ClearSlot()
-    {
-        _itemCs.ChangeItemImage(255);//code key for clear
-    }
+    public void ClearSlot() => _itemCs.ChangeItemImage(255);//code key for clear
 }

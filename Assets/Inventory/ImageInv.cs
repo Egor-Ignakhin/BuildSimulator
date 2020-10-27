@@ -39,7 +39,7 @@ public sealed class ImageInv : MonoBehaviour
                 break;
             }
         }
-        _inventory = Inventory.GetInventory;
+        _inventory = Inventory.Singleton;
 
         Type = (byte)Random.Range(0, 3);
         ItemsCount = (byte)Random.Range(1, 255 / 20);
@@ -51,43 +51,44 @@ public sealed class ImageInv : MonoBehaviour
         _myRt = GetComponent<RectTransform>();
 
         _inventory.ItemsCs.Add(this);
-      
-
 
         EventTrigger ev = gameObject.AddComponent<EventTrigger>();
 
-        EventTrigger.Entry entry = new EventTrigger.Entry();
+        EventTrigger.Entry entry = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.Drag
+        };
 
-        entry.eventID = EventTriggerType.Drag;
-        entry.callback.AddListener((data) => { OnPointerDownDelegate((PointerEventData)data); });
+        EventTrigger.Entry up = new EventTrigger.Entry
+        {
+            eventID = EventTriggerType.PointerUp
+        };
+        up.callback.AddListener((data) => { _inventory.OnDragUp(); });
+
+
+        entry.callback.AddListener((data) => { OnPointerDownDelegate(); });
         ev.triggers.Add(entry);
-
+        ev.triggers.Add(up);
 
         _myRt.localScale = new Vector2(0.9f, 0.9f);
 
-        // TextCount.rectTransform.position = new Vector2(20, -35); bug
         TextCount.rectTransform.sizeDelta = new Vector2(61, 40);
         TextCount.color = Color.gray;
     }
 
-    public void AddItem(byte count)
-    {
-        ItemsCount += count;
-    }
+    public void AddItem(byte count) => ItemsCount += count;
 
-    public void OnPointerDownDelegate(PointerEventData data)
+    public void OnPointerDownDelegate()
     {
         if (Type != 255)
-            _inventory.DownClick(_myRt);
+            _inventory.OnDrag(_myRt);
     }
     public sbyte Merge(byte newItemCount, byte newItemType)
     {
         if (newItemType == Type)
         {
             if (newItemCount + ItemsCount < 256)
-            {
                 return 1;
-            }
             else if (ItemsCount < 255)
                 return 2;//return example 80% + 20% 
         }

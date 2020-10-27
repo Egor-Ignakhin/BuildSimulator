@@ -29,11 +29,15 @@ public sealed class BuildHouse : MonoBehaviour
 
     [SerializeField] private LayerMask _layer;
 
-    private void Start()
+    private void Awake()
     {
         _obDown = (ObjectDown)FindObjectOfType(typeof(ObjectDown));
+    }
+
+    private void Start()
+    {
         _cam = Camera.main;
-        _inventory = Inventory.GetInventory;
+        _inventory = Inventory.Singleton;
         _myAudioSource = GetComponent<AudioSource>();
 
         for (int i = 0; i < _sprites.Count; i++)
@@ -136,7 +140,7 @@ public sealed class BuildHouse : MonoBehaviour
                 _blocks[_selectBlock].transform.rotation = hit.transform.rotation;
 
 
-                Debug.Log(hit.collider.transform.position + (hit.normal));
+             //   Debug.Log(hit.collider.transform.position + (hit.normal));
 
                 if (Input.GetMouseButtonDown(0))
                 {
@@ -177,6 +181,27 @@ public sealed class BuildHouse : MonoBehaviour
 
         block.SetParent(_lastBlock != null ? _lastBlock.transform.parent : hit.transform.parent);
         _obDown.AddObjects(newBaseBlock);//добавление в список ВзрывОбъектов
+        newBaseBlock.gameObject.AddComponent<SaveObject>();
+        newBaseBlock.GetComponent<SaveObject>().enabled = true;
+    }
+    public void LoadBlock( Vector3 pos,Quaternion quat,string parent)
+    {
+        Transform trueParent = GameObject.Find(parent).transform;
+        trueParent = trueParent.GetChild(0).GetChild(0);
+
+        Transform block = Instantiate(_blocks[_selectBlock].transform, pos, quat);//инстанс
+
+        block.gameObject.layer = 8;
+
+        BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
+        newBaseBlock.enabled = true;
+        block.GetComponent<BoxCollider>().isTrigger = false;
+        newBaseBlock._obDown = _obDown;
+
+        block.SetParent(trueParent);
+        _obDown.AddObjects(newBaseBlock);//добавление в список ВзрывОбъектов
+        newBaseBlock.gameObject.AddComponent<SaveObject>();
+        newBaseBlock.GetComponent<SaveObject>().enabled = true;
     }
     private void DestroyBlock(RaycastHit hit)
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 public sealed class SeePlayerChanks : MonoBehaviour
 {
     private int _colliderRange;
-    [HideInInspector] public CapsuleCollider Collider;
+    [HideInInspector] public CapsuleCollider Collider { get; set; }
     private void Awake()
     {
         _colliderRange = AdvancedSettings.ViewDistance*5;

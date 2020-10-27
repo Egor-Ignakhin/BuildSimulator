@@ -12,14 +12,12 @@ public sealed class SettingsMenu : MonoBehaviour
 
     private void Start()
     {
-        eI = (ErrorImage)FindObjectOfType(typeof(ErrorImage));
+        eI = ErrorImage.Singleton;
         CountView.text = AdvancedSettings.ViewDistance.ToString();
         SliderView.value = AdvancedSettings.ViewDistance * 0.0333333f;
-        Debug.Log(SliderView.value);
 
         SensitvityTxt.text = AdvancedSettings.Sensitvity.ToString();
         SliderSensitvity.value = (AdvancedSettings.Sensitvity * 0.1f);
-        Debug.Log(SliderSensitvity.value);
     }
     public void ChangeViewDistance()
     {
@@ -45,7 +43,6 @@ public sealed class SettingsMenu : MonoBehaviour
 
         eI.enabled = true;
         eI.TitleError = "Settings saved";
-        eI.OnEnableColor();
         eI.OnEnableColor();
     }
 

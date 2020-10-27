@@ -14,14 +14,13 @@ public sealed class ObjectDown : MonoBehaviour
 
     private float _timeToBoom, _timerToMenu;
 
-    [SerializeField] private BuildHouse _bH;
-
-    [SerializeField] private GameObject _boomEffect, _tNTs;
+    private BuildHouse _bH;
 
     public List<BaseBlock> Objects { get; private set; } = new List<BaseBlock>();
     private void Start()
     {
         slider.value = _timeToBoom;
+        _bH = (BuildHouse)FindObjectOfType(typeof(BuildHouse));
     }
 
     private void Update()
@@ -30,8 +29,6 @@ public sealed class ObjectDown : MonoBehaviour
             return;
         if (_realise)
         {
-            _boomEffect.SetActive(true);
-            _tNTs.SetActive(false);
             _boomSource.enabled = true;
             _bH.enabled = false;
             _timerToMenu += 1 * Time.deltaTime;

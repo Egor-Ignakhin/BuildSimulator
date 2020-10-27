@@ -5,15 +5,43 @@ public sealed class Inventory : MonoBehaviour
     public const byte TypesCount = 3;//всего блоков в игре
 
     private RectTransform _myRt;//рект-трансформ объекта
-    public static Inventory GetInventory { get; private set; }//просто ссылка для других классов
-    // TODD : 0
-    // скрипт работает, но сбивается каждый второй раз, когда я пытаюсь сразу поменять 1 объект на другой и снова 
+    public static Inventory Singleton { get; private set; }//просто ссылка для других классов
+
     public delegate void ChangePosition();// событие  определения положения
     public static event ChangePosition ChangePositionItem;// событие  определения положения
-    public static RectTransform LastItem { get; private set; }// последний предмет который был передвинут
-    private static RectTransform _lastParentOfObject;//последний родитель сдвинутого объетка
 
-    public GameObject _activer { get; private set; }//активатор остальных слотов инвентаря
+    private RectTransform _lastItem;
+    public RectTransform LastItem 
+    {
+        get => _lastItem;
+        private set
+        {
+            _lastItem = value;
+
+            if (value == null)
+                return;
+            LastParentOfObject = (RectTransform)value.parent;
+        } 
+    }// последний предмет который был передвинут
+
+    private SlotLocation _lastParentOfObjectSlot;
+    private RectTransform _lastParentOfObject;//последний родитель сдвинутого объетка
+    internal RectTransform LastParentOfObject
+    {
+        get => _lastParentOfObject;
+        private set
+        {
+            _lastParentOfObject = value;
+
+            if (value == null)
+                return;
+
+            _lastParentOfObjectSlot = value.GetComponent<SlotLocation>();
+        }
+    }
+
+    private GameObject _activer; //активатор остальных слотов инвентаря
+    private RectTransform _activerRect;
     public bool IsActive { get; private set; } = false;
 
     public Sprite[] AllImages = new Sprite[TypesCount];//все спрайты для строительных объектов
@@ -26,8 +54,24 @@ public sealed class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        GetInventory = this;
-         _myRt = GetComponent<RectTransform>();
+        Singleton = this;
+         _myRt = GetComponent<RectTransform>();       
+    }
+
+    private void Start()
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).GetComponent<InventoryActivator>())
+            {
+                _activer = transform.GetChild(i).GetComponent<InventoryActivator>().gameObject;
+                break;
+            }
+        }
+
+        _activerRect = _activer.GetComponent<RectTransform>();
+
+        TurnOffOn(false);
     }
 
     public bool AddItems(byte type,byte count)
@@ -87,21 +131,8 @@ public sealed class Inventory : MonoBehaviour
         return false;
     }
 
-  
-    private void Start()
-    {
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(i).GetComponent<InventoryActivator>())
-                _activer = transform.GetChild(i).gameObject;
-        }
-        TurnOffOn(false);
-    }
-    private static void NextTurn()//вызов изменения позиции
-    {
-        // do stuff then send event
-        ChangePositionItem?.Invoke();
-    }
+
+    private void NextTurn() => ChangePositionItem?.Invoke(); //вызов изменения позиции
 
     public void TurnOffOn(bool starting = true)// определение рендерится ли 
     {
@@ -113,76 +144,62 @@ public sealed class Inventory : MonoBehaviour
 
         if (ActiveTrade)
         {
-            _activer.GetComponent<RectTransform>().localPosition = new Vector2(-400, 175);
+            _activerRect.localPosition = new Vector2(-400, 175);
             Cursor.visible = true;
         }
         else
-        {
-            _activer.GetComponent<RectTransform>().localPosition = new Vector2(0, 0);
-        }
+            _activerRect.localPosition = new Vector2(0, 0);
     }
-    public void DownClick(RectTransform item)//пока удерживается слот
+    public void OnDrag(RectTransform item)//пока удерживается слот
     {
-        if (_dragObj == false)
+        if (!_dragObj)
         {
-            _lastParentOfObject = (RectTransform)item.parent;
             LastItem = item;
-
             LastItem.SetParent(_myRt);
+
             _dragObj = true;
         }
         else
         {
-            DragObject();
+            Vector2 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y); // переменной записываються координаты мыши по иксу и игрику
+
+            if (Input.GetMouseButton(0))
+                LastItem.position = mousePosition;
         }
     }
     private bool _dragObj;
-    private void DragObject()
+
+    public void OnDragUp()
     {
-        Vector2 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y); // переменной записываються координаты мыши по иксу и игрику
-        if (Input.GetMouseButton(0))
+        NextTurn();
+        if (LastItem?.parent == transform)
         {
-            LastItem.position = mousePosition;
+            LastItem.SetParent(LastParentOfObject);
+            LastItem.position = LastParentOfObject.position;
         }
-        else
-        {
-            NextTurn();
-            if (LastItem.parent == transform)
-            {
-                LastItem.SetParent(_lastParentOfObject);
-                LastItem.position = _lastParentOfObject.position;
-            }
-            _dragObj = false;
-        }
-    }
-    private void Update()
-    {
-        if (_dragObj)
-        {
-            DragObject();
-        }
+
+        _dragObj = false;
     }
 
-    public static RectTransform RevertItem(RectTransform Item)//смена позициями слотов
+    public void RevertItem(RectTransform Item, SlotLocation itemSlot)//смена позициями слотов
     {
-        RectTransform rt = Item;
+        LastItem.position = Item.position;
+        LastItem.SetParent(Item.parent);
 
-        LastItem.position = rt.position;
-        LastItem.SetParent((RectTransform)rt.parent);
-
-        Item.position = _lastParentOfObject.position;
-        Item.SetParent(_lastParentOfObject);
-
-        RectTransform rrt = LastItem;
-        return rrt;
+        Item.position = LastParentOfObject.position;
+        Item.SetParent(LastParentOfObject);
+        RectTransform clone = itemSlot.Item;
+        itemSlot.Item = _lastParentOfObjectSlot.Item;
+        _lastParentOfObjectSlot.Item = clone;
+        LastItem = null;
     }
-    public static void MergeItems(ref ImageInv item, ref ImageInv newItem, bool isFullMerge)//сложение слотов
+    public void MergeItems(ref ImageInv item, ref ImageInv newItem, bool isFullMerge)//сложение слотов
     {
         if (isFullMerge)
         {
             item.ItemsCount += newItem.ItemsCount;
-            Debug.Log(_lastParentOfObject.name);
-            _lastParentOfObject.GetComponent<SlotLocation>().ClearSlot();
+            Debug.Log(LastParentOfObject.name);
+            _lastParentOfObjectSlot.ClearSlot();
 
             Debug.Log("Full merge success");
         }
@@ -196,6 +213,6 @@ public sealed class Inventory : MonoBehaviour
 
             Debug.Log("Dont full merge success");
         }
-        Debug.Log(item + " /" + newItem);
+        Debug.Log(item.name + " /" + newItem.name);
     }
 }

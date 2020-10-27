@@ -12,22 +12,22 @@ public struct SHA1_Encode
         if (string.IsNullOrEmpty(ishText))
             return "";
 
-        byte[] initVecB = System.Text.Encoding.ASCII.GetBytes(initVec);
+        byte[] initVecB = Encoding.ASCII.GetBytes(initVec);
         byte[] solB = Encoding.ASCII.GetBytes(sol);
-        byte[] ishTextB = System.Text.Encoding.UTF8.GetBytes(ishText);
+        byte[] ishTextB = Encoding.UTF8.GetBytes(ishText);
 
-        System.Security.Cryptography.PasswordDeriveBytes derivPass = new System.Security.Cryptography.PasswordDeriveBytes(pass, solB, cryptographicAlgorithm, passIter);
+        PasswordDeriveBytes derivPass = new PasswordDeriveBytes(pass, solB, cryptographicAlgorithm, passIter);
         byte[] keyBytes = derivPass.GetBytes(keySize / 8);
-        System.Security.Cryptography.RijndaelManaged symmK = new System.Security.Cryptography.RijndaelManaged();
-        symmK.Mode = System.Security.Cryptography.CipherMode.CBC;
+        RijndaelManaged symmK = new RijndaelManaged();
+        symmK.Mode = CipherMode.CBC;
 
         byte[] cipherTextBytes = null;
 
         using (ICryptoTransform encryptor = symmK.CreateEncryptor(keyBytes, initVecB))
         {
-            using (System.IO.MemoryStream memStream = new System.IO.MemoryStream())
+            using (MemoryStream memStream = new MemoryStream())
             {
-                using (CryptoStream cryptoStream = new System.Security.Cryptography.CryptoStream(memStream, encryptor, System.Security.Cryptography.CryptoStreamMode.Write))
+                using (CryptoStream cryptoStream = new CryptoStream(memStream, encryptor, CryptoStreamMode.Write))
                 {
 
                     cryptoStream.Write(ishTextB, 0, ishTextB.Length);
