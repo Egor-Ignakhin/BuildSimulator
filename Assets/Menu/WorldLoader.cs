@@ -44,9 +44,9 @@ public sealed class WorldLoader : MonoBehaviour, IStorable
             return;
         string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
         RegKey.GetValue("LoadWorld", out string titleWorld, keyPath);
-        Debug.Log(SHA1_Encode.Decryption(titleWorld, "password") + "////////////////////////////////////");
+        Debug.Log(SHA1_Encode.Decryption(titleWorld, "z0s%b&I)Y%PW26A8") + "////////////////////////////////////");
 
-        titleWorld = SHA1_Encode.Decryption(titleWorld, "password");
+        titleWorld = SHA1_Encode.Decryption(titleWorld, "z0s%b&I)Y%PW26A8");
         _labels[0].Title = titleWorld;
 
         string savePath = Directory.GetCurrentDirectory() + "\\Saves\\";
@@ -91,7 +91,7 @@ public sealed class WorldLoader : MonoBehaviour, IStorable
         else
             key = key.OpenSubKey(keyPath, true);
 
-        titleWorld = SHA1_Encode.Encryption(titleWorld, "password");
+        titleWorld = SHA1_Encode.Encryption(titleWorld, "z0s%b&I)Y%PW26A8");
 
         key.Close();
         RegKey.SetValue("LoadWorld", titleWorld, keyPath);

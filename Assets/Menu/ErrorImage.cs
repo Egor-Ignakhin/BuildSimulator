@@ -9,13 +9,13 @@ public sealed class ErrorImage : MonoBehaviour
     private Image _myImage;
     public TextMeshProUGUI TextError;
     public  string TitleError { get; set; }
-    Color color = new Color(0, 0, 0, -0.00092375f);
+    Color color = new Color(0, 0, 0, -0.0092375f);
 
     private void Awake()
     {
         Singleton = this;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (TextError.color.a > 0.005f)
         {

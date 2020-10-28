@@ -75,6 +75,7 @@
     <Compile Include="Assets\IStorable.cs" />
     <Compile Include="Assets\Inventory\ImageInv.cs" />
     <Compile Include="Assets\Inventory\Inventory.cs" />
+    <Compile Include="Assets\Inventory\Singleton.cs" />
     <Compile Include="Assets\Inventory\SlotLocation.cs" />
     <Compile Include="Assets\Items\AllLayingObjectsManager.cs" />
     <Compile Include="Assets\Items\InventoryActivator.cs" />

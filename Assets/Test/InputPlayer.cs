@@ -3,8 +3,8 @@ using UnityEngine;
 
 public sealed class InputPlayer : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI _helpingText;
-    [SerializeField] private GameObject AnimCircle, AnimBuild;
+    [SerializeField] private TextMeshProUGUI _helpingText;// текст выводит "взять + число предметов"
+    [SerializeField] private GameObject AnimCircle, AnimBuild;//анимации
     private BuildHouse _bH;
     private Ray ray;
     private Camera _cam;
@@ -13,18 +13,17 @@ public sealed class InputPlayer : MonoBehaviour
     private Inventory _inventory;
     [SerializeField] private float _getItemDistance = 4f;
 
+    private void OnEnable() => _helpingText.enabled = false;
     private void Start()
     {
-        _inventory = Inventory.Singleton;
+        _inventory = Inventory.Instance;
         _bH = GetComponent<BuildHouse>();
         _cam = Camera.main;
         _statements = GetComponent<PlayerStatements>();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void OnEnable()
-    {
-        _helpingText.enabled = false;
-    }
     private LayingItem item;
     private Trader _lastTrader;
     private MonoBehaviour[] components;
@@ -79,7 +78,7 @@ public sealed class InputPlayer : MonoBehaviour
         _helpingText.text = "Pick up (x" + item.ItemsCount + ") [" + _getItemKey + ']';
         if (Input.GetKeyDown(_getItemKey))
         {
-            if (_inventory.AddItems(item.Type, item.ItemsCount) == true)
+            if (_inventory.AddItems(item.Type, item.ItemsCount, true) == true)
             {
                 item.GetItem();
 

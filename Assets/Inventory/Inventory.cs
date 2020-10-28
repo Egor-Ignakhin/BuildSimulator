@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Assets;
+using System.Collections.Generic;
 using UnityEngine;
-public sealed class Inventory : MonoBehaviour
+public sealed class Inventory : Singleton<Inventory>
 {
     public const byte TypesCount = 3;//всего блоков в игре
 
     private RectTransform _myRt;//рект-трансформ объекта
-    public static Inventory Singleton { get; private set; }//просто ссылка для других классов
+   // public static Inventory Singleton { get; private set; }//просто ссылка для других классов
 
     public delegate void ChangePosition();// событие  определения положения
     public static event ChangePosition ChangePositionItem;// событие  определения положения
@@ -48,18 +49,14 @@ public sealed class Inventory : MonoBehaviour
 
     public int[] ItemsCount { get; private set; } = new int[TypesCount];//число объектов каждого типа
     public List<ImageInv> ItemsCs { get; } = new List<ImageInv>();// все классы со слотов
-    public ImageInv[] LastimInv { get; set; } = new ImageInv[TypesCount];//последний открытый класс каждого типа
 
     public bool ActiveTrade { get; set; }
 
     private void Awake()
     {
-        Singleton = this;
-         _myRt = GetComponent<RectTransform>();       
-    }
+        //Singleton = this;
+         _myRt = GetComponent<RectTransform>();
 
-    private void Start()
-    {
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).GetComponent<InventoryActivator>())
@@ -74,30 +71,23 @@ public sealed class Inventory : MonoBehaviour
         TurnOffOn(false);
     }
 
-    public bool AddItems(byte type,byte count)
+    public bool AddItems(byte type, byte count, bool isLayeing = false)
     {
-        if (LastimInv[type].ItemsCount + count < 256 )//если число придметов в слоте + сумма меньше 256
+        for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
         {
-            LastimInv[type].AddItem(count);//добавить объект слоту
-            ItemsCount[type] += count;//добавить в список сумму
-            return true;
-        }
-        else
-        {
-            for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
+            if (ItemsCs[i].Type == type)//если тип объекта подходящий, например кирпич == кирпич
             {
-                if (ItemsCs[i].Type == type)//если тип объекта подходящий, например кирпич == кирпич
+                if (ItemsCs[i].ItemsCount + count < 256)// если число придметов в слоте + сумма меньше 256
                 {
-                    LastimInv[type] = ItemsCs[i];
-                    if (LastimInv[type].ItemsCount + count < 256)// если число придметов в слоте +сумма меньше 256
-                    {
-                        LastimInv[type].AddItem(count);
-                        ItemsCount[type] += count;
-                        return true;
-                    }
+                    if (isLayeing)
+                        ItemsCs[i].AddItem(count);
+
+                    ItemsCount[type] += count;
+                    return true;
                 }
             }
         }
+
         return false;
     }
 
@@ -105,26 +95,16 @@ public sealed class Inventory : MonoBehaviour
     {
         if (ItemsCount[type] < count)//если сумма слотво меньше нужной суммы
             return false;
-        if (LastimInv[type].ItemsCount >= count)//если сумма слота больше нужной суммы
+        for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
         {
-            LastimInv[type].GetItem(count);
-            ItemsCount[type] -= count;//вычитаем из общего числа сумму
-            return true;
-        }
-        else
-        {
-            for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
+            if (ItemsCs[i].Type == type)//если тип объекта подходящий, например кирпич == кирпич
             {
-                if (ItemsCs[i].Type == type)//если тип объекта подходящий, например кирпич == кирпич
+                if (ItemsCs[i].ItemsCount >= count)
                 {
-                    LastimInv[type] = ItemsCs[i];
-                    if (LastimInv[type].ItemsCount > count)
-                    {
-                        ItemsCs[i].GetItem(count);
+                    ItemsCs[i].GetItem(count);
 
-                        ItemsCount[type] -= count;//вычитаем из общего числа сумму
-                        return true;
-                    }
+                    ItemsCount[type] -= count;//вычитаем из общего числа сумму
+                    return true;
                 }
             }
         }
@@ -214,5 +194,10 @@ public sealed class Inventory : MonoBehaviour
             Debug.Log("Dont full merge success");
         }
         Debug.Log(item.name + " /" + newItem.name);
+    }
+
+    public override void OnDestroy()
+    {
+        base.OnDestroy();
     }
 }

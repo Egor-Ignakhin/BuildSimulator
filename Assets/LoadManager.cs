@@ -1,6 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using UnityEngine;
 
@@ -15,7 +13,7 @@ public class LoadManager : MonoBehaviour, IStorable
 
         RegKey.GetValue("LoadWorld", out _titleWorld, keyPath);
 
-        _titleWorld = SHA1_Encode.Decryption(_titleWorld, "password");
+        _titleWorld = SHA1_Encode.Decryption(_titleWorld, "z0s%b&I)Y%PW26A8");
         Debug.Log("Title world - " + _titleWorld);
     }
 
@@ -33,7 +31,7 @@ public class LoadManager : MonoBehaviour, IStorable
         string[] saveLog = new string[100];
 
         saveLog[0] = "[ChunksCount]";
-        saveLog[1] = SHA1_Encode.Decryption(oldLog[1], "password");
+        saveLog[1] = SHA1_Encode.Decryption(oldLog[1], "z0s%b&I)Y%PW26A8");
         saveLog[2] = "[TitleWorld]";
         saveLog[3] = _titleWorld;
         saveLog[4] = "[IsFirstGame]";
@@ -46,7 +44,7 @@ public class LoadManager : MonoBehaviour, IStorable
 
         for (int i = 0; i < saveLog.Length; i++)
         {
-            saveLog[i] = SHA1_Encode.Encryption(saveLog[i], "password");
+            saveLog[i] = SHA1_Encode.Encryption(saveLog[i], "z0s%b&I)Y%PW26A8");
         }
         File.WriteAllLines(savePath, saveLog);
         SaveObj();
@@ -61,7 +59,7 @@ public class LoadManager : MonoBehaviour, IStorable
 
         string[] saveLog = File.ReadAllLines(savePath);
 
-        if (Convert.ToBoolean(SHA1_Encode.Decryption(saveLog[5], "password")))//проверяем первая ли игра
+        if (Convert.ToBoolean(SHA1_Encode.Decryption(saveLog[5], "z0s%b&I)Y%PW26A8")))//проверяем первая ли игра
         {
             Debug.Log("FP");
             return;
@@ -89,7 +87,7 @@ public sealed class LoadTransformation
     }
     private Vector3 GetVector(string vector)//метод возвращает вектор, например позицию из зашифрованной строки
     {
-        vector = SHA1_Encode.Decryption(vector, "password");
+        vector = SHA1_Encode.Decryption(vector, "z0s%b&I)Y%PW26A8");
         Vector3 playerPos = new Vector3(0, 0, 0);
         string x = "", y = "", z = "";
 

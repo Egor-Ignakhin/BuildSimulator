@@ -17,13 +17,13 @@ public sealed class SaverLoader : LoadManager
             RegKey.GetValue("LoadWorld", out loadWrld, keyPath);
 
 
-            loadWrld = SHA1_Encode.Decryption(loadWrld, "password");
+            loadWrld = SHA1_Encode.Decryption(loadWrld, "z0s%b&I)Y%PW26A8");
             string path = Directory.GetCurrentDirectory() + "\\Saves\\" + loadWrld + ".txt";
             string[] save = File.ReadAllLines(path);
-            string count = SHA1_Encode.Decryption(save[1], "password");
+            string count = SHA1_Encode.Decryption(save[1], "z0s%b&I)Y%PW26A8");
 
             Debug.Log("Chunks count - " + count);
-            string isFp = SHA1_Encode.Decryption(save[5], "password");
+            string isFp = SHA1_Encode.Decryption(save[5], "z0s%b&I)Y%PW26A8");
             Debug.Log(isFp);
             bool isFirstGame = System.Convert.ToBoolean(isFp);
             BuildPlatforms(System.Convert.ToInt16(count), isFirstGame);

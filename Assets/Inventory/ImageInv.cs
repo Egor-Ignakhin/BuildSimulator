@@ -39,18 +39,14 @@ public sealed class ImageInv : MonoBehaviour
                 break;
             }
         }
-        _inventory = Inventory.Singleton;
+        _inventory = Inventory.Instance;
 
         Type = (byte)Random.Range(0, 3);
         ItemsCount = (byte)Random.Range(1, 255 / 20);
         _myImage = GetComponent<Image>();
         ChangeItemImage(Type);
 
-        _inventory.LastimInv[Type] = this;
-        _inventory.AddItems(Type, ItemsCount);
         _myRt = GetComponent<RectTransform>();
-
-        _inventory.ItemsCs.Add(this);
 
         EventTrigger ev = gameObject.AddComponent<EventTrigger>();
 
@@ -74,9 +70,14 @@ public sealed class ImageInv : MonoBehaviour
 
         TextCount.rectTransform.sizeDelta = new Vector2(61, 40);
         TextCount.color = Color.gray;
+        _inventory.ItemsCs.Add(this);
+        _inventory.AddItems(Type, ItemsCount);
     }
 
-    public void AddItem(byte count) => ItemsCount += count;
+    public void AddItem(byte count)
+    {
+        ItemsCount += count;
+    }
 
     public void OnPointerDownDelegate()
     {
@@ -106,9 +107,5 @@ public sealed class ImageInv : MonoBehaviour
         }
         _myImage.sprite = _inventory.AllImages[Type];
     }
-    public void GetItem(byte count)//delete item
-    {
-        ItemsCount -= count;
-       // Debug.Log(ItemsCount);
-    }
+    public void GetItem(byte count) => ItemsCount -= count; //delete item
 }

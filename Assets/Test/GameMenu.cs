@@ -13,7 +13,7 @@ public sealed class GameMenu : MonoBehaviour
     [SerializeField] private Saver _saver;
     private void Start()
     {
-        _inventory = Inventory.Singleton;
+        _inventory = Inventory.Instance;
     }
 
     public void OnClick(int num)

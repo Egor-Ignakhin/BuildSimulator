@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -57,7 +56,7 @@ public class SaveObjectsManager : MonoBehaviour, IStorable
 
     private void WriteText(string path)
     {
-        string[] save = new string[Objects.Count * 6];
+        string[] save = new string[Objects.Count * 7];
         long lastStr = 0;
 
         for (int i = 0; i < Objects.Count; i++)
@@ -73,6 +72,8 @@ public class SaveObjectsManager : MonoBehaviour, IStorable
             save[lastStr] = Objects[i].transform.rotation.x + "|" + Objects[i].transform.rotation.y + "|" + Objects[i].transform.rotation.z; //углы эйлера
             lastStr++;
             save[lastStr] = Objects[i].transform.localScale.x + "|" + Objects[i].transform.localScale.y + "|" + Objects[i].transform.localScale.z;  //масштаб
+            lastStr++;
+            save[lastStr] = Objects[i].GetComponent<BaseBlock>().Type + "";  //тип
             lastStr++;
         }
 
@@ -98,44 +99,49 @@ public class SaveObjectsManager : MonoBehaviour, IStorable
 
         for (int i = 0; i < save.Length; i++)
         {
-            if(save[i] == "[Block]")
+            if (save[i] == "[Block]")
             {
                 string name = "";
                 string parent = "";
                 string pos = "";
                 string eulers = "";
                 string scale = "";
-                for (int h = 1; h <= 5; h++)
+                string type = "";
+                for (int h = 1; h <= 6; h++)
                 {
                     if (h == 1)
                     {
                         name = save[i + h];
                     }
-                    if (h == 2)
+                    else if (h == 2)
                     {
                         parent = save[i + h];
                     }
-                    if(h == 3)
+                    else if (h == 3)
                     {
                         pos = save[i + h];
                     }
-                    if(h == 4)
+                    else if (h == 4)
                     {
                         eulers = save[i + h];
                     }
-                    if(h == 5)
+                    else if (h == 5)
                     {
                         scale = save[i + h];
+                    }
+                    else if (h == 6)
+                    {
+                        type = save[i + h];
                     }
                 }
                 Vector3 position = load.GetPosition(pos);
                 Vector3 eulerAngles = load.GetPosition(eulers);
                 Quaternion rotation = Quaternion.identity;
-                rotation.x = eulerAngles.x;
+                rotation.x = eulerAngles.x; 
                 rotation.y = eulerAngles.y;
                 rotation.y = eulerAngles.z;
-                _buildHouse.LoadBlock(position, rotation, parent);
-                    blocks++;
+                _buildHouse.LoadBlock(position, rotation, parent, System.Convert.ToByte(type), name);
+                blocks++;
             }
         }
     }

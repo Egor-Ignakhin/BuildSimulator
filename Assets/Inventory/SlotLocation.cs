@@ -20,7 +20,7 @@ public sealed class SlotLocation : MonoBehaviour
     private Inventory _inventory;
     private void Start()
     {
-        _inventory = Inventory.Singleton;
+        _inventory = Inventory.Instance;
         _myRt = GetComponent<RectTransform>();
         Inventory.ChangePositionItem += this.NewDistance;
         for (int i = 0; i < transform.childCount; i++)

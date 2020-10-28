@@ -8,8 +8,8 @@ public sealed class Trader : MonoBehaviour
     {
         _traderInventory = (TraderInventory)FindObjectOfType(typeof(TraderInventory));
 
-        _inventory = Inventory.Singleton;
-        _traderInventory.gameObject.SetActive(_inventory.ActiveTrade);
+        _inventory = Inventory.Instance;
+            _traderInventory.gameObject.SetActive(_inventory.ActiveTrade);
     }
     public void OpenShop()
     {

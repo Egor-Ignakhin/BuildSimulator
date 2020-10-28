@@ -26,6 +26,21 @@ public sealed class MenuManager : MonoBehaviour
 
     [Space(5)]
     public TextMeshProUGUI ChunksText;
+
+    private void Awake()
+    {
+        string keyPath = "SOFTWARE\\" + "BuildingSimulator";
+
+        Microsoft.Win32.RegistryKey reg0 = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(keyPath);
+        if (reg0 == null)
+        {
+            Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser;
+            key = key.CreateSubKey(keyPath + "\\Settings", true);
+            key.Close();
+            RegKey.SetValue("Sensitvity", "3", keyPath + "\\Settings");
+            RegKey.SetValue("ViewDistance", "15", keyPath + "\\Settings");
+        }
+    }
     private void OnEnable()
     {
         _errorImage = ErrorImage.Singleton;
@@ -66,7 +81,8 @@ public sealed class MenuManager : MonoBehaviour
 
 
                 Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\BuildingSimulator\\Settings", true); // << открываем ключ с правами на запись
-                key.DeleteValue("LoadWorld");
+                if(RegKey.GetValue("LoadWorld",out _, "SOFTWARE\\BuildingSimulator\\Settings"))
+                    key.DeleteValue("LoadWorld");
                 key.Close();
 
                 _errorImage.enabled = true;
@@ -118,7 +134,7 @@ public sealed class MenuManager : MonoBehaviour
 
         for (int i = 0; i < saveLog.Length; i++)
         {
-            saveLog[i] = SHA1_Encode.Encryption(saveLog[i], "password");
+            saveLog[i] = SHA1_Encode.Encryption(saveLog[i], "z0s%b&I)Y%PW26A8");
         }
         File.WriteAllLines(savePath, saveLog);
 
@@ -129,7 +145,7 @@ public sealed class MenuManager : MonoBehaviour
         else
             key = key.OpenSubKey(keyPath, true);
 
-        _titleWorld = SHA1_Encode.Encryption(_titleWorld, "password");
+        _titleWorld = SHA1_Encode.Encryption(_titleWorld, "z0s%b&I)Y%PW26A8");
 
         RegKey.SetValue("LoadWorld", _titleWorld, keyPath);
         key.Close();

@@ -22,6 +22,30 @@ public sealed class SeePlayerChanks : MonoBehaviour
         Collider.height = _colliderRange;
         Collider.isTrigger = true;
         Collider.enabled = true;
-    }  
+    }
+
+    private void Start()
+    {
+        Collider.radius = 10000;
+        Collider.height = 10000;
+        StartCoroutine(nameof(StartSee));
+    }
+
+    private IEnumerator StartSee()
+    {
+        while (true)
+        {
+
+            if (Collider.radius > _colliderRange)
+            {
+                Collider.radius -= 15;
+                Collider.height -= 15;
+            }
+            else
+                StopAllCoroutines();
+
+            yield return new WaitForSeconds(0.005f);
+        }
+    }
 }
 
