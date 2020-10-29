@@ -34,7 +34,7 @@ namespace Assets
 
         public virtual void OnDestroy()
         {
-            IsApplicationQuit = true;
+           // IsApplicationQuit = true;
         }
     }
 }

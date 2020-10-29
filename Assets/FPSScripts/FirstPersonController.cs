@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
-
+using Assets;
 #if UNITY_EDITOR
     using UnityEditor;
 #endif
 
 [RequireComponent(typeof(CapsuleCollider)), RequireComponent(typeof(Rigidbody)), AddComponentMenu("First Person Controller")]
 
-public sealed class FirstPersonController : MonoBehaviour,ILooking
+public sealed class FirstPersonController : Singleton<FirstPersonController> ,ILooking
 {
     #region Variables
 
@@ -14,8 +14,8 @@ public sealed class FirstPersonController : MonoBehaviour,ILooking
     private bool EnableCameraMovement = true;//возможность вращать камеру
 
     public float VerticalRotationRange { get; set; } = 0f;
-    public float HeadMaxY { get; set; } = 0f;
-    public float HeadMinY { get; set; } = 0f;
+    public float HeadMaxY { get; set; }
+    public float HeadMinY { get; set; }
     public int Sensitivity { get; set; } = 10;
     public float FOVToMouseSensitivity { get; private set; } = 1f;
     public float CameraSmoothing { get; private set; } = 5f;
@@ -98,8 +98,7 @@ public sealed class FirstPersonController : MonoBehaviour,ILooking
     private void Awake()
     {
         #region Movement Settings - Awake
-        WalkSpeedInternal = WalkSpeed;
-        SprintSpeedInternal = SprintSpeed;
+       
         JumpPowerInternal = JumpPower;
         capsule = GetComponent<CapsuleCollider>();
         IsGrounded = true;
@@ -111,10 +110,26 @@ public sealed class FirstPersonController : MonoBehaviour,ILooking
         #endregion
     }
 
+    private void OnEnable()
+    {
+        float value = Assets.AdvancedSettings.MovingSpeed;
+        if(value == 0)
+        {
+            this.WalkSpeed = 2;
+        }
+        else
+        {
+            this.WalkSpeed = value == 1 ? 4 : 8;
+        }
+        SprintSpeed = WalkSpeed * 1.5f;
+        WalkSpeedInternal = WalkSpeed;
+        SprintSpeedInternal = SprintSpeed;
+    }
+
     private void Start()
     {
         #region Look Settings - Start
-        VerticalRotationRange = 1.75f * HeadMaxY + Mathf.Clamp(0, HeadMinY, 0);
+        VerticalRotationRange = 2 * HeadMaxY + Mathf.Clamp(0, HeadMinY, 0);
         baseCamFOV = PlayerCamera.fieldOfView;
         #endregion
 
@@ -196,7 +211,6 @@ public sealed class FirstPersonController : MonoBehaviour,ILooking
 
         Vector3 MoveDirection = Vector3.zero;
         speed = Sprint ? isCrouching ? WalkSpeedInternal : (isSprinting ? SprintSpeedInternal : WalkSpeedInternal) : (isSprinting ? WalkSpeedInternal : SprintSpeedInternal);
-
 
         if (Advanced.MaxSlopeAngle > 0)
         {
@@ -355,7 +369,6 @@ public sealed class FirstPersonController : MonoBehaviour,ILooking
         return new AnimationCurve(new Keyframe(-90.0f, 1.0f), new Keyframe(0.0f, 1.0f), new Keyframe(Advanced.MaxSlopeAngle + 15, 0f), new Keyframe(Advanced.MaxWallShear, 0.0f), new Keyframe(Advanced.MaxWallShear + 0.1f, 1.0f), new Keyframe(90, 1.0f)) { preWrapMode = WrapMode.Clamp, postWrapMode = WrapMode.ClampForever }.Evaluate(Advanced.LastKnownSlopeAngle);
     }
 
-
     private void OnCollisionEnter(Collision CollisionData)
     {
         for (int i = 0; i < CollisionData.contactCount; i++)
@@ -466,9 +479,7 @@ public sealed class FirstPersonController_Editor : Editor
         t.PlayerCanMove = EditorGUILayout.ToggleLeft(new GUIContent("Enable Player Movement", "Determines if the player is allowed to move."), t.PlayerCanMove);
         GUI.enabled = t.PlayerCanMove;
         t.Sprint = EditorGUILayout.ToggleLeft(new GUIContent("Sprint", "Determines if the default mode of movement is 'Walk' or 'Srpint'."), t.Sprint);
-        t.WalkSpeed = EditorGUILayout.Slider(new GUIContent("Walk Speed", "Determines how fast the player walks."), t.WalkSpeed, 0.1f, 10);
         t.SprintKey = (KeyCode)EditorGUILayout.EnumPopup(new GUIContent("Sprint Key", "Determines what key needs to be pressed to enter a sprint"), t.SprintKey);
-        t.SprintSpeed = EditorGUILayout.Slider(new GUIContent("Sprint Speed", "Determines how fast the player sprints."), t.SprintSpeed, 0.1f, 20);
         t.CanJump = EditorGUILayout.ToggleLeft(new GUIContent("Can Player Jump?", "Determines if the player is allowed to jump."), t.CanJump);
         GUI.enabled = t.PlayerCanMove && t.CanJump; EditorGUI.indentLevel++;
         t.JumpPower = EditorGUILayout.Slider(new GUIContent("Jump Power", "Determines how high the player can jump."), t.JumpPower, 0.1f, 15);

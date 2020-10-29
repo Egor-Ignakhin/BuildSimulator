@@ -19,6 +19,7 @@ public sealed class BuildHouse : MonoBehaviour
 
     private Inventory _inventory;
     private Camera _cam;
+    internal bool ConflictBlock { get; set; }
 
     private AudioSource _myAudioSource;
     private BaseBlock _lastSelectedBlock;
@@ -31,11 +32,15 @@ public sealed class BuildHouse : MonoBehaviour
 
     private void Awake() => _obDown = (ObjectDown)FindObjectOfType(typeof(ObjectDown));
 
+    private void OnEnable()
+    {
+        _myAudioSource = GetComponent<AudioSource>();
+        _myAudioSource.volume = Assets.AdvancedSettings.SoundVolume * 0.01f;
+    }
     private void Start()
     {
-        _cam = Camera.main;
+           _cam = Camera.main;
         _inventory = Inventory.Instance;
-        _myAudioSource = GetComponent<AudioSource>();
 
         for (int i = 0; i < _sprites.Count; i++)
             _sprites[i].color = new TransparentColors(0).color;
@@ -67,6 +72,9 @@ public sealed class BuildHouse : MonoBehaviour
 
         if (IsBuild)
         {
+            if (ConflictBlock)
+                return;
+
             _sprites[_selectBlock].color = Color.white;
             _blocks[_selectBlock].SetActive(true);
 
@@ -155,8 +163,9 @@ public sealed class BuildHouse : MonoBehaviour
     }
     private void ChangeBlock(RaycastHit hit)//само создание нового блока
     {
-        float Volume = Random.Range(50, 100);// музыкальный эффект 
-        _myAudioSource.volume = Volume / 95;
+        float lastVolume = Assets.AdvancedSettings.SoundVolume * 0.01f;
+        float Volume = Random.Range(0.5f, 1f);// музыкальный эффект 
+        _myAudioSource.volume = (Volume * lastVolume);
         _myAudioSource.spatialBlend = Volume / 95;
         _myAudioSource.clip = SoundsChange[_selectBlock];
         _myAudioSource.Play();
@@ -175,6 +184,7 @@ public sealed class BuildHouse : MonoBehaviour
         _obDown.AddObjects(newBaseBlock);//добавление в список ВзрывОбъектов
         newBaseBlock.gameObject.AddComponent<SaveObject>();
         newBaseBlock.GetComponent<SaveObject>().enabled = true;
+
     }
     public void LoadBlock(Vector3 pos, Quaternion quat, string parent, byte type, string name)
     {
@@ -201,8 +211,9 @@ public sealed class BuildHouse : MonoBehaviour
     {
         _myAudioSource.clip = SoundsDestroy[_hitBlock.Type];
 
-        float Volume = Random.Range(50, 100);
-        _myAudioSource.volume = Volume / 95;
+        float lastVolume = Assets.AdvancedSettings.SoundVolume * 0.01f;
+        float Volume = Random.Range(0.5f, 1f);// музыкальный эффект 
+        _myAudioSource.volume = (Volume * lastVolume);
         _myAudioSource.spatialBlend = Volume / 95;
         _myAudioSource.Play();
 

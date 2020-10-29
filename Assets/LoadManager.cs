@@ -11,7 +11,7 @@ public class LoadManager : MonoBehaviour, IStorable
         
         string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
 
-        RegKey.GetValue("LoadWorld", out _titleWorld, keyPath);
+        Assets.RegKey.GetValue("LoadWorld", out _titleWorld, keyPath);
 
         _titleWorld = SHA1_Encode.Decryption(_titleWorld, "z0s%b&I)Y%PW26A8");
         Debug.Log("Title world - " + _titleWorld);

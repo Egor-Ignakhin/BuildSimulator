@@ -3,8 +3,8 @@
 public sealed class CameraRotate : MonoBehaviour,ILooking
 {
 	public int Sensitivity { get; set; }
-	public float HeadMinY { get; set; } = 0f;
-	public float HeadMaxY { get; set; } = 0f;
+	public float HeadMinY { get; set; }
+	public float HeadMaxY { get; set; }
 
     private Vector3 direction;
 	private float rotationY;

@@ -6,7 +6,6 @@ public sealed class Inventory : Singleton<Inventory>
     public const byte TypesCount = 3;//всего блоков в игре
 
     private RectTransform _myRt;//рект-трансформ объекта
-   // public static Inventory Singleton { get; private set; }//просто ссылка для других классов
 
     public delegate void ChangePosition();// событие  определения положения
     public static event ChangePosition ChangePositionItem;// событие  определения положения

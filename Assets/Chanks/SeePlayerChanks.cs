@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 public sealed class SeePlayerChanks : MonoBehaviour
 {
@@ -7,7 +6,7 @@ public sealed class SeePlayerChanks : MonoBehaviour
     [HideInInspector] public CapsuleCollider Collider { get; set; }
     private void Awake()
     {
-        _colliderRange = AdvancedSettings.ViewDistance*5;
+        _colliderRange = Assets.AdvancedSettings.ViewDistance*5;
         if (GetComponent<Collider>() != null)
         {
             Collider = GetComponent<CapsuleCollider>();

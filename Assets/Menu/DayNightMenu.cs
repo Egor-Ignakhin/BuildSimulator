@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets;
+using UnityEngine;
 using UnityEngine.UI;
 
 public sealed class DayNightMenu : MonoBehaviour

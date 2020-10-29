@@ -94,7 +94,6 @@
     <Compile Include="Assets\Save\Saver.cs" />
     <Compile Include="Assets\SaveObject.cs" />
     <Compile Include="Assets\SaverLoader.cs" />
-    <Compile Include="Assets\Scripts\SimpleCameraController.cs" />
     <Compile Include="Assets\Shop\Trader.cs" />
     <Compile Include="Assets\Shop\TraderInventory.cs" />
     <Compile Include="Assets\Test\CameraMove.cs" />

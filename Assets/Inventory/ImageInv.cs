@@ -29,6 +29,11 @@ public sealed class ImageInv : MonoBehaviour
             return;
         }
     }
+
+    private void OnEnable()
+    {
+        _inventory = Inventory.Instance;
+    }
     private void Start()
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -39,8 +44,7 @@ public sealed class ImageInv : MonoBehaviour
                 break;
             }
         }
-        _inventory = Inventory.Instance;
-
+        
         Type = (byte)Random.Range(0, 3);
         ItemsCount = (byte)Random.Range(1, 255 / 20);
         _myImage = GetComponent<Image>();

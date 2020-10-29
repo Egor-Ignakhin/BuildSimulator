@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using Assets;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,8 +28,14 @@ public sealed class MenuManager : MonoBehaviour
     [Space(5)]
     public TextMeshProUGUI ChunksText;
 
-    private void Awake()
+    AudioSource _myAud;
+    private void ChangeSoundVolume()
     {
+        _myAud.volume = (AdvancedSettings.SoundVolume * 0.01f);
+    }
+
+    private void Awake()
+    {      
         string keyPath = "SOFTWARE\\" + "BuildingSimulator";
 
         Microsoft.Win32.RegistryKey reg0 = Microsoft.Win32.Registry.CurrentUser.OpenSubKey(keyPath);
@@ -40,12 +47,19 @@ public sealed class MenuManager : MonoBehaviour
             RegKey.SetValue("Sensitvity", "3", keyPath + "\\Settings");
             RegKey.SetValue("ViewDistance", "15", keyPath + "\\Settings");
         }
+        _myAud = GetComponent<AudioSource>();
+        SettingsMenu.ChangeVolumeSound += this.ChangeSoundVolume;        
     }
     private void OnEnable()
     {
         _errorImage = ErrorImage.Singleton;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+    }
+    private void Start()
+    {
+        Debug.Log(AdvancedSettings.SoundVolume);
+        ChangeSoundVolume();
     }
     public void Clickk(ButtonInMenu button)
     {
@@ -151,5 +165,9 @@ public sealed class MenuManager : MonoBehaviour
         key.Close();
 
         return true;
+    }
+    private void OnDestroy()
+    {
+        SettingsMenu.ChangeVolumeSound -= this.ChangeSoundVolume;
     }
 }

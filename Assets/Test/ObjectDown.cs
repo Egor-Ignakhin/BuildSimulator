@@ -17,6 +17,8 @@ public sealed class ObjectDown : MonoBehaviour
     private BuildHouse _bH;
 
     public List<BaseBlock> Objects { get; private set; } = new List<BaseBlock>();
+
+    private void OnEnable() => _bgAudio.volume = Assets.AdvancedSettings.SoundVolume * 0.01f;
     private void Start()
     {
         slider.value = _timeToBoom;

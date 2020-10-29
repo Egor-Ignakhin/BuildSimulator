@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public sealed class PlayerStatements : MonoBehaviour,ILooking
 {
@@ -22,8 +20,7 @@ public sealed class PlayerStatements : MonoBehaviour,ILooking
 
     private void Awake()
     {
-
-        Sensitivity = AdvancedSettings.Sensitvity;
+        Sensitivity = Assets.AdvancedSettings.Sensitvity;
         for (int i = 0; i < _fPSScripts.Length; i++)
         {
             if (_fPSScripts[i] is FirstPersonController fps)
@@ -44,10 +41,7 @@ public sealed class PlayerStatements : MonoBehaviour,ILooking
             }
         }
     }
-    private void Start()
-    {
-        ChangeMode();
-    }
+    private void Start() => ChangeMode();
 
     private void Update()
     {        
@@ -60,10 +54,14 @@ public sealed class PlayerStatements : MonoBehaviour,ILooking
             ChangeMode();
         }
     }
+    Vector3 lastEulers;
     private void ChangeMode()
     {
         if(FpsMode)// if fps is active and can moving
         {
+            _viewPlayer.position = transform.position;//saving position 
+            lastEulers = transform.eulerAngles;//saving eulers 
+
             _fPSObjects.SetActive(true);
             _flyObjects.SetActive(false);
             for (int i = 0; i < _flyScripts.Length; i++)
@@ -79,7 +77,7 @@ public sealed class PlayerStatements : MonoBehaviour,ILooking
             transform.localPosition = new Vector3(0, 0.9f, 0);
         }
         else//fly mode
-        {
+        {           
             _fPSObjects.SetActive(false);
             _flyObjects.SetActive(true);
             for (int i = 0; i < _flyScripts.Length; i++)
@@ -93,6 +91,7 @@ public sealed class PlayerStatements : MonoBehaviour,ILooking
 
             transform.SetParent(_viewPlayer);
             transform.localPosition = Vector3.zero;
+            transform.eulerAngles = lastEulers;
         }
     }
 }
