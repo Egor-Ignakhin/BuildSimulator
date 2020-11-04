@@ -1,52 +1,47 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public sealed class AllLayingObjectsManager : MonoBehaviour
+namespace InventoryAndItems
 {
-    private readonly List<LayingItem> _layingItems = new List<LayingItem>();
-    private readonly float _multiply = 0.025f;
-    public static AllLayingObjectsManager Manager { get; private set; }
-
-    public Material[] Materials = new Material[Inventory.TypesCount];
-
-    private IEnumerator Rotater()
+    public sealed class AllLayingObjectsManager : MonoBehaviour
     {
-        while (true)
+        private readonly List<LayingItem> _layingItems = new List<LayingItem>();
+        private readonly float _multiply = 0.025f;
+        public static AllLayingObjectsManager Manager { get; private set; }
+
+        public Material[] Materials = new Material[Inventory.TypesCount + 1];
+
+        private IEnumerator Rotater()
         {
-            for (int i = 0; i < _layingItems.Count; i++)
+            while (true)
             {
-                _layingItems[i].RotateObject();
-                _layingItems[i].FindFloor();
-            }
+                for (int i = 0; i < _layingItems.Count; i++)
+                {
+                    _layingItems[i].RotateObject();
+                    _layingItems[i].FindFloor();
+                }
 
-            yield return new WaitForSeconds(_multiply);
+                yield return new WaitForSeconds(_multiply);
+            }
         }
-    }
-    private void Awake()
-    {
-        Manager = this;
-        StartCoroutine(nameof(Rotater));
-    }
-    public int AddInList(LayingItem item)
-    {
-        _layingItems.Add(item);
-        return _layingItems.Count - 1;
-    }
-    public void RemoveInList(int index)
-    {
-        _layingItems.RemoveAt(index);
-    }
-    public Material GetMaterial(byte typeObject)
-    {
-        try
+        private void Awake()
         {
-            return Materials[typeObject];
+            Manager = this;
+            StartCoroutine(nameof(Rotater));
         }
-        catch (System.IndexOutOfRangeException)
+        public void AddInList(LayingItem item) => _layingItems.Add(item);
+        public void RemoveInList(LayingItem item) => _layingItems.Remove(item);
+        public Material GetMaterial(byte typeObject)
         {
-            Debug.LogError("In AllLayingObjectsManager slot of material is null!");
+            try
+            {
+                return Materials[typeObject];
+            }
+            catch (System.IndexOutOfRangeException)
+            {
+                Debug.LogError("In AllLayingObjectsManager slot of material is null!");
+            }
+            return Materials[0];
         }
-        return Materials[0];
     }
 }

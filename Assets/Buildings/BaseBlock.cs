@@ -2,10 +2,11 @@
 
 public sealed class BaseBlock : MonoBehaviour
 {
-    [Range(0, 2)] public int Type;
-    public bool _isDestroy { get; private set; }
+    public bool IsBlock = true;
+    [Range(0, 3)] public int Type;
     private Renderer myRend;
-    public ObjectDown _obDown;
+    private Rigidbody _myRb;
+    internal ObjectDown _obDown { get; set; }
     public void OnEnable()
     {
         myRend = GetComponent<Renderer>();
@@ -13,31 +14,38 @@ public sealed class BaseBlock : MonoBehaviour
     private void Start()
     {
         ChangeColor(0);
+        if (IsBlock)
+        {
+            _obDown.Objects.Add(this);
+
+            gameObject.AddComponent<SaveObject>();
+            GetComponent<SaveObject>().enabled = true;
+        }
     }
 
     public void Destroy()
     {
-        if (_isDestroy)
+        if (!IsBlock)
             return;
 
         sbyte force = (sbyte)(Random.Range(-4, 4) * 15);
-        gameObject.AddComponent<Rigidbody>().velocity = new Vector3(force, force, force);
-        GetComponent<BoxCollider>().isTrigger = false;
-        for (int i = 0; i < transform.childCount; i++)
+        if (!_myRb)
         {
-            transform.GetChild(i).GetComponent<BoxCollider>().isTrigger = false;
+            gameObject.AddComponent<Rigidbody>().velocity = new Vector3(force, force, force);
+            _myRb = GetComponent<Rigidbody>();
         }
-        _isDestroy = true;
+        else
+            _myRb.velocity = new Vector3(force, force, force);       
     }
-    
+
 
     public void ChangeColor(byte type)
     {
         switch (type)
         {
             case 0:
-                if(Type != 2)// if block not is glass
-                myRend.material.color = Color.white;
+                if (Type != 2)// if block not is glass
+                    myRend.material.color = Color.white;
                 else
                     myRend.material.color = new TransparentColors(0).color;
                 break;
@@ -58,6 +66,9 @@ public sealed class BaseBlock : MonoBehaviour
     private void OnDestroy()
     {
         if (_obDown)
-            _obDown.Objects.Remove(this);
+        {
+            if (IsBlock)
+                _obDown.Objects.Remove(this);
+        }
     }
 }

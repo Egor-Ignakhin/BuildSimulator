@@ -1,27 +1,26 @@
 ﻿using TMPro;
 using UnityEngine;
-
+using InventoryAndItems;
 public sealed class InputPlayer : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _helpingText;// текст выводит "взять + число предметов"
-    [SerializeField] private GameObject AnimCircle, AnimBuild;//анимации
-    private BuildHouse _bH;
     private Ray ray;
     private Camera _cam;
-    private PlayerStatements _statements;
     [SerializeField] private KeyCode _getItemKey = KeyCode.F;
     private Inventory _inventory;
     [SerializeField] private float _getItemDistance = 4f;
+
+    [SerializeField] private GameObject _DunamiteField;
+    private Dunamites.DunamiteField _dunamiteFieldCs;
 
     private void OnEnable() => _helpingText.enabled = false;
     private void Start()
     {
         _inventory = Inventory.Instance;
-        _bH = GetComponent<BuildHouse>();
         _cam = Camera.main;
-        _statements = GetComponent<PlayerStatements>();
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        _dunamiteFieldCs = _DunamiteField.GetComponent<Dunamites.DunamiteField>();
     }
 
     private LayingItem item;
@@ -46,31 +45,21 @@ public sealed class InputPlayer : MonoBehaviour
                     checkHit = BuyItem(ref hit);
                     break;
                 }
+                if (components[i] is Dunamites.DunamiteClon)
+                {
+                    checkHit = true;
+                    _helpingText.text = "Change timer [" + _getItemKey + ']';
+                    if (Input.GetKeyDown(_getItemKey))
+                    {
+                        _DunamiteField.SetActive(true);
+                        _dunamiteFieldCs.GetDunamite(components[i] as Dunamites.DunamiteClon);
+                    }
+                    break;
+                }
             }
             _helpingText.enabled = checkHit;
         }
         Debug.DrawRay(ray.origin, transform.forward * 5, Color.green);
-
-        if (_statements.FpsMode)//if fly
-            return;
-
-        if (_bH.IsDestroy)
-        {
-            AnimCircle.SetActive(true);
-        }
-        else
-        {
-            AnimCircle.SetActive(false);
-        }
-        if (_bH.IsBuild)
-        {
-            AnimBuild.SetActive(true);
-        }
-        else
-        {
-            AnimBuild.SetActive(false);
-        }
-
     }
     private bool TakeItem(ref RaycastHit hit)
     {

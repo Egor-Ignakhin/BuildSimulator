@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
 
-public sealed class Trader : MonoBehaviour
+namespace InventoryAndItems
 {
-    private TraderInventory _traderInventory;
-    private Inventory _inventory;
-    private void Start()
+    public sealed class Trader : MonoBehaviour
     {
-        _traderInventory = (TraderInventory)FindObjectOfType(typeof(TraderInventory));
-
-        _inventory = Inventory.Instance;
-            _traderInventory.gameObject.SetActive(_inventory.ActiveTrade);
-    }
-    public void OpenShop()
-    {
-        if (_traderInventory != null)
+        private TraderInventory _traderInventory;
+        private Inventory _inventory;
+        private void Start()
         {
-            _traderInventory.IsOpen = true;
-            _traderInventory.TurnOffOn();
+            _traderInventory = (TraderInventory)FindObjectOfType(typeof(TraderInventory));
+
+            _inventory = Inventory.Instance;
+            _traderInventory.gameObject.SetActive(_inventory.ActiveTrade);
+        }
+        public void OpenShop()
+        {
+            if (_traderInventory != null)
+            {
+                _traderInventory.IsOpen = true;
+                _traderInventory.TurnOffOn();
+            }
         }
     }
 }

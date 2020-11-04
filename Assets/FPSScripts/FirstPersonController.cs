@@ -113,14 +113,10 @@ public sealed class FirstPersonController : Singleton<FirstPersonController> ,IL
     private void OnEnable()
     {
         float value = Assets.AdvancedSettings.MovingSpeed;
-        if(value == 0)
-        {
+        if (value == 0)
             this.WalkSpeed = 2;
-        }
         else
-        {
             this.WalkSpeed = value == 1 ? 4 : 8;
-        }
         SprintSpeed = WalkSpeed * 1.5f;
         WalkSpeedInternal = WalkSpeed;
         SprintSpeedInternal = SprintSpeed;

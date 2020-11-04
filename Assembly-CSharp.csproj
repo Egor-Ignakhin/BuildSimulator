@@ -66,6 +66,10 @@
     <Compile Include="Assets\AdvancedSettings.cs" />
     <Compile Include="Assets\Buildings\BaseBlock.cs" />
     <Compile Include="Assets\Buildings\BuildHouse.cs" />
+    <Compile Include="Assets\Buildings\Dunamites\Detonator.cs" />
+    <Compile Include="Assets\Buildings\Dunamites\DunamiteClon.cs" />
+    <Compile Include="Assets\Buildings\Dunamites\DunamiteField.cs" />
+    <Compile Include="Assets\Buildings\Dunamites\DunamiteManager.cs" />
     <Compile Include="Assets\Buildings\SaveObjectsManager.cs" />
     <Compile Include="Assets\Chanks\ChankVisible.cs" />
     <Compile Include="Assets\Chanks\SeePlayerChanks.cs" />
@@ -81,6 +85,7 @@
     <Compile Include="Assets\Items\InventoryActivator.cs" />
     <Compile Include="Assets\Items\LayingItem.cs" />
     <Compile Include="Assets\LoadManager.cs" />
+    <Compile Include="Assets\MainInput.cs" />
     <Compile Include="Assets\Menu\ButtonInMenu.cs" />
     <Compile Include="Assets\Menu\DayNightMenu.cs" />
     <Compile Include="Assets\Menu\ErrorImage.cs" />
