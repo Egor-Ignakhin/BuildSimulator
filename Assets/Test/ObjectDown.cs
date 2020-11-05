@@ -19,6 +19,8 @@ public sealed class ObjectDown : MonoBehaviour
 
     public List<BaseBlock> Objects { get; private set; } = new List<BaseBlock>();
 
+    public List<BaseBlock> ExplosivedObjects { get; private set; } = new List<BaseBlock>();
+
     private void OnEnable() => _bgAudio.volume = Assets.AdvancedSettings.SoundVolume * 0.01f;
     private void Start()
     {
@@ -26,6 +28,7 @@ public sealed class ObjectDown : MonoBehaviour
         _bH = (BuildHouse)FindObjectOfType(typeof(BuildHouse));
         MainInput._input_GetP += this.Ignition;
         MainInput._input_UpP += this.Suppresion;
+        StartCoroutine(nameof(Checker));
     }
 
     private void Ignition()
@@ -100,14 +103,34 @@ public sealed class ObjectDown : MonoBehaviour
     public List<BaseBlock> GetNearestObject(Vector3 currentPosition)
     {
         List<BaseBlock> blocks = new List<BaseBlock>();
-        for(int i = 0; i < Objects.Count; i++)
+        for (int i = 0; i < Objects.Count; i++)
         {
-            if(Vector3.Distance(currentPosition,Objects[i].transform.position) < 5)
+            if (Objects[i] != null)
             {
-                blocks.Add(Objects[i]);
+                if (Vector3.Distance(currentPosition, Objects[i].transform.position) < 5)
+                {
+                    blocks.Add(Objects[i]);
+                }
             }
         }
 
         return blocks;
+    }
+    private IEnumerator Checker()
+    {
+        while (true)
+        {
+            for (int i = 0; i < ExplosivedObjects.Count; i++)
+            {
+                if (ExplosivedObjects[i] != null)
+                {
+                    if (ExplosivedObjects[i].transform.position.y < -100)
+                    {
+                        Destroy(ExplosivedObjects[i].gameObject, 3);
+                    }
+                }
+            }
+            yield return new WaitForSeconds(10);
+        }
     }
 }

@@ -58,7 +58,6 @@ public sealed class MenuManager : MonoBehaviour
     }
     private void Start()
     {
-        Debug.Log(AdvancedSettings.SoundVolume);
         ChangeSoundVolume();
     }
     public void Clickk(ButtonInMenu button)

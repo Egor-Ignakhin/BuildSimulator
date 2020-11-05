@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public sealed class SaveObject : MonoBehaviour
 {
@@ -10,8 +8,5 @@ public sealed class SaveObject : MonoBehaviour
         manager = (SaveObjectsManager)FindObjectOfType(typeof(SaveObjectsManager));
         manager.Objects.Add(this);
     }
-    private void OnDestroy()
-    {
-        manager.Objects.Remove(this);
-    }
+    private void OnDestroy() => manager.Objects.Remove(this);
 }

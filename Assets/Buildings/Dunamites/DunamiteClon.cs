@@ -6,7 +6,7 @@ namespace Dunamites
     public sealed class DunamiteClon : MonoBehaviour
     {
         private DunamiteManager _manager;
-        private AudioSource _parentAud;
+        private AudioSource _childAud;
         internal ObjectDown _objectDown { get; set; }
         internal BoxCollider MyBoxColl { get; private set; }
 
@@ -17,6 +17,8 @@ namespace Dunamites
             set
             {
                 timerToExplosion = value;
+                if (value < 0)
+                    value = 0;
 
                 _textTimer.text = value > 10? "00 : " + System.Math.Round(value,1): "00 : 0" + System.Math.Round(value, 1);
             }
@@ -30,7 +32,7 @@ namespace Dunamites
             _manager = FindObjectOfType<DunamiteManager>();
             _manager.AddInList(this);
 
-            _parentAud = transform.parent.GetComponent<AudioSource>();
+            _childAud = transform.GetChild(1).GetComponent<AudioSource>();
             MyBoxColl = transform.parent.GetComponent<BoxCollider>();
             _textTimer = transform.GetChild(0).GetComponent<TMPro.TextMeshPro>();
             _textTimer.color = new Color(0, 0.5f, 0);
@@ -39,7 +41,7 @@ namespace Dunamites
 
         internal void Detonation(AudioClip clip)
         {
-            _parentAud.clip = clip;
+            _childAud.clip = clip;
          
             StartCoroutine(nameof(CheckFinishAudio));            
         }
@@ -49,16 +51,11 @@ namespace Dunamites
             List<BaseBlock> objects = _objectDown.GetNearestObject(transform.parent.position);
 
             for (int i = 0; i < objects.Count; i++)
-            {
                 objects[i].Destroy();
-            }
         }
 
 
-        private void OnDestroy()
-        {
-            _manager.RemoveInList(this);
-        }
+        private void OnDestroy() => _manager.RemoveInList(this);
 
         IEnumerator CheckFinishAudio()
         {
@@ -68,12 +65,15 @@ namespace Dunamites
                 yield return new WaitForSeconds(0.1f);
             }
             transform.GetChild(0).gameObject.SetActive(false);
-            _parentAud.Play();
+            transform.GetChild(1).gameObject.SetActive(true);
+            transform.GetChild(1).SetParent(_objectDown.transform);
+            _childAud.Play();
             Find();
             GetComponent<Renderer>().enabled = false;
             transform.parent.GetComponent<Renderer>().enabled = false;
-            while (_parentAud.isPlaying)
-            yield return new WaitForSeconds(_parentAud.clip.length);
+            while (_childAud.isPlaying)
+            yield return new WaitForSeconds(_childAud.clip.length);
+            Destroy(_childAud.gameObject);
             Destroy(transform.parent.gameObject);
         }
     }

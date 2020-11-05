@@ -2,20 +2,18 @@
 using System.IO;
 using UnityEngine;
 
-public sealed class SaverLoader : LoadManager
+public sealed class SaverLoader : MonoBehaviour
 {
     [SerializeField] private int _lineNum;
     [SerializeField] private bool _isFoundation;
-    protected override void Awake()
-    {
-        Saver.saveGame += this.SaveObject;
 
+    private void Awake()
+    {
         if (_isFoundation)
         {
             string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
-            string loadWrld = "";
 
-            RegKey.GetValue("LoadWorld", out loadWrld, keyPath);
+            RegKey.GetValue("LoadWorld", out string loadWrld, keyPath);
 
 
             loadWrld = SHA1_Encode.Decryption(loadWrld, "z0s%b&I)Y%PW26A8");
@@ -29,10 +27,6 @@ public sealed class SaverLoader : LoadManager
             bool isFirstGame = System.Convert.ToBoolean(isFp);
             BuildPlatforms(System.Convert.ToInt16(count), isFirstGame);
         }
-    }
-    protected override void Start()
-    {
-       
     }
     private void BuildPlatforms(int count, bool isFirstGame)
     {
@@ -87,9 +81,4 @@ public sealed class SaverLoader : LoadManager
         }
         Destroy(transfChilding.gameObject);
     }
-    private void SaveObject()
-    {
-        Debug.Log("save");
-    }
-
 }

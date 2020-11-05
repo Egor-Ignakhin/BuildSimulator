@@ -2,10 +2,11 @@
 using System.IO;
 using UnityEngine;
 
-public class LoadManager : MonoBehaviour, IStorable
+public sealed class LoadManager : MonoBehaviour, IStorable
 {
     [HideInInspector] public string _titleWorld;
-    protected virtual void Awake()
+   
+    private void Awake()
     {
         Saver.saveGame += this.Save;
         
@@ -17,12 +18,12 @@ public class LoadManager : MonoBehaviour, IStorable
         Debug.Log("Title world - " + _titleWorld);
     }
 
-    protected virtual void Start()
+    private void Start()
     {
         Load();
     }
    
-    public virtual void Save()
+    public void Save()
     {
         string savePath = Directory.GetCurrentDirectory() + "\\Saves\\" + _titleWorld + ".txt";
 
@@ -53,7 +54,7 @@ public class LoadManager : MonoBehaviour, IStorable
     {
         Debug.Log("Save objects");
     }
-    public virtual void Load()
+    public void Load()
     {
         string savePath = Directory.GetCurrentDirectory() + "\\Saves\\" + _titleWorld + ".txt";
 

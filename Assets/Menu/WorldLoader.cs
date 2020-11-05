@@ -19,7 +19,6 @@ public sealed class WorldLoader : MonoBehaviour, IStorable
         {
             if (MyObj[i].name == "WorldLabel")
             {
-                Debug.Log("Finded");
                 _labelPref = MyObj[i];
             }
         }

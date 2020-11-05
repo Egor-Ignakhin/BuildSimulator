@@ -21,12 +21,10 @@ public sealed class DayNightMenu : MonoBehaviour
         {
             if (MyObj[i].name == "Moon")
             {
-                Debug.Log("Finded");
                 _moon = MyObj[i];
             }
             if (MyObj[i].name == "Sun")
             {
-                Debug.Log("Finded");
                 _sun = MyObj[i];
             }
         }

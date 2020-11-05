@@ -13,9 +13,10 @@ public sealed class SettingsMenu : MonoBehaviour
     [SerializeField] private Slider _soundsVolumeSlider;
     private ErrorImage eI;
 
-    public delegate void ChangeSoundVolume();// событие  определения положения
-    public static event ChangeSoundVolume ChangeVolumeSound;// событие  определения положения
+    [SerializeField] private GameObject[] _shadowsQualityButtons = new GameObject[3];
 
+    public delegate void ChangeSoundVolume();// событие смены громкости звука
+    public static event ChangeSoundVolume ChangeVolumeSound;// событие смены громкости звука
     private void Start()
     {
         eI = ErrorImage.Singleton;
@@ -23,25 +24,10 @@ public sealed class SettingsMenu : MonoBehaviour
         SliderView.value = AdvancedSettings.ViewDistance * 0.0333333f;
 
         SensitvityTxt.text = AdvancedSettings.Sensitvity.ToString();
-        SliderSensitvity.value = (AdvancedSettings.Sensitvity * 0.1f);
+        SliderSensitvity.value = AdvancedSettings.Sensitvity * 0.1f;
 
-        if (AdvancedSettings.FlyingSpeed == 0)
-        {
-            _flyingSpeedSlider.value = 0;
-        }
-        else
-        {
-            _flyingSpeedSlider.value = AdvancedSettings.FlyingSpeed == 1 ? 0.5f : 1;
-        }
-
-        if (AdvancedSettings.MovingSpeed == 0)
-        {
-            _movingSpeedSlider.value = 0;
-        }
-        else
-        {
-            _movingSpeedSlider.value = AdvancedSettings.MovingSpeed == 1 ? 0.5f : 1;
-        }
+        _flyingSpeedSlider.value = AdvancedSettings.FlyingSpeed == 0 ? 0 : (AdvancedSettings.FlyingSpeed == 1 ? 0.5f : 1);
+        _movingSpeedSlider.value = AdvancedSettings.MovingSpeed == 0 ? 0 : (AdvancedSettings.MovingSpeed == 1 ? 0.5f : 1);
 
         _soundsVolumeSlider.value = AdvancedSettings.SoundVolume * 0.01f;
 
@@ -122,13 +108,26 @@ public sealed class SettingsMenu : MonoBehaviour
         }
     }
 
+    bool _shadowsQualityButtonActive;
+    byte _shadowsQuality = 255;
+    public void ChangeShadowsQuality(int num)
+    {
+        _shadowsQualityButtonActive = !_shadowsQualityButtonActive;
+        for (int i = 0; i < _shadowsQualityButtons.Length; i++)
+            _shadowsQualityButtons[i].SetActive(_shadowsQualityButtonActive);
+
+        if (_shadowsQualityButtonActive == false)
+            _shadowsQuality = (byte)(num - 1);
+    }
+
     public void SaveSettings()
     {
+        if (_shadowsQuality != 255)
+            AdvancedSettings.ShadowResolution = _shadowsQuality;
         AdvancedSettings.SaveSettings();
 
         eI.enabled = true;
         eI.TitleError = "Settings saved";
         eI.OnEnableColor();
     }
-
 }

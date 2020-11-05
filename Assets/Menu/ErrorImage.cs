@@ -9,7 +9,7 @@ public sealed class ErrorImage : MonoBehaviour
     private Image _myImage;
     public TextMeshProUGUI TextError;
     public  string TitleError { get; set; }
-    Color color = new Color(0, 0, 0, -0.0092375f);
+    Color color = new Color(0, 0, 0, -0.0072375f);
 
     private void Awake()
     {

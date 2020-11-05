@@ -59,6 +59,10 @@ public sealed class InputPlayer : MonoBehaviour
             }
             _helpingText.enabled = checkHit;
         }
+        else
+        {
+            _helpingText.enabled = false;
+        }
         Debug.DrawRay(ray.origin, transform.forward * 5, Color.green);
     }
     private bool TakeItem(ref RaycastHit hit)
