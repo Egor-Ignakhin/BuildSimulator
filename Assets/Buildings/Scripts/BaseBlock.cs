@@ -21,20 +21,21 @@ public sealed class BaseBlock : MonoBehaviour
         }
     }
 
-    public void Destroy()
+    public void Destroy(float power)
     {
         if (!IsBlock)
             return;
 
-        sbyte force = (sbyte)(Random.Range(-4, 4) * 15);
+        power *= Random.Range(10,16);
+        int multiply = Random.Range(1, 3);
+        power = multiply == 1 ? power : power * -1;
+
         if (!_myRb)
         {
-            gameObject.AddComponent<Rigidbody>().velocity = new Vector3(force, force, force);
-            _myRb = GetComponent<Rigidbody>();
+            _myRb = gameObject.AddComponent<Rigidbody>();
             _obDown.ExplosivedObjects.Add(this);
         }
-        else
-            _myRb.velocity = new Vector3(force, force, force);       
+        _myRb.velocity = new Vector3(power, power, power);
     }
 
     public void ChangeColor(byte type)

@@ -23,7 +23,6 @@ public sealed class SaverLoader : MonoBehaviour
 
             Debug.Log("Chunks count - " + count);
             string isFp = SHA1_Encode.Decryption(save[5], "z0s%b&I)Y%PW26A8");
-            Debug.Log(isFp);
             bool isFirstGame = System.Convert.ToBoolean(isFp);
             BuildPlatforms(System.Convert.ToInt16(count), isFirstGame);
         }

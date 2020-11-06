@@ -48,10 +48,10 @@ namespace Dunamites
 
         private void Find()
         {
-            List<BaseBlock> objects = _objectDown.GetNearestObject(transform.parent.position);
+            List<BaseBlock> objects = _objectDown.GetNearestObject(transform.parent.position,4);
 
             for (int i = 0; i < objects.Count; i++)
-                objects[i].Destroy();
+                objects[i].Destroy(4);
         }
 
 

@@ -91,7 +91,7 @@ public sealed class ObjectDown : MonoBehaviour
     {
         for (int i = 0; i < Objects.Count; i++)
         {
-            Objects[i].Destroy();
+            Objects[i].Destroy(4);
         }
     }
     private void OnDestroy()
@@ -100,14 +100,14 @@ public sealed class ObjectDown : MonoBehaviour
         MainInput._input_UpP -= this.Suppresion;
     }
 
-    public List<BaseBlock> GetNearestObject(Vector3 currentPosition)
+    public List<BaseBlock> GetNearestObject(Vector3 currentPosition,float radius)
     {
         List<BaseBlock> blocks = new List<BaseBlock>();
         for (int i = 0; i < Objects.Count; i++)
         {
             if (Objects[i] != null)
             {
-                if (Vector3.Distance(currentPosition, Objects[i].transform.position) < 5)
+                if (Vector3.Distance(currentPosition, Objects[i].transform.position) < radius)
                 {
                     blocks.Add(Objects[i]);
                 }

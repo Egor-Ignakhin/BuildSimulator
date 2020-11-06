@@ -35,8 +35,7 @@ namespace InventoryAndItems
 
         private void NewDistance()
         {
-            Vector2 mousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-            float dist = Vector2.Distance(mousePosition, _myRt.position);
+            float dist = Vector2.Distance(MainInput.MousePosition, _myRt.position);
             if (dist < 30f)
             {
                 if (Item == null)
@@ -50,21 +49,25 @@ namespace InventoryAndItems
                 {
                     if (_inventory.LastItem == null)
                         return;
-                    RectTransform _newItem = _inventory.LastItem;
-                    ImageInv newItemCs = _newItem.GetComponent<ImageInv>();
+                    ImageInv newItemCs = _inventory.LastItem.GetComponent<ImageInv>();
 
                     sbyte isMerge = _itemCs.Merge(newItemCs.ItemsCount, newItemCs.Type);
 
                     if (isMerge == 0)//если нельзя слиять
                         _inventory.RevertItem(Item, this);//поменять местами
                     else
-                        _inventory.MergeItems(ref _itemCs, ref newItemCs, isMerge == 1 ? true : false);
+                    {
+                        byte oldItem = _itemCs.ItemsCount, newItem = newItemCs.ItemsCount;
+                        _inventory.MergeItems(ref oldItem, ref newItem, isMerge == 1);
+                        _itemCs.ItemsCount = oldItem;
+                        newItemCs.ItemsCount = newItem;
+                    }
                 }
             }
         }
 
         internal void SelectMe(bool isLast) => _myImage.color = isLast ? _myImage.color = new Color(1, 1, 1) : _myImage.color = new Color(0.25f, 0.5f, 1);
 
-        public void ClearSlot() => _itemCs.ChangeItemImage(255);//code key for clear
+        internal void ClearSlot() => _itemCs.ChangeItemImage(255);//code key for clear
     }
 }

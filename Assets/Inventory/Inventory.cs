@@ -80,9 +80,14 @@ namespace InventoryAndItems
         public ImageInv SelectedItem { get; private set; }
 
         private BuildHouse _bh;
+
+        #region instruments
+        private RocketLauncher _rocketLauncher;
+
+        #endregion
+
         private void Awake()
         {
-            //Singleton = this;
             _myRt = GetComponent<RectTransform>();
 
             for (int i = 0; i < transform.childCount; i++)
@@ -103,6 +108,7 @@ namespace InventoryAndItems
         {
             MainInput.input_DownAnyKey += this.HighLightItem;
             _bh = FindObjectOfType<BuildHouse>();
+            _rocketLauncher = _bh._instruments[2].GetComponent<RocketLauncher>();
         }
         public bool AddItems(byte type, byte count, bool isLayeing = false)
         {
@@ -112,6 +118,9 @@ namespace InventoryAndItems
                 {
                     if (ItemsCs[i].ItemsCount + count < 256)// если число придметов в слоте + сумма меньше 256
                     {
+                        if (type == 13)//rockets
+                            _rocketLauncher.Rockets += count;
+
                         if (isLayeing)
                             ItemsCs[i].AddItem(count);
 
@@ -126,30 +135,16 @@ namespace InventoryAndItems
                 {
                     if (isLayeing)
                     {
-                        if (type == 10)
+                        if (type == 13)//rockets
                         {
-                            ItemsCs[i].ChangeItemImage(10);
-                            ItemsCs[i].AddItem(count);
-                            _bh.ChangeSelectedBlock();
-                            return true;
+                            _rocketLauncher.Rockets += count;
                         }
-                        else if (type == 3)
-                        {
-                            ItemsCs[i].ChangeItemImage(3);
-                            ItemsCs[i].AddItem(count);
-                            _bh.ChangeSelectedBlock();
-                            return true;
-                        }
-                        else if (type == 11)
-                        {
-                            ItemsCs[i].ChangeItemImage(11);
-                            ItemsCs[i].AddItem(count);
-                            _bh.ChangeSelectedBlock();
-                            return true;
-                        }
-                    }
 
-                    return true;// return true if it's block
+                        ItemsCs[i].ChangeItemImage(type);
+                        ItemsCs[i].AddItem(count);
+                        _bh.ChangeSelectedBlock();
+                    }
+                    return true;
                 }
             }
 
@@ -158,16 +153,20 @@ namespace InventoryAndItems
 
         public bool GetItem(byte type, byte count)
         {
-            if (SelectedItem.ItemsCount >= count)
+            if (type == 13)//it's rocket
             {
-                SelectedItem.GetItem(count);
-
-                return true;
+                for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
+                {
+                    if (ItemsCs[i].Type == type)
+                    {
+                        ItemsCs[i].GetItem(count);
+                        return true;
+                    }
+                }
             }
-            return false;
-        }
 
-        private void NextTurn() => ChangePositionItem?.Invoke(); //вызов изменения позиции
+            return SelectedItem.GetItem(count);
+        }
 
         public void TurnOffOn(bool starting = true)// определение рендерится ли 
         {
@@ -232,11 +231,14 @@ namespace InventoryAndItems
 
         public void OnDragUp()
         {
-            NextTurn();
-            if (LastItem?.parent == transform)
+            ChangePositionItem?.Invoke();
+            if (LastItem != null)
             {
-                LastItem.SetParent(LastParentOfObject);
-                LastItem.position = LastParentOfObject.position;
+                if (LastItem.parent == transform)
+                {
+                    LastItem.SetParent(LastParentOfObject);
+                    LastItem.position = LastParentOfObject.position;
+                }
             }
 
             _dragObj = false;
@@ -254,27 +256,25 @@ namespace InventoryAndItems
             _lastParentOfObjectSlot.Item = clone;
             LastItem = null;
         }
-        public void MergeItems(ref ImageInv item, ref ImageInv newItem, bool isFullMerge)//сложение слотов
+        public void MergeItems(ref byte item, ref byte newItem, bool isFullMerge)//сложение слотов
         {
             if (isFullMerge)
             {
-                item.ItemsCount += newItem.ItemsCount;
-                Debug.Log(LastParentOfObject.name);
+                item += newItem;
                 _lastParentOfObjectSlot.ClearSlot();
 
                 Debug.Log("Full merge success");
+                Debug.Log(item + " /" + newItem);
             }
             else
             {
                 //200 and 70
-                byte countItems = (byte)((item.ItemsCount + newItem.ItemsCount) - 255);
-                Debug.Log(countItems);
-                item.ItemsCount = 255;
-                newItem.ItemsCount = countItems;
+                byte countItems = (byte)(item + newItem - 255);
+                item = 255;
+                newItem = countItems;
 
                 Debug.Log("Dont full merge success");
             }
-            Debug.Log(item.name + " /" + newItem.name);
         }
 
         public override void OnDestroy()

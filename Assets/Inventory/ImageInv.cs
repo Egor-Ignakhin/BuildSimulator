@@ -21,22 +21,15 @@ namespace InventoryAndItems
             set
             {
                 if (value == 0)
-                {
-                    TextCount.text = "";
                     ChangeItemImage(255);
-                }
                 else
-                    TextCount.text = value.ToString();
+                    TextCount.text = value != 1 ? value.ToString() : "";
 
                 _itemsCount = value;
-                return;
             }
         }
 
-        private void OnEnable()
-        {
-            _inventory = Inventory.Instance;
-        }
+        private void OnEnable() => _inventory = Inventory.Instance;
         private void Start()
         {
             for (int i = 0; i < transform.childCount; i++)
@@ -90,7 +83,7 @@ namespace InventoryAndItems
         {
             if (newItemType == Type)
             {
-                if (newItemCount + ItemsCount < 256)
+                 if (newItemCount + ItemsCount < 256)
                     return 1;
                 else if (ItemsCount < 255)
                     return 2;//return example 80% + 20% 
@@ -109,6 +102,15 @@ namespace InventoryAndItems
             }
             _myImage.sprite = _inventory.AllImages[Type];
         }
-        public void GetItem(byte count) => ItemsCount -= count; //delete item
+        public bool GetItem(byte count)
+        {
+            if (ItemsCount >= count)
+            {
+                ItemsCount -= count;//delete item
+                return true;
+            }
+            else 
+                return false;
+        }
     }
 }

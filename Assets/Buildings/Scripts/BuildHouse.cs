@@ -3,7 +3,7 @@ using UnityEngine;
 using InventoryAndItems;
 public sealed class BuildHouse : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _instruments = new List<GameObject>(2);
+    [SerializeField] internal List<GameObject> _instruments = new List<GameObject>(3);
     [SerializeField] private List<GameObject> _blocks = new List<GameObject>(Inventory.TypesCount); //все блоки
     private List<BaseBlock> _blocksCs = new List<BaseBlock>(Inventory.TypesCount); //скрипты всех блоков
     [Space(5)]
@@ -19,7 +19,6 @@ public sealed class BuildHouse : MonoBehaviour
 
     private AudioSource _myAudioSource;
     private BaseBlock _lastSelectedBlock;
-    private BaseBlock _lastBlock;
 
     private byte _selectBlock = 0;
     internal bool IsBuild { get; set; }
@@ -92,6 +91,7 @@ public sealed class BuildHouse : MonoBehaviour
 
     float xRotate = 0;
     #region Create || Destroy blocks
+    private BaseBlock _lastBlock;
     private void Build()
     {
         if (_selectBlock == 255)
@@ -102,12 +102,7 @@ public sealed class BuildHouse : MonoBehaviour
         {
             _blocks[_selectBlock].SetActive(true);
 
-
-            if (_inventory.SelectedItem.ItemsCount > 0)
-                _blocksCs[_selectBlock].ChangeColor(1);
-            else
-                _blocksCs[_selectBlock].ChangeColor(2);
-
+            _blocksCs[_selectBlock].ChangeColor((byte) (_inventory.SelectedItem.ItemsCount > 0?1:2));
 
             _blocks[_selectBlock].transform.eulerAngles = new Vector3(xRotate, _blocks[_selectBlock].transform.eulerAngles.y, 0);
 
@@ -115,30 +110,10 @@ public sealed class BuildHouse : MonoBehaviour
             {
                 if (_blocksCs[_selectBlock].Type == 3)
                 {
-
-                    if (Input.GetKey(KeyCode.LeftArrow))
-                    {
-                        _blocks[_selectBlock].transform.eulerAngles += new Vector3(0, 1, 0);
-                    }
-                    if (Input.GetKey(KeyCode.RightArrow))
-                    {
-                        _blocks[_selectBlock].transform.eulerAngles -= new Vector3(0, 1, 0);
-                    }
-                    if (Input.GetKeyDown(KeyCode.UpArrow))
-                    {
-                        if(xRotate < 0)
-                            xRotate = 0;
-                        else
-                            xRotate = 90;
-                    }
-                    if (Input.GetKeyDown(KeyCode.DownArrow))
-                    {
-
-                        if (xRotate > 0)
-                            xRotate = 0;
-                        else
-                            xRotate = -90;
-                    }
+                    if (Input.GetKey(KeyCode.LeftArrow)) _blocks[_selectBlock].transform.eulerAngles += new Vector3(0, 1, 0);
+                    if (Input.GetKey(KeyCode.RightArrow)) _blocks[_selectBlock].transform.eulerAngles -= new Vector3(0, 1, 0);
+                    if (Input.GetKeyDown(KeyCode.UpArrow)) xRotate = xRotate < 0 ? 0 : 90;
+                    if (Input.GetKeyDown(KeyCode.DownArrow)) xRotate = xRotate > 0 ? 0 : 90;
 
                     Vector3 pos = hit.point;
                     _blocks[_selectBlock].transform.position = pos;
@@ -181,7 +156,6 @@ public sealed class BuildHouse : MonoBehaviour
         _myAudioSource.Play();
 
         Transform block = Instantiate(_blocks[_selectBlock].transform, _blocks[_selectBlock].transform.position, _blocks[_selectBlock].transform.rotation);//инстанс
-        block.SetParent(_lastBlock != null ? _lastBlock.transform.parent : hit.transform.parent);
         block.gameObject.layer = 8;
         if (_blocksCs[_selectBlock].Type == 3)//dunamite
         {
@@ -190,9 +164,7 @@ public sealed class BuildHouse : MonoBehaviour
             if (_inventory.SelectedItem == null)
             {
                 for (int i = 0; i < _blocks.Count; i++)
-                {
                     _blocks[i].SetActive(false);
-                }
                 IsBuild = false;
                 _lastSelectedBlock = null;
             }
@@ -200,7 +172,7 @@ public sealed class BuildHouse : MonoBehaviour
             return;
         }
 
-        block.SetParent(_lastBlock != null ? _lastBlock.transform.parent : hit.transform.parent);
+        block.SetParent(_lastBlock != null ? _lastBlock.transform.parent.parent.GetChild(1) : hit.transform.parent.parent.parent.GetChild(1));
 
         BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
         newBaseBlock.enabled = true;
@@ -220,8 +192,8 @@ public sealed class BuildHouse : MonoBehaviour
     public void LoadBlock(Vector3 pos, Quaternion quat, string parent, byte type, string name)
     {
         Transform trueParent = GameObject.Find(parent).transform;
-        trueParent = trueParent.GetChild(0).GetChild(0);
-
+        trueParent = trueParent.GetChild(0).GetChild(1);//Специальный контейнер для блоков
+        
         Transform block = Instantiate(_blocks[type].transform, pos, quat);//инстанс
 
         block.gameObject.layer = 8;
@@ -278,13 +250,9 @@ public sealed class BuildHouse : MonoBehaviour
         if (_inventory.SelectedItem == null)
         {
             for (int i = 0; i < _blocks.Count; i++)
-            {
                 _blocks[i].SetActive(false);
-            }
             for (int i = 0; i < _instruments.Count; i++)
-            {
                 _instruments[i].SetActive(false);
-            }
             IsBuild = false;
             IsDestroy = false;
             return;
@@ -293,13 +261,14 @@ public sealed class BuildHouse : MonoBehaviour
         if (_selectBlock != 255)
         {
             if (_selectBlock == 10)
-            {
                 _instruments[0].SetActive(false);
-
-            }
             else if (_selectBlock == 11)
-            {
                 _instruments[1].SetActive(false);
+            else if(_selectBlock == 12)
+                _instruments[2].SetActive(false);
+            else if( _selectBlock == 13)// is a rockets
+            {
+
             }
             else
             {
@@ -316,9 +285,7 @@ public sealed class BuildHouse : MonoBehaviour
             _instruments[0].SetActive(true);
 
             for (int i = 0; i < _blocks.Count; i++)
-            {
                 _blocks[i].SetActive(false);
-            }
 
             return;
         }
@@ -328,13 +295,35 @@ public sealed class BuildHouse : MonoBehaviour
             _instruments[1].SetActive(true);
 
             for (int i = 0; i < _blocks.Count; i++)
-            {
                 _blocks[i].SetActive(false);
-            }
             IsBuild = false;
             IsDestroy = false;
             return;
         }
+
+        if (_inventory.SelectedItem.Type == 12)//RocketLauncher
+        {
+            _instruments[2].SetActive(true);
+
+            for (int i = 0; i < _blocks.Count; i++)
+                _blocks[i].SetActive(false);
+            IsBuild = false;
+            IsDestroy = false;
+            return;
+        }
+
+        if (_inventory.SelectedItem.Type == 13)//Rocket
+        {
+            for (int i = 0; i < _instruments.Count; i++)
+                _instruments[i].SetActive(false);
+
+            for (int i = 0; i < _blocks.Count; i++)
+                _blocks[i].SetActive(false);
+            IsBuild = false;
+            IsDestroy = false;
+            return;
+        }
+
 
         if (_selectBlock == 255)
             return;

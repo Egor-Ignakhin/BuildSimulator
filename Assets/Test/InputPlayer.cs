@@ -23,36 +23,35 @@ public sealed class InputPlayer : MonoBehaviour
         _dunamiteFieldCs = _DunamiteField.GetComponent<Dunamites.DunamiteField>();
     }
 
-    private LayingItem item;
     private Trader _lastTrader;
-    private MonoBehaviour[] components;
+    private MonoBehaviour[] monoBehaviours;
     private void Update()
     {
         ray = _cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, _getItemDistance))
         {
-            components = hit.transform.GetComponents<MonoBehaviour>();
             bool checkHit = false;
-            for (int i = 0; i < components.Length; i++)
+            monoBehaviours = hit.transform.GetComponents<MonoBehaviour>();
+            for (int i = 0; i < monoBehaviours.Length; i++)
             {
-                if (components[i] is LayingItem)
+                if (monoBehaviours[i] is LayingItem)
                 {
-                    checkHit = TakeItem(ref hit);
+                    checkHit = TakeItem(monoBehaviours[i] as LayingItem);
                     break;
                 }
-                if (components[i] is Trader)
+                if (monoBehaviours[i] is Trader)
                 {
                     checkHit = BuyItem(ref hit);
                     break;
                 }
-                if (components[i] is Dunamites.DunamiteClon)
+                if (monoBehaviours[i] is Dunamites.DunamiteClon)
                 {
                     checkHit = true;
                     _helpingText.text = "Change timer [" + _getItemKey + ']';
                     if (Input.GetKeyDown(_getItemKey))
                     {
                         _DunamiteField.SetActive(true);
-                        _dunamiteFieldCs.GetDunamite(components[i] as Dunamites.DunamiteClon);
+                        _dunamiteFieldCs.GetDunamite(monoBehaviours[i] as Dunamites.DunamiteClon);
                     }
                     break;
                 }
@@ -65,9 +64,8 @@ public sealed class InputPlayer : MonoBehaviour
         }
         Debug.DrawRay(ray.origin, transform.forward * 5, Color.green);
     }
-    private bool TakeItem(ref RaycastHit hit)
+    private bool TakeItem(LayingItem item)
     {
-        item = hit.transform.GetComponent<LayingItem>();
         _helpingText.text = "Pick up (x" + item.ItemsCount + ") [" + _getItemKey + ']';
         if (Input.GetKeyDown(_getItemKey))
         {

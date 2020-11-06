@@ -76,6 +76,8 @@
     <Compile Include="Assets\FPSScripts\Camera\CameraRotate.cs" />
     <Compile Include="Assets\FPSScripts\FirstPersonController.cs" />
     <Compile Include="Assets\FPSScripts\PlayerStatements.cs" />
+    <Compile Include="Assets\Guns\Bullet.cs" />
+    <Compile Include="Assets\Guns\RocketLauncher.cs" />
     <Compile Include="Assets\ILooking.cs" />
     <Compile Include="Assets\IStorable.cs" />
     <Compile Include="Assets\Inventory\ImageInv.cs" />

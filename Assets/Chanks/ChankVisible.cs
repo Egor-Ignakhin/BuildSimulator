@@ -2,18 +2,13 @@
 
 sealed class ChankVisible : MonoBehaviour
 {
-    public CapsuleCollider _playerCollider;
-    public GameObject _activer;
+    private CapsuleCollider _playerCollider;
+    private GameObject _activerLods, _activerBlocks;
     private void Start()
     {
         this._playerCollider = FindObjectOfType<SeePlayerChanks>().Collider;
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            if (transform.GetChild(i).name == "Plane")//only for dev
-            {
-                _activer = transform.GetChild(i).gameObject;
-            }
-        }
+        _activerLods = transform.GetChild(0).gameObject;
+        _activerBlocks = transform.GetChild(1).gameObject;
         GetComponent<BoxCollider>().isTrigger = true;
         gameObject.layer = 2;//ignore raycast
     }
@@ -21,14 +16,16 @@ sealed class ChankVisible : MonoBehaviour
     {
         if (other == _playerCollider)
         {
-            _activer.SetActive(true);
+            _activerBlocks.SetActive(true);
+            _activerLods.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
         if (other == _playerCollider)
         {
-            _activer.SetActive(false);
+            _activerBlocks.SetActive(false);
+            _activerLods.SetActive(false);
         }
     }
 }
