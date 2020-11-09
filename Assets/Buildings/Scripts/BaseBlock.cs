@@ -3,7 +3,7 @@
 public sealed class BaseBlock : MonoBehaviour
 {
     public bool IsBlock = true;
-    [Range(0, 3)] public int Type;
+    [Range(0, 4)] public int Type;
     private Renderer myRend;
     internal Rigidbody _myRb { get; private set; }
     internal ObjectDown _obDown { get; set; }
@@ -11,6 +11,7 @@ public sealed class BaseBlock : MonoBehaviour
     public void OnEnable() => myRend = GetComponent<Renderer>();
     private void Start()
     {
+        _obDown = FindObjectOfType<ObjectDown>();
         ChangeColor(0);
         if (IsBlock)
         {
@@ -26,14 +27,29 @@ public sealed class BaseBlock : MonoBehaviour
         if (!IsBlock)
             return;
 
-        power *= Random.Range(10,16);
+        power *= Random.Range(10, 16);
         int multiply = Random.Range(1, 3);
         power = multiply == 1 ? power : power * -1;
+
+        //в зависимости от типа блока нужно определять сопротивление
+        if (Type == 0)
+        {
+            power *= 0.74f;
+        }
+        else if (Type == 1)//дерево
+        {
+            power *= 1;
+        }
+        else if (Type == 2)//стекло
+        {
+            power *= 1.43f;
+        }
 
         if (!_myRb)
         {
             _myRb = gameObject.AddComponent<Rigidbody>();
             _obDown.ExplosivedObjects.Add(this);
+            gameObject.AddComponent<RetentionObject>();
         }
         _myRb.velocity = new Vector3(power, power, power);
     }

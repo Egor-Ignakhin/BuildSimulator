@@ -8,7 +8,8 @@ namespace Dunamites
         internal static event ChangeList changeList;
 
         internal List<DunamiteClon> Dunamites = new List<DunamiteClon>();
-        [SerializeField] private AudioClip _boomClip;
+        [SerializeField] internal AudioClip _boomClip;
+        [SerializeField] internal AudioClip _timerTickClip;
         private BuildHouse _bh;
         private void Start()
         {
@@ -31,7 +32,7 @@ namespace Dunamites
         {
             for (int i = 0; i < Dunamites.Count; i++)
             {
-                Dunamites[i].Detonation(_boomClip);
+                Dunamites[i].Detonation();
             }
             Dunamites.Clear();
             changeList?.Invoke();

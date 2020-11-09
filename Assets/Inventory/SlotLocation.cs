@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 namespace InventoryAndItems
 {
-    public sealed class SlotLocation : MonoBehaviour
+    public sealed class SlotLocation : MonoBehaviour// класс висит на слоте для предмета
     {
         private RectTransform _myRt;
         private RectTransform _item;
@@ -35,7 +35,7 @@ namespace InventoryAndItems
 
         private void NewDistance()
         {
-            float dist = Vector2.Distance(MainInput.MousePosition, _myRt.position);
+            float dist = Vector2.Distance(Input.mousePosition, _myRt.position);
             if (dist < 30f)
             {
                 if (Item == null)

@@ -5,6 +5,7 @@ public class ButtonInMenu : MonoBehaviour
 {
     private MenuManager manager;
     public GameObject ActiveObject;
+    public GameObject[] OtherActiveObjects;
     private void Start()
     {
         manager = (MenuManager)FindObjectOfType(typeof(MenuManager));

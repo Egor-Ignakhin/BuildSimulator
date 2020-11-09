@@ -19,7 +19,7 @@ public sealed class SettingsMenu : MonoBehaviour
     public static event ChangeSoundVolume ChangeVolumeSound;// событие смены громкости звука
     private void Start()
     {
-        eI = ErrorImage.Singleton;
+        eI = ErrorImage.Instance;
         CountView.text = AdvancedSettings.ViewDistance.ToString();
         SliderView.value = AdvancedSettings.ViewDistance * 0.0333333f;
 
@@ -127,7 +127,6 @@ public sealed class SettingsMenu : MonoBehaviour
         AdvancedSettings.SaveSettings();
 
         eI.enabled = true;
-        eI.TitleError = "Settings saved";
-        eI.OnEnableColor();
+        eI.OnEnableColor("Settings saved");
     }
 }

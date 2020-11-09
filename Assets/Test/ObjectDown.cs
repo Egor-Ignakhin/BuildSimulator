@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,8 +21,9 @@ public sealed class ObjectDown : MonoBehaviour
     public List<BaseBlock> Objects { get; private set; } = new List<BaseBlock>();
 
     public List<BaseBlock> ExplosivedObjects { get; private set; } = new List<BaseBlock>();
+    public List<ExplosiveObject> Explosives { get; private set; } = new List<ExplosiveObject>();
 
-    private void OnEnable() => _bgAudio.volume = Assets.AdvancedSettings.SoundVolume * 0.01f;
+    private void OnEnable() => _bgAudio.volume = AdvancedSettings.SoundVolume * 0.01f;
     private void Start()
     {
         slider.value = _timeToBoom;
@@ -100,21 +102,26 @@ public sealed class ObjectDown : MonoBehaviour
         MainInput._input_UpP -= this.Suppresion;
     }
 
-    public List<BaseBlock> GetNearestObject(Vector3 currentPosition,float radius)
+    public List<Transform> GetNearestObject(Vector3 currentPosition,float radius)
     {
-        List<BaseBlock> blocks = new List<BaseBlock>();
+        List<Transform> objects = new List<Transform>();
         for (int i = 0; i < Objects.Count; i++)
         {
-            if (Objects[i] != null)
+            if (Vector3.Distance(currentPosition, Objects[i].transform.position) < radius)
             {
-                if (Vector3.Distance(currentPosition, Objects[i].transform.position) < radius)
-                {
-                    blocks.Add(Objects[i]);
-                }
+                objects.Add(Objects[i].transform);
             }
         }
 
-        return blocks;
+        for (int i = 0; i < Explosives.Count; i++)
+        {
+            if (Vector3.Distance(currentPosition, Explosives[i].transform.position) < radius *3)
+            {
+                objects.Add(Explosives[i].transform);
+            }
+        }
+
+        return objects;
     }
     private IEnumerator Checker()
     {

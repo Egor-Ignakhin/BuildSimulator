@@ -34,34 +34,30 @@ public sealed class RocketLauncher : MonoBehaviour
         }
     }
 
-    internal void ChangeRocketLength(Bullet bullet) => _bullets.Remove(bullet.transform);
+    internal void ChangeRocketLength(Rocket bullet) => _bullets.Remove(bullet.transform);
 
     private void StartRocket()
     {
         Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 100))
-        {
-            GameObject newRocket = Instantiate(_spawnRocket, _instatiatePlace.position, _instatiatePlace.rotation);
-            newRocket.SetActive(true);
+        GameObject newRocket = Instantiate(_spawnRocket, _instatiatePlace.position, _instatiatePlace.rotation);
+        newRocket.SetActive(true);
 
-            Bullet newBullet = newRocket.GetComponent<Bullet>();
-            newBullet._objectDown = _objectDown;
-            newBullet.DetonationClip = _rocketDetonation;
-            newBullet.Launcher = this;
-            newRocket.AddComponent<Rigidbody>().useGravity = false;
+        Rocket newBullet = newRocket.GetComponent<Rocket>();
+        newBullet.DetonationClip = _rocketDetonation;
+        newBullet.Launcher = this;
+        newRocket.AddComponent<Rigidbody>().useGravity = false;
 
-            float multiply = 50;// Vector3.Distance(hit.point, transform.position) < 50 ? 50 : 100;
+        float multiply = 50;
 
-            newRocket.GetComponent<Rigidbody>().AddForce(ray.direction * multiply, ForceMode.Impulse);
-            _bullets.Add(newRocket.transform);
-        }
+        newRocket.GetComponent<Rigidbody>().AddForce(ray.direction * multiply, ForceMode.Impulse);
+        _bullets.Add(newRocket.transform);
     }
     private void BulletChecker()
     {
         for (int i = 0; i < _bullets.Count; i++)
         {
-            if (Vector3.Distance(_bullets[i].position, _bullets[i].GetComponent<Bullet>().StartPosition) > 300)
-                _bullets[i].GetComponent<Bullet>().Detonation();
+            if (Vector3.Distance(_bullets[i].position, _bullets[i].GetComponent<Rocket>().StartPosition) > 300)
+                _bullets[i].GetComponent<Rocket>().Detonation();
         }
     }
 

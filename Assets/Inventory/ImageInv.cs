@@ -23,7 +23,7 @@ namespace InventoryAndItems
                 if (value == 0)
                     ChangeItemImage(255);
                 else
-                    TextCount.text = value != 1 ? value.ToString() : "";
+                    TextCount.text = value != 1 ? value.ToString() : "";//пишет количество предметов, если их больше 1
 
                 _itemsCount = value;
             }
@@ -72,9 +72,9 @@ namespace InventoryAndItems
             _inventory.AddItems(Type, ItemsCount);
         }
 
-        public void AddItem(byte count) => ItemsCount += count;
+        public void AddItem(byte count) => ItemsCount += count;// метод добавляет в слот предмет, если тот пустует
 
-        public void OnPointerDownDelegate()
+        public void OnPointerDownDelegate()// вызывается при нажатии на предмет
         {
             if (Type != 255)
                 _inventory.OnDrag(_myRt);
@@ -102,7 +102,7 @@ namespace InventoryAndItems
             }
             _myImage.sprite = _inventory.AllImages[Type];
         }
-        public bool GetItem(byte count)
+        public bool GetItem(byte count)// очистка слота, в следствии слияния или удаления
         {
             if (ItemsCount >= count)
             {

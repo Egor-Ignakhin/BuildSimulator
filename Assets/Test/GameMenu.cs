@@ -21,6 +21,7 @@ public sealed class GameMenu : MonoBehaviour
         }
     }
     [SerializeField] private Saver _saver;
+    internal static bool _wasSaved { get; private set; } = false;
     private void Start()
     {
         _inventory = InventoryAndItems.Inventory.Instance;
@@ -33,8 +34,8 @@ public sealed class GameMenu : MonoBehaviour
         switch (num)
         {
             case 0:
+                _wasSaved = true;//если булева  == true то загрузить меню
                 _saver.Save();
-                SceneManager.LoadScene(0);
                 break;
             case 1:
                 QuestionsTrello.SetActive(true);

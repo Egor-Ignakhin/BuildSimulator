@@ -6,7 +6,7 @@ using Assets;
 
 [RequireComponent(typeof(CapsuleCollider)), RequireComponent(typeof(Rigidbody)), AddComponentMenu("First Person Controller")]
 
-public sealed class FirstPersonController : Singleton<FirstPersonController> ,ILooking
+public sealed class FirstPersonController :MonoBehaviour ,ILooking
 {
     #region Variables
 

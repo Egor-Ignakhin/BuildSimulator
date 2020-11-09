@@ -52,7 +52,7 @@ public sealed class MenuManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        _errorImage = ErrorImage.Singleton;
+        _errorImage = ErrorImage.Instance;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -62,8 +62,18 @@ public sealed class MenuManager : MonoBehaviour
     }
     public void Clickk(ButtonInMenu button)
     {
+        if (button.OtherActiveObjects.Length > 0)
+        {
+            for (int i = 0; i < button.OtherActiveObjects.Length; i++)
+            {
+                button.OtherActiveObjects[i].SetActive(false);
+            }
+        }
+        else
+        {
+            button.transform.parent.gameObject.SetActive(false);
+        }
         button.ActiveObject.SetActive(true);
-        button.transform.parent.gameObject.SetActive(false);
     }
     public void Click(int num)
     {
@@ -74,15 +84,12 @@ public sealed class MenuManager : MonoBehaviour
                 break;
             case 5://Create World
                 if (Save())
-                {
                     UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
-                }
                 else
                 {
                     Debug.Log("World already exists");
                     _errorImage.enabled = true;
-                    _errorImage.TitleError = "World already exists";
-                    _errorImage.OnEnableColor();
+                    _errorImage.OnEnableColor("World already exists");
                 }
                 break;
 
@@ -99,8 +106,7 @@ public sealed class MenuManager : MonoBehaviour
                 key.Close();
 
                 _errorImage.enabled = true;
-                _errorImage.TitleError = "All the worlds have been removed";
-                _errorImage.OnEnableColor();
+                _errorImage.OnEnableColor("All the worlds have been removed");
 
                 break;
             default:

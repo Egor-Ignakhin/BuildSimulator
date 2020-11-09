@@ -1,13 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 namespace Dunamites
 {
-    public sealed class DunamiteClon : MonoBehaviour
+    public sealed class DunamiteClon : ExplosiveObject
     {
         private DunamiteManager _manager;
         private AudioSource _childAud;
-        internal ObjectDown _objectDown { get; set; }
+        private AudioClip _boom, _tick;
         internal BoxCollider MyBoxColl { get; private set; }
 
         private float timerToExplosion;
@@ -20,61 +19,100 @@ namespace Dunamites
                 if (value < 0)
                     value = 0;
 
-                _textTimer.text = value > 10? "00 : " + System.Math.Round(value,1): "00 : 0" + System.Math.Round(value, 1);
+                _textTimer.text = value >= 10 ? "00 : " + System.Math.Round(value, 1) : "00 : 0" + System.Math.Round(value, 1);
             }
         }
 
         private TMPro.TextMeshPro _textTimer;
 
-        private void Start()
+        private void Awake()
         {
-            _objectDown = FindObjectOfType<ObjectDown>();
+            Raduis = 4;
+            Power = 4;
+        }
+        protected override void Start()
+        {
+            base.Start();
             _manager = FindObjectOfType<DunamiteManager>();
             _manager.AddInList(this);
 
-            _childAud = transform.GetChild(1).GetComponent<AudioSource>();
+            _childAud = transform.parent.GetChild(1).GetComponent<AudioSource>();
             MyBoxColl = transform.parent.GetComponent<BoxCollider>();
             _textTimer = transform.GetChild(0).GetComponent<TMPro.TextMeshPro>();
             _textTimer.color = new Color(0, 0.5f, 0);
             TimerToExplosion = 0;
+
+            _tick = FindObjectOfType<DunamiteManager>()._timerTickClip;
+            _boom = FindObjectOfType<DunamiteManager>()._boomClip;
+
         }
 
-        internal void Detonation(AudioClip clip)
+        internal void Detonation()
         {
-            _childAud.clip = clip;
-         
-            StartCoroutine(nameof(CheckFinishAudio));            
+            _childAud.clip = _tick;
+            sec = TimerToExplosion;
+            InvokeRepeating(nameof(CheckFinishAudio), 0.1f, 0.1f);
         }
 
         private void Find()
         {
-            List<BaseBlock> objects = _objectDown.GetNearestObject(transform.parent.position,4);
-
+            List<Transform> objects = _objectDown.GetNearestObject(transform.position, Raduis);
+            BaseBlock block;
+            DunamiteClon dunamite;
+            Rocket rocket;
+            FlameBarrel barrel;
             for (int i = 0; i < objects.Count; i++)
-                objects[i].Destroy(4);
+            {
+                if (block = objects[i].GetComponent<BaseBlock>())
+                    block.Destroy(Power);
+                else if (dunamite = objects[i].GetComponent<DunamiteClon>())
+                {
+                    if (dunamite != this)
+                    {
+                        dunamite.TimerToExplosion = 0;
+                        dunamite.Detonation();
+                    }
+                }
+                else if (barrel = objects[i].GetComponent<FlameBarrel>())
+                    barrel.Detonation();
+                else if (rocket = objects[i].GetComponent<Rocket>())
+                    rocket.Detonation();
+            }
+            Destroy(gameObject);
         }
 
 
-        private void OnDestroy() => _manager.RemoveInList(this);
-
-        IEnumerator CheckFinishAudio()
+        protected override void OnDestroy()
         {
-            while(TimerToExplosion > 0)
-            {
+            base.OnDestroy();
+            _manager.RemoveInList(this);
+        }
+        float sec;
+        private void CheckFinishAudio()
+        {           
+            if (TimerToExplosion > 0)
+            {                
+                if (TimerToExplosion < sec || TimerToExplosion < 1)
+                {
+                    _childAud.Play();
+                    
+                    sec--;
+                }
+
                 TimerToExplosion -= 0.1f;
-                yield return new WaitForSeconds(0.1f);
+                return;
             }
-            transform.GetChild(0).gameObject.SetActive(false);
-            transform.GetChild(1).gameObject.SetActive(true);
-            transform.GetChild(1).SetParent(_objectDown.transform);
-            _childAud.Play();
             Find();
+            transform.GetChild(0).gameObject.SetActive(false);
+            _childAud.transform.SetParent(_objectDown.transform);
+            _childAud.transform.GetChild(0).gameObject.SetActive(true);
+            _childAud.clip = _boom;
+            _childAud.Play();
             GetComponent<Renderer>().enabled = false;
             transform.parent.GetComponent<Renderer>().enabled = false;
-            while (_childAud.isPlaying)
-            yield return new WaitForSeconds(_childAud.clip.length);
-            Destroy(_childAud.gameObject);
-            Destroy(transform.parent.gameObject);
+            Destroy(_childAud.gameObject, _childAud.clip.length + 1);
+            Destroy(transform.parent.gameObject, _childAud.clip.length + 1);
+            CancelInvoke();
         }
     }
 }

@@ -33,8 +33,6 @@ public sealed class MainInput : Singleton<MainInput>
     internal delegate void Input_MouseButtonDown0();
     internal static event Input_MouseButtonDown0 input_MouseButtonDown0;
 
-    internal static Vector2 MousePosition { get; private set; }
-
     private void Awake() => DontDestroyOnLoad(gameObject);
 
     private void Update()
@@ -58,7 +56,5 @@ public sealed class MainInput : Singleton<MainInput>
         if (Input.GetKeyDown(KeyCode.Return)||Input.GetKeyDown(KeyCode.KeypadEnter)) input_DownEnter?.Invoke();
 
         if (Input.GetMouseButtonDown(0)) input_MouseButtonDown0?.Invoke();
-
-        MousePosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using InventoryAndItems;
 public sealed class BuildHouse : MonoBehaviour
 {
-    [SerializeField] internal List<GameObject> _instruments = new List<GameObject>(3);
+    [SerializeField] internal List<GameObject> _instruments = new List<GameObject>(4);
     [SerializeField] private List<GameObject> _blocks = new List<GameObject>(Inventory.TypesCount); //все блоки
     private List<BaseBlock> _blocksCs = new List<BaseBlock>(Inventory.TypesCount); //скрипты всех блоков
     [Space(5)]
@@ -32,7 +32,7 @@ public sealed class BuildHouse : MonoBehaviour
     internal delegate void ChangeMode();
     internal static event ChangeMode chMode;
 
-    private void Awake() => _obDown = (ObjectDown)FindObjectOfType(typeof(ObjectDown));
+    private void Awake() => _obDown = FindObjectOfType<ObjectDown>();
 
     private void OnEnable()
     {
@@ -160,7 +160,7 @@ public sealed class BuildHouse : MonoBehaviour
         if (_blocksCs[_selectBlock].Type == 3)//dunamite
         {
             block.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-            block.GetChild(0).gameObject.AddComponent<Dunamites.DunamiteClon>()._objectDown = _obDown;
+            block.GetChild(0).gameObject.AddComponent<Dunamites.DunamiteClon>();
             if (_inventory.SelectedItem == null)
             {
                 for (int i = 0; i < _blocks.Count; i++)
@@ -172,12 +172,31 @@ public sealed class BuildHouse : MonoBehaviour
             return;
         }
 
+        if (_blocksCs[_selectBlock].Type == 4)// flame barrel
+        {
+            block.SetParent(_obDown.transform);
+            block.gameObject.AddComponent<FlameBarrel>();
+            block.gameObject.AddComponent<RetentionObject>();
+            block.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
+            Destroy(block.GetComponent<BaseBlock>());
+                block.GetComponent<CapsuleCollider>().isTrigger = false;
+
+            if (_inventory.SelectedItem == null)
+            {
+                for (int i = 0; i < _blocks.Count; i++)
+                    _blocks[i].SetActive(false);
+                IsBuild = false;
+                _lastSelectedBlock = null;
+            }
+            return;
+        }
+
         block.SetParent(_lastBlock != null ? _lastBlock.transform.parent.parent.GetChild(1) : hit.transform.parent.parent.parent.GetChild(1));
 
         BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
         newBaseBlock.enabled = true;
-        block.GetComponent<BoxCollider>().isTrigger = false;
-        newBaseBlock._obDown = _obDown;
+        if(block.GetComponent<BoxCollider>())
+            block.GetComponent<BoxCollider>().isTrigger = false;
 
         if (_inventory.SelectedItem == null)
         {
@@ -270,6 +289,10 @@ public sealed class BuildHouse : MonoBehaviour
             {
 
             }
+            else if(_selectBlock == 14)//pistol
+            {
+                _instruments[3].SetActive(false);
+            }
             else
             {
                 _blocks[_selectBlock].SetActive(false);
@@ -321,6 +344,19 @@ public sealed class BuildHouse : MonoBehaviour
                 _blocks[i].SetActive(false);
             IsBuild = false;
             IsDestroy = false;
+            return;
+        }
+
+        if (_inventory.SelectedItem.Type == 14)//Pistol
+        {
+            for (int i = 0; i < _instruments.Count; i++)
+                _instruments[i].SetActive(false);
+
+            for (int i = 0; i < _blocks.Count; i++)
+                _blocks[i].SetActive(false);
+            IsBuild = false;
+            IsDestroy = false;
+            _instruments[3].SetActive(true);
             return;
         }
 

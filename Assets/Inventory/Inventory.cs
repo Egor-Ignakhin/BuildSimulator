@@ -5,7 +5,7 @@ namespace InventoryAndItems
 {
     public sealed class Inventory : Singleton<Inventory>
     {
-        public const byte TypesCount = 4;//всего блоков в игре
+        public const byte TypesCount = 5;//всего блоков в игре
 
         private RectTransform _myRt;//рект-трансформ объекта
 

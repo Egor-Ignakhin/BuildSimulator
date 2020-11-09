@@ -1,19 +1,29 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public sealed class ErrorImage : MonoBehaviour
+using Assets;
+public sealed class ErrorImage : Singleton<ErrorImage>
 {
-    internal static ErrorImage Singleton { get; private set; }
-    public string Text { get; set; }
     private Image _myImage;
-    public TextMeshProUGUI TextError;
-    public  string TitleError { get; set; }
+    private TextMeshProUGUI TextError;
     Color color = new Color(0, 0, 0, -0.0072375f);
-
     private void Awake()
     {
-        Singleton = this;
+        DontDestroyOnLoad(gameObject);
+        _myImage = gameObject.AddComponent<Image>();
+        _myImage.enabled = false;
+
+        transform.SetParent(GameObject.Find("Canvas").transform);
+        GetComponent<RectTransform>().localPosition = Vector2.zero;
+        GetComponent<RectTransform>().localScale = new Vector2(5, 3);
+
+        TextError = new GameObject("TextErorr").AddComponent<TextMeshProUGUI>();
+        TextError.transform.SetParent(transform);
+        TextError.transform.localPosition = Vector2.zero;
+        TextError.transform.localScale *= 1.5f;
+        TextError.enabled = false;
+        TextError.alignment = TextAlignmentOptions.Center;
+        TextError.alignment  = TextAlignmentOptions.Midline;
     }
     private void FixedUpdate()
     {
@@ -25,15 +35,16 @@ public sealed class ErrorImage : MonoBehaviour
         else 
         {
             TextError.enabled = false;
-            this.enabled = false; 
+            this.enabled = false;
+            _myImage.enabled = false;
         }
     }
-    public void OnEnableColor()
+    public void OnEnableColor(string titleEror)
     {
         TextError.enabled = true;
-        TextError.text = TitleError;
+        TextError.text = titleEror;
+        _myImage.enabled = true;
 
-        _myImage = GetComponent<Image>();
         _myImage.color = Color.red;
         TextError.color = Color.white;
     }
