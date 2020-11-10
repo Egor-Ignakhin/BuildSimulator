@@ -1,10 +1,23 @@
 ﻿using UnityEngine;
 
-public sealed class RetentionObject : MonoBehaviour// навесив этот класс на объект, будет возможно его перемещать
+public sealed class RetentionObject : Interacteble// навесив этот класс на объект, будет возможно его перемещать
 {
-    internal Rigidbody _myRb { get; private set; }
-    private void Start()
+    private Rigidbody _myRb;
+
+    private void Start() => _myRb = GetComponent<Rigidbody>();
+
+    public override void Interact(InputPlayer inputPlayer)
     {
-        _myRb = GetComponent<Rigidbody>();
+        inputPlayer.HelpingText.text = "Hold [" + inputPlayer._getItemKey + ']';
+
+        if (Input.GetKey(inputPlayer._getItemKey))
+            inputPlayer.HoldObject(_myRb);
+        else
+        {
+            inputPlayer.CanHolding = true;
+            inputPlayer.IsStartHold = true;
+            _myRb.useGravity = true;
+        }
+
     }
 }

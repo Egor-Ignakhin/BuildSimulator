@@ -44,39 +44,30 @@ namespace Dunamites
 
             _tick = FindObjectOfType<DunamiteManager>()._timerTickClip;
             _boom = FindObjectOfType<DunamiteManager>()._boomClip;
+            gameObject.AddComponent<DunamiteInteract>().MyDunamite = this;
 
         }
-
-        internal void Detonation()
+        internal bool _isManagerStart { get; set; }
+        internal override void Detonation()
         {
+            if(_isManagerStart == false)
+                TimerToExplosion = 0;
+            _isManagerStart = false;
+
             _childAud.clip = _tick;
             sec = TimerToExplosion;
             InvokeRepeating(nameof(CheckFinishAudio), 0.1f, 0.1f);
         }
 
-        private void Find()
+        protected override void FindNearestObjects()
         {
-            List<Transform> objects = _objectDown.GetNearestObject(transform.position, Raduis);
-            BaseBlock block;
-            DunamiteClon dunamite;
-            Rocket rocket;
-            FlameBarrel barrel;
-            for (int i = 0; i < objects.Count; i++)
+            FoundObjects = _objectDown.GetNearestObject(transform.position, Raduis);
+            for (int i = 0; i < FoundObjects.Count; i++)
             {
-                if (block = objects[i].GetComponent<BaseBlock>())
-                    block.Destroy(Power);
-                else if (dunamite = objects[i].GetComponent<DunamiteClon>())
-                {
-                    if (dunamite != this)
-                    {
-                        dunamite.TimerToExplosion = 0;
-                        dunamite.Detonation();
-                    }
-                }
-                else if (barrel = objects[i].GetComponent<FlameBarrel>())
-                    barrel.Detonation();
-                else if (rocket = objects[i].GetComponent<Rocket>())
-                    rocket.Detonation();
+                if (FoundBlock = FoundObjects[i] as BaseBlock)
+                    FoundBlock.Destroy(Power);
+                else if (FoundExplosiveObject = FoundObjects[i] as ExplosiveObject)
+                    FoundExplosiveObject.Detonation();
             }
             Destroy(gameObject);
         }
@@ -102,7 +93,7 @@ namespace Dunamites
                 TimerToExplosion -= 0.1f;
                 return;
             }
-            Find();
+            FindNearestObjects();
             transform.GetChild(0).gameObject.SetActive(false);
             _childAud.transform.SetParent(_objectDown.transform);
             _childAud.transform.GetChild(0).gameObject.SetActive(true);

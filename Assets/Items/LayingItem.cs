@@ -1,27 +1,28 @@
 ﻿using UnityEngine;
 namespace InventoryAndItems
 {
-    public sealed class LayingItem : MonoBehaviour
+    public sealed class LayingItem : Interacteble
     {
         [SerializeField] private bool _isBlock;
         [SerializeField] private byte _startType;
         [SerializeField] private byte _startItemsCount;
         private LayerMask layers;
-        private float _stayPosY = 0.5f;
+        private readonly float _stayPosY = 0.5f;
         private AllLayingObjectsManager _manager;
 
         public byte Type { get; private set; }
         public byte ItemsCount { get; set; }
-
+      
         private void OnEnable()
         {
-            _manager = (AllLayingObjectsManager)FindObjectOfType(typeof(AllLayingObjectsManager));
+            _manager = FindObjectOfType<AllLayingObjectsManager>();
 
             layers = 1 << LayerMask.NameToLayer("Ground");
 
             ChangeType(_startType, _startItemsCount);
             _manager.AddInList(this);
         }
+
         public void RotateObject() => transform.eulerAngles += new Vector3(0, 1, 0);
         Ray ray;
         public void FindFloor()
@@ -33,7 +34,6 @@ namespace InventoryAndItems
                 if (transform.position.y - hit.transform.position.y > _stayPosY)
                     transform.position += new Vector3(0, -0.5f, 0);
             }
-            Debug.DrawRay(transform.position, Vector3.down, Color.green);
         }
         private void OnDisable() => _manager.RemoveInList(this);
         private void ChangeType(byte type, byte itemsCount)
@@ -41,10 +41,10 @@ namespace InventoryAndItems
             Type = type;
             ItemsCount = itemsCount;
             if (_isBlock)
-            {
                 GetComponent<Renderer>().material = _manager.GetMaterial(Type);
-            }
         }
         public void GetItem() => gameObject.SetActive(false);
+
+        public override void Interact(InputPlayer inputPlayer) => inputPlayer.TakeItem(this);
     }
 }

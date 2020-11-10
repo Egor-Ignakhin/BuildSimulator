@@ -293,6 +293,10 @@ public sealed class BuildHouse : MonoBehaviour
             {
                 _instruments[3].SetActive(false);
             }
+            else if(_selectBlock == 15)// it's a bullet for pistol
+            {
+
+            }
             else
             {
                 _blocks[_selectBlock].SetActive(false);
@@ -357,6 +361,17 @@ public sealed class BuildHouse : MonoBehaviour
             IsBuild = false;
             IsDestroy = false;
             _instruments[3].SetActive(true);
+            return;
+        }
+        if(_inventory.SelectedItem.Type == 15)// pistol bullet
+        {
+            for (int i = 0; i < _instruments.Count; i++)
+                _instruments[i].SetActive(false);
+
+            for (int i = 0; i < _blocks.Count; i++)
+                _blocks[i].SetActive(false);
+            IsBuild = false;
+            IsDestroy = false;
             return;
         }
 

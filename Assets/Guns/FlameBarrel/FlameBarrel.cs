@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FlameBarrel : ExplosiveObject
@@ -28,44 +29,30 @@ public class FlameBarrel : ExplosiveObject
             Detonation();
         }
     }
-    internal void Detonation()
+    internal override void Detonation()
     {
+        _objectDown.Explosives.Remove(this);
+
         _myAud.gameObject.SetActive(true);
         _myAud.Play();
         _myAud.transform.SetParent(_objectDown.transform);
         Destroy(_myAud.gameObject, _myAud.clip.length - 1);
+        FindNearestObjects();
+    }
 
-        List<Transform> objects = _objectDown.GetNearestObject(transform.position, Raduis);
-        BaseBlock block;
-        Dunamites.DunamiteClon dunamite;
-        Rocket rocket;
-        FlameBarrel barrel;
-        for (int i = 0; i < objects.Count; i++)
+    protected override void FindNearestObjects()
+    {
+        FoundObjects = _objectDown.GetNearestObject(transform.position, Raduis);
+        for (int i = 0; i < FoundObjects.Count; i++)
         {
-            if (block = objects[i].GetComponent<BaseBlock>())
-            {
-                block.Destroy(Power);
-            }
-            else if (dunamite = objects[i].GetComponent<Dunamites.DunamiteClon>())
-            {
-                dunamite.TimerToExplosion = 0;
-                dunamite.Detonation();
-            }
-            else if (rocket = objects[i].GetComponent<Rocket>())
-            {
-                rocket.Detonation();
-            }
-            else if (barrel = objects[i].GetComponent<FlameBarrel>())
-            {
-                if (barrel != this)
-                {
-                    _objectDown.Explosives.Remove(barrel);
-                       barrel.Detonation();
-                }
-            }
+            if (FoundBlock = FoundObjects[i] as BaseBlock)
+                FoundBlock.Destroy(Power);
+            else if (FoundExplosiveObject = FoundObjects[i] as ExplosiveObject)
+                FoundExplosiveObject.Detonation();
         }
         Destroy(gameObject);
     }
+
     protected override void OnDestroy()
     {
         base.OnDestroy();

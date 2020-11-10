@@ -95,7 +95,7 @@ public sealed class WorldLoader : MonoBehaviour, IStorable
 
         key.Close();
         RegKey.SetValue("LoadWorld", titleWorld, keyPath);
-
+        System.GC.Collect();
         UnityEngine.SceneManagement.SceneManager.LoadScene("Map");
     }
 

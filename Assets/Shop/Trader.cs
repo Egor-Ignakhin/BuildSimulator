@@ -2,13 +2,13 @@
 
 namespace InventoryAndItems
 {
-    public sealed class Trader : MonoBehaviour
+    public sealed class Trader : Interacteble
     {
         private TraderInventory _traderInventory;
         private Inventory _inventory;
         private void Start()
         {
-            _traderInventory = (TraderInventory)FindObjectOfType(typeof(TraderInventory));
+            _traderInventory = FindObjectOfType<TraderInventory>();
 
             _inventory = Inventory.Instance;
             _traderInventory.gameObject.SetActive(_inventory.ActiveTrade);
@@ -21,5 +21,7 @@ namespace InventoryAndItems
                 _traderInventory.TurnOffOn();
             }
         }
+
+        public override void Interact(InputPlayer inputPlayer) => inputPlayer.BuyItem(this);
     }
 }

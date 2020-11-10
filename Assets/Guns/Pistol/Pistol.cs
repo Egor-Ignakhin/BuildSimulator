@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using InventoryAndItems;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public sealed class Pistol : Gun
@@ -9,10 +9,13 @@ public sealed class Pistol : Gun
     private AudioSource _myAud;
     [SerializeField] private Transform _spawnPlace;
     [SerializeField] private GameObject _FireEffect;
+    private Inventory _inventory;
     private void Awake()
     {
         _cam = Camera.main;
         _myAud = GetComponent<AudioSource>();
+        _inventory = Inventory.Instance;
+        Damage = 1;
     }
     private void OnEnable()
     {
@@ -23,6 +26,7 @@ public sealed class Pistol : Gun
     {
         if (Ammo > 0)
         {
+            _inventory.GetItem(15, 1);//"Покупка патрона"
             _myAud.clip = FireClip;
             _myAud.Play();
             GameObject effect = Instantiate(_FireEffect, _FireEffect.transform.position, _FireEffect.transform.rotation);
@@ -33,15 +37,23 @@ public sealed class Pistol : Gun
             {
                 if (_lastFlameBarrel = hit.transform.GetComponent<FlameBarrel>())
                 {
-                    _lastFlameBarrel.Detonation();
+                    Delay((int)(Vector3.Distance(hit.point, transform.position) * 2.5f));
                 }
 
             }
             Destroy(effect, 0.1f);
-            DateTime a = DateTime.Now;
            Ammo--;
         }
     }
+
+    private async void Delay(int delay)
+    {
+        await Task.Delay(delay);
+
+        _lastFlameBarrel.Detonation();
+    }
+
+
     private void OnDisable()
     {
         MainInput.input_MouseButtonDown0 -= this.Fire;

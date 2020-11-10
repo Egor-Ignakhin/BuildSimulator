@@ -2,11 +2,15 @@
 
 public sealed class SaveObject : MonoBehaviour
 {
-    private SaveObjectsManager manager;
     private void Start()
     {
-        manager = FindObjectOfType<SaveObjectsManager>();
-        manager.Objects.Add(this);
+        FindObjectOfType<SaveObjectsManager>().Objects.Add(this);
     }
-    private void OnDestroy() => manager.Objects.Remove(this);
+    private void OnDestroy()
+    {
+        if (FindObjectOfType<SaveObjectsManager>())
+        {
+            FindObjectOfType<SaveObjectsManager>().Objects.Remove(this);
+        }
+    }
 }

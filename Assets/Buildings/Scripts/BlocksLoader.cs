@@ -18,7 +18,6 @@ public sealed class BlocksLoader : MonoBehaviour, IStorable
         TitleWorld = title;
         TitleWorld = SHA1_Encode.Decryption(TitleWorld, "z0s%b&I)Y%PW26A8");
         Debug.Log("Title world - " + TitleWorld);
-        _player = FindObjectOfType<FirstPersonController>().transform;
     }
 
     private void Start() => Load();
@@ -37,7 +36,8 @@ public sealed class BlocksLoader : MonoBehaviour, IStorable
         saveLog[3] = TitleWorld;
         saveLog[4] = "[IsFirstGame]";
         saveLog[5] = "false";
-        saveLog[6] = "[PlayerTransform]";     
+        saveLog[6] = "[PlayerTransform]";
+        _player = FindObjectOfType<FirstPersonController>().transform;
         saveLog[7] = _player.position.x + "|" + _player.position.y + "|" + _player.position.z;
         saveLog[8] = _player.eulerAngles.x + "|" + _player.eulerAngles.y + "|" + _player.eulerAngles.z;
         saveLog[9] = _player.localScale.x + "|" + _player.localScale.y + "|" + _player.localScale.z;
@@ -63,6 +63,7 @@ public sealed class BlocksLoader : MonoBehaviour, IStorable
         #region SetPosition
         LoadTransformation load;
 
+        _player = FindObjectOfType<FirstPersonController>().transform;
         load.GetTransform(ref _player, saveLog[7],saveLog[8], saveLog[9]);//загрузка трансформа игрока
         _player.GetComponent<FirstPersonController>().originalRotation = _player.transform.eulerAngles;
         #endregion

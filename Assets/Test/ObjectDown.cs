@@ -10,9 +10,7 @@ public sealed class ObjectDown : MonoBehaviour
     [SerializeField] private AudioSource _bgAudio, _boomSource;
     [SerializeField] private Image _bGImage;
 
-    private bool _realise = false;
-
-    public Slider slider;
+    [SerializeField] private Slider slider;
 
     private float _timeToBoom, _timerToMenu;
 
@@ -44,7 +42,6 @@ public sealed class ObjectDown : MonoBehaviour
         if (_timeToBoom > 1f)
         {
             DestroyBlocks();
-            _realise = true;
 
             _boomSource.enabled = true;
             _bH.enabled = false;
@@ -102,26 +99,23 @@ public sealed class ObjectDown : MonoBehaviour
         MainInput._input_UpP -= this.Suppresion;
     }
 
-    public List<Transform> GetNearestObject(Vector3 currentPosition,float radius)
+    private readonly List<MonoBehaviour> _returnedObjects = new List<MonoBehaviour>();
+    public List<MonoBehaviour> GetNearestObject(Vector3 currentPosition,float radius)
     {
-        List<Transform> objects = new List<Transform>();
+        _returnedObjects.Clear();
         for (int i = 0; i < Objects.Count; i++)
         {
             if (Vector3.Distance(currentPosition, Objects[i].transform.position) < radius)
-            {
-                objects.Add(Objects[i].transform);
-            }
+                _returnedObjects.Add(Objects[i]);
         }
 
         for (int i = 0; i < Explosives.Count; i++)
         {
-            if (Vector3.Distance(currentPosition, Explosives[i].transform.position) < radius *3)
-            {
-                objects.Add(Explosives[i].transform);
-            }
+            if (Vector3.Distance(currentPosition, Explosives[i].transform.position) < radius * 3)
+                _returnedObjects.Add(Explosives[i]);
         }
 
-        return objects;
+        return _returnedObjects;
     }
     private IEnumerator Checker()
     {
@@ -129,13 +123,8 @@ public sealed class ObjectDown : MonoBehaviour
         {
             for (int i = 0; i < ExplosivedObjects.Count; i++)
             {
-                if (ExplosivedObjects[i] != null)
-                {
-                    if (ExplosivedObjects[i].transform.position.y < -100)
-                    {
-                        Destroy(ExplosivedObjects[i].gameObject, 3);
-                    }
-                }
+                if (ExplosivedObjects[i].transform.position.y < -100)
+                    Destroy(ExplosivedObjects[i].gameObject, 3);
             }
             yield return new WaitForSeconds(10);
         }

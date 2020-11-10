@@ -83,6 +83,7 @@ namespace InventoryAndItems
 
         #region instruments
         private RocketLauncher _rocketLauncher;
+        private Pistol _pistol;
 
         #endregion
 
@@ -109,6 +110,7 @@ namespace InventoryAndItems
             MainInput.input_DownAnyKey += this.HighLightItem;
             _bh = FindObjectOfType<BuildHouse>();
             _rocketLauncher = _bh._instruments[2].GetComponent<RocketLauncher>();
+            _pistol = _bh._instruments[3].GetComponent<Pistol>();
         }
         public bool AddItems(byte type, byte count, bool isLayeing = false)
         {
@@ -120,6 +122,8 @@ namespace InventoryAndItems
                     {
                         if (type == 13)//rockets
                             _rocketLauncher.Rockets += count;
+                        if (type == 15)//pistol bullets
+                            _pistol.Ammo += count;
 
                         if (isLayeing)
                             ItemsCs[i].AddItem(count);
@@ -136,9 +140,9 @@ namespace InventoryAndItems
                     if (isLayeing)
                     {
                         if (type == 13)//rockets
-                        {
                             _rocketLauncher.Rockets += count;
-                        }
+                        if (type == 15)//pistol bullets
+                            _pistol.Ammo += count;
 
                         ItemsCs[i].ChangeItemImage(type);
                         ItemsCs[i].AddItem(count);
@@ -154,6 +158,18 @@ namespace InventoryAndItems
         public bool GetItem(byte type, byte count)
         {
             if (type == 13)//it's rocket
+            {
+                for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
+                {
+                    if (ItemsCs[i].Type == type)
+                    {
+                        ItemsCs[i].GetItem(count);
+                        return true;
+                    }
+                }
+            }
+
+            if (type == 15)
             {
                 for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
                 {

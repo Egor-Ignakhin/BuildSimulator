@@ -2,7 +2,7 @@
 
 public abstract class Gun : MonoBehaviour
 {
-    public int Damage;
-    public int Ammo;
+    internal int Damage { get; set; }
+    internal int Ammo { get; set; }
     public AudioClip FireClip;
 }

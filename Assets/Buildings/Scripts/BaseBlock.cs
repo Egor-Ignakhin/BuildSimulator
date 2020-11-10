@@ -17,8 +17,7 @@ public sealed class BaseBlock : MonoBehaviour
         {
             _obDown.Objects.Add(this);//добавление в список ВзрывОбъектов
 
-            gameObject.AddComponent<SaveObject>();
-            GetComponent<SaveObject>().enabled = true;
+            gameObject.AddComponent<SaveObject>().enabled = true;
         }
     }
 

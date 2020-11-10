@@ -7,9 +7,12 @@ public sealed class ErrorImage : Singleton<ErrorImage>
     private Image _myImage;
     private TextMeshProUGUI TextError;
     Color color = new Color(0, 0, 0, -0.0072375f);
+    bool _isDontDestroy;
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (!_isDontDestroy)
+            DontDestroyOnLoad(gameObject);
+        _isDontDestroy = true;
         _myImage = gameObject.AddComponent<Image>();
         _myImage.enabled = false;
 
@@ -23,7 +26,7 @@ public sealed class ErrorImage : Singleton<ErrorImage>
         TextError.transform.localScale *= 1.5f;
         TextError.enabled = false;
         TextError.alignment = TextAlignmentOptions.Center;
-        TextError.alignment  = TextAlignmentOptions.Midline;
+        TextError.alignment = TextAlignmentOptions.Midline;
     }
     private void FixedUpdate()
     {
@@ -41,6 +44,8 @@ public sealed class ErrorImage : Singleton<ErrorImage>
     }
     public void OnEnableColor(string titleEror)
     {
+        if (!TextError)
+            Awake();
         TextError.enabled = true;
         TextError.text = titleEror;
         _myImage.enabled = true;

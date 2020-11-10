@@ -83,7 +83,8 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
     {
         string[] save = new string[Objects.Count * 7];
         long lastStr = 0;
-
+        if (Objects.Count <= 0)
+            return;
         for (int i = 0; i < Objects.Count; i++)
         {
             save[lastStr] = "[Block]"; //тип
@@ -126,8 +127,7 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
         }
         ErrorImage.Instance.enabled = true;
         ErrorImage.Instance.OnEnableColor("Saved successfully");
-        if(GameMenu._wasSaved)
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        System.GC.Collect();       
     }
 
     private void WriteText(string path, string[] save)
