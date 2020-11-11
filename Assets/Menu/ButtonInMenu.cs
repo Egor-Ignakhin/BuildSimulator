@@ -1,21 +1,23 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
-public class ButtonInMenu : MonoBehaviour
+namespace MainMenu
 {
-    private MenuManager manager;
-    public GameObject ActiveObject;
-    public GameObject[] OtherActiveObjects;
-    private void Start()
+    public class ButtonInMenu : MonoBehaviour
     {
-        manager = (MenuManager)FindObjectOfType(typeof(MenuManager));
-        gameObject.AddComponent<Button>();
-        Button myButton = GetComponent<Button>();
+        private MenuManager manager;
+        public GameObject ActiveObject;
+        public GameObject[] OtherActiveObjects;
+        private void Start()
+        {
+            manager = (MenuManager)FindObjectOfType(typeof(MenuManager));
+            gameObject.AddComponent<Button>();
+            Button myButton = GetComponent<Button>();
 
-        myButton.onClick.AddListener(this.Click);
-    }
-    public void Click()
-    {
-        manager.Clickk(this);
+            myButton.onClick.AddListener(this.Click);
+        }
+        public void Click()
+        {
+            manager.Clickk(this);
+        }
     }
 }

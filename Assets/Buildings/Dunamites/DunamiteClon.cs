@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 namespace Dunamites
 {
     public sealed class DunamiteClon : ExplosiveObject
@@ -59,18 +58,7 @@ namespace Dunamites
             InvokeRepeating(nameof(CheckFinishAudio), 0.1f, 0.1f);
         }
 
-        protected override void FindNearestObjects()
-        {
-            FoundObjects = _objectDown.GetNearestObject(transform.position, Raduis);
-            for (int i = 0; i < FoundObjects.Count; i++)
-            {
-                if (FoundBlock = FoundObjects[i] as BaseBlock)
-                    FoundBlock.Destroy(Power);
-                else if (FoundExplosiveObject = FoundObjects[i] as ExplosiveObject)
-                    FoundExplosiveObject.Detonation();
-            }
-            Destroy(gameObject);
-        }
+        protected override void FindNearestObjects() => base.FindNearestObjects();
 
 
         protected override void OnDestroy()

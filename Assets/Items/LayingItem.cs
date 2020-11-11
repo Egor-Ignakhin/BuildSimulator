@@ -17,7 +17,7 @@ namespace InventoryAndItems
         {
             _manager = FindObjectOfType<AllLayingObjectsManager>();
 
-            layers = 1 << LayerMask.NameToLayer("Ground");
+            layers = 1 << LayerMask.NameToLayer("Buildings");
 
             ChangeType(_startType, _startItemsCount);
             _manager.AddInList(this);

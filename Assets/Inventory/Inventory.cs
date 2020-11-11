@@ -5,7 +5,7 @@ namespace InventoryAndItems
 {
     public sealed class Inventory : Singleton<Inventory>
     {
-        public const byte TypesCount = 5;//всего блоков в игре
+        public const byte TypesCount = 6;//всего блоков в игре
 
         private RectTransform _myRt;//рект-трансформ объекта
 
@@ -21,7 +21,10 @@ namespace InventoryAndItems
                 _lastItem = value;
 
                 if (value == null)
+                {
+                    _bh.DeactiveAll();
                     return;
+                }
                 LastParentOfObject = (RectTransform)value.parent;
             }
         }// последний предмет который был передвинут

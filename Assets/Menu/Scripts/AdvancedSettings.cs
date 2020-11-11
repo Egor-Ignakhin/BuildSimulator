@@ -39,7 +39,8 @@ namespace Assets
                     MovingSpeed = System.Convert.ToByte(save[0]);
                     FlyingSpeed = System.Convert.ToByte(save[1]);
                     SoundVolume = System.Convert.ToByte(save[2]);
-                    ShadowResolution = System.Convert.ToByte(save[3]);
+                    ShadowQuality = System.Convert.ToByte(save[3]);
+                    ShadowResolution = System.Convert.ToByte(save[4]);
                 }
             }
         }
@@ -52,7 +53,7 @@ namespace Assets
             RegKey.SetValue(vD, ViewDistance.ToString(), keyPath);
             RegKey.SetValue(sV, Sensitvity.ToString(), keyPath);
 
-            string[] save = new string[4];
+            string[] save = new string[5];
             if (Directory.Exists(Directory.GetCurrentDirectory() + "\\GameSettings"))
             {
                 if (!File.Exists(Directory.GetCurrentDirectory() + "\\GameSettings\\Settings.txt"))
@@ -71,7 +72,8 @@ namespace Assets
             save[0] = MovingSpeed.ToString();
             save[1] = FlyingSpeed.ToString();
             save[2] = SoundVolume.ToString();
-            save[3] = ShadowResolution.ToString();
+            save[3] = ShadowQuality.ToString();
+            save[4] = ShadowResolution.ToString();
             for (int i = 0; i < save.Length; i++)
                 save[i] = SHA1_Encode.Encryption(save[i], "z0s%b&I)Y%PW26A8");
 
@@ -85,6 +87,7 @@ namespace Assets
         internal static byte MovingSpeed { get; set; } = 1;
         internal static byte FlyingSpeed { get; set; } = 1;
         internal static byte SoundVolume { get; set; } = 100;
+        internal static byte ShadowQuality { get; set; } = 1;
         internal static byte ShadowResolution { get; set; } = 1;
     }
     static class RegKey

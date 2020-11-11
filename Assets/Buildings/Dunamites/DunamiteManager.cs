@@ -14,7 +14,7 @@ namespace Dunamites
         private void Start()
         {
             _bh = FindObjectOfType<BuildHouse>();
-            BuildHouse.chMode += this.ChangeColliders;
+            BuildHouse.ChMode += this.ChangeColliders;
         }
 
         internal void AddInList(DunamiteClon dunamite)
@@ -43,6 +43,6 @@ namespace Dunamites
             for (int i = 0; i < Dunamites.Count; i++)
                 Dunamites[i].MyBoxColl.enabled = _bh.CanActiveCollier;
         }
-        private void OnDestroy() => BuildHouse.chMode -= this.ChangeColliders;
+        private void OnDestroy() => BuildHouse.ChMode -= this.ChangeColliders;
     }
 }

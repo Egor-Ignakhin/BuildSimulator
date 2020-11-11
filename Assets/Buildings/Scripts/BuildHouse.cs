@@ -5,7 +5,7 @@ public sealed class BuildHouse : MonoBehaviour
 {
     [SerializeField] internal List<GameObject> _instruments = new List<GameObject>(4);
     [SerializeField] private List<GameObject> _blocks = new List<GameObject>(Inventory.TypesCount); //все блоки
-    private List<BaseBlock> _blocksCs = new List<BaseBlock>(Inventory.TypesCount); //скрипты всех блоков
+    private readonly List<BaseBlock> _blocksCs = new List<BaseBlock>(Inventory.TypesCount); //скрипты всех блоков
     [Space(5)]
 
     [SerializeField] private List<AudioClip> SoundsChange;//звуки создания блоков
@@ -30,7 +30,7 @@ public sealed class BuildHouse : MonoBehaviour
 
 
     internal delegate void ChangeMode();
-    internal static event ChangeMode chMode;
+    internal static event ChangeMode ChMode;
 
     private void Awake() => _obDown = FindObjectOfType<ObjectDown>();
 
@@ -69,14 +69,14 @@ public sealed class BuildHouse : MonoBehaviour
             if (_inventory.SelectedItem != null)
             {
                 CanActiveCollier = false;
-                chMode?.Invoke();
+                ChMode?.Invoke();
                 Build();
             }
         }
         if (IsDestroy)
         {
             CanActiveCollier = true;
-            chMode?.Invoke();
+            ChMode?.Invoke();
             Destroy();
         }
         else
@@ -89,9 +89,10 @@ public sealed class BuildHouse : MonoBehaviour
         }
     }
 
-    float xRotate = 0;
     #region Create || Destroy blocks
     private BaseBlock _lastBlock;
+    private Greed _lastGreed;
+    private Vector3 _blockPos;
     private void Build()
     {
         if (_selectBlock == 255)
@@ -100,30 +101,44 @@ public sealed class BuildHouse : MonoBehaviour
         ray = _cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 10, _layer))
         {
-            _blocks[_selectBlock].SetActive(true);
-
             _blocksCs[_selectBlock].ChangeColor((byte) (_inventory.SelectedItem.ItemsCount > 0?1:2));
 
-            _blocks[_selectBlock].transform.eulerAngles = new Vector3(xRotate, _blocks[_selectBlock].transform.eulerAngles.y, 0);
-
-            if ((_lastBlock = hit.transform.GetComponent<BaseBlock>()) || hit.transform.parent.GetComponent<Greed>())
+            if ((_lastBlock = hit.transform.GetComponent<BaseBlock>()) || (_lastGreed = hit.transform.GetComponent<Greed>()))
             {
                 if (_blocksCs[_selectBlock].Type == 3)
                 {
-                    if (Input.GetKey(KeyCode.LeftArrow)) _blocks[_selectBlock].transform.eulerAngles += new Vector3(0, 1, 0);
-                    if (Input.GetKey(KeyCode.RightArrow)) _blocks[_selectBlock].transform.eulerAngles -= new Vector3(0, 1, 0);
-                    if (Input.GetKeyDown(KeyCode.UpArrow)) xRotate = xRotate < 0 ? 0 : 90;
-                    if (Input.GetKeyDown(KeyCode.DownArrow)) xRotate = xRotate > 0 ? 0 : 90;
-
-                    Vector3 pos = hit.point;
-                    _blocks[_selectBlock].transform.position = pos;
+                    _blockPos = hit.point;
+                    _blocks[_selectBlock].transform.forward = -hit.normal;
+                }
+                else if (_blocksCs[_selectBlock].Type == 4)
+                {
+                    if (_lastGreed)
+                    {
+                        _blockPos = hit.point;
+                        _blockPos.y += 0.5f;
+                    }
+                    else
+                        _blockPos = hit.collider.transform.position + hit.normal;
+                    _blocks[_selectBlock].transform.rotation = Quaternion.identity;
+                }
+                else if (_blocksCs[_selectBlock].Type == 5)
+                {
+                    _blockPos = hit.point;
+                    _blockPos.y += 0.05f;
+                    _blocks[_selectBlock].transform.up = hit.normal;
                 }
                 else
                 {
-                    Vector3 pos = hit.collider.transform.position + (hit.normal);/////////////
-                    _blocks[_selectBlock].transform.position = pos;
+                    if (_lastGreed)
+                    {
+                        _blockPos = hit.point;
+                        _blockPos.y += 0.5f;
+                    }
+                    else
+                        _blockPos = hit.collider.transform.position + hit.normal;/////////////
                     _blocks[_selectBlock].transform.rotation = hit.transform.rotation;
                 }
+                _blocks[_selectBlock].transform.position = _blockPos;
                 if (Input.GetMouseButtonDown(0))
                 {
                     if (_inventory.GetItem(_selectBlock, 1) == true)
@@ -137,7 +152,8 @@ public sealed class BuildHouse : MonoBehaviour
                         _blocksCs[_selectBlock].ChangeColor(2);
                     }
                 }
-            }
+                _lastGreed = null;
+            } 
         }
         else
         {
@@ -150,13 +166,14 @@ public sealed class BuildHouse : MonoBehaviour
     {
         float lastVolume = Assets.AdvancedSettings.SoundVolume * 0.01f;
         float Volume = Random.Range(0.5f, 1f);// музыкальный эффект 
-        _myAudioSource.volume = (Volume * lastVolume);
+        _myAudioSource.volume = Volume * lastVolume;
         _myAudioSource.spatialBlend = Volume / 95;
         _myAudioSource.clip = SoundsChange[_selectBlock];
         _myAudioSource.Play();
 
-        Transform block = Instantiate(_blocks[_selectBlock].transform, _blocks[_selectBlock].transform.position, _blocks[_selectBlock].transform.rotation);//инстанс
+        Transform block = Instantiate(_blocks[_selectBlock].transform, _blockPos, _blocks[_selectBlock].transform.rotation);//инстанс
         block.gameObject.layer = 8;
+
         if (_blocksCs[_selectBlock].Type == 3)//dunamite
         {
             block.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
@@ -172,11 +189,10 @@ public sealed class BuildHouse : MonoBehaviour
             return;
         }
 
-        if (_blocksCs[_selectBlock].Type == 4)// flame barrel
+        else if (_blocksCs[_selectBlock].Type == 4)// flame barrel
         {
             block.SetParent(_obDown.transform);
             block.gameObject.AddComponent<FlameBarrel>();
-            block.gameObject.AddComponent<RetentionObject>();
             block.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
             Destroy(block.GetComponent<BaseBlock>());
                 block.GetComponent<CapsuleCollider>().isTrigger = false;
@@ -190,8 +206,25 @@ public sealed class BuildHouse : MonoBehaviour
             }
             return;
         }
+        else if(_blocksCs[_selectBlock].Type == 5)
+        {
+            block.SetParent(_obDown.transform);
+            block.gameObject.AddComponent<Mine>();
+            block.GetComponent<Renderer>().material.color = new Color(0.6f, 0.44f, 0.44f, 1);
+            Destroy(block.GetComponent<BaseBlock>());
+            block.GetComponent<MeshCollider>().isTrigger = false;
 
-        block.SetParent(_lastBlock != null ? _lastBlock.transform.parent.parent.GetChild(1) : hit.transform.parent.parent.parent.GetChild(1));
+            if (_inventory.SelectedItem == null)
+            {
+                for (int i = 0; i < _blocks.Count; i++)
+                    _blocks[i].SetActive(false);
+                IsBuild = false;
+                _lastSelectedBlock = null;
+            }
+            return;
+        }
+
+        block.SetParent(_lastBlock != null ? _lastBlock.transform.parent.parent.GetChild(1) : hit.transform.parent.GetChild(1));
 
         BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
         newBaseBlock.enabled = true;
@@ -201,9 +234,9 @@ public sealed class BuildHouse : MonoBehaviour
         if (_inventory.SelectedItem == null)
         {
             for (int i = 0; i < _blocks.Count; i++)
-            {
                 _blocks[i].SetActive(false);
-            }
+            for (int i = 0; i < _instruments.Count; i++)
+                _instruments[i].SetActive(false);
             IsBuild = false;
             _lastSelectedBlock = null;
         }
@@ -383,6 +416,17 @@ public sealed class BuildHouse : MonoBehaviour
         _lastSelectedBlock = _blocksCs[_selectBlock];
         _blocks[_selectBlock].SetActive(true);
 
+    }
+    
+
+    internal void DeactiveAll()
+    {
+        for (int i = 0; i < _blocks.Count; i++)
+            _blocks[i].SetActive(false);
+        for (int i = 0; i < _instruments.Count; i++)
+            _instruments[i].SetActive(false);
+        IsBuild = false;
+        _lastSelectedBlock = null;
     }
     private void OnDestroy() => Inventory.changeItem -= this.ChangeSelectedBlock;
 }

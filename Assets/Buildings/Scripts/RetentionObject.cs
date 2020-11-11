@@ -10,14 +10,13 @@ public sealed class RetentionObject : Interacteble// навесив этот к�
     {
         inputPlayer.HelpingText.text = "Hold [" + inputPlayer._getItemKey + ']';
 
-        if (Input.GetKey(inputPlayer._getItemKey))
-            inputPlayer.HoldObject(_myRb);
+        if (Input.GetKey(inputPlayer._getItemKey))        
+            inputPlayer.HoldObject(_myRb);        
         else
         {
             inputPlayer.CanHolding = true;
             inputPlayer.IsStartHold = true;
             _myRb.useGravity = true;
         }
-
     }
 }

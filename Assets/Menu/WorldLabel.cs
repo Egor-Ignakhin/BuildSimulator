@@ -1,42 +1,44 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
-
-public sealed class WorldLabel : MonoBehaviour
+namespace MainMenu
 {
-    internal WorldLoader _loader { get; set; }
-    private string _title;
-    internal string Title
+    public sealed class WorldLabel : MonoBehaviour
     {
-        get => _title;
-
-        set
+        internal WorldLoader _loader { get; set; }
+        private string _title;
+        internal string Title
         {
-            _title = value;
-            tTltTxt.text = value;
+            get => _title;
+
+            set
+            {
+                _title = value;
+                tTltTxt.text = value;
+            }
         }
-    }
-    private TMPro.TextMeshProUGUI tTltTxt;
+        private TMPro.TextMeshProUGUI tTltTxt;
 
-    private void Awake()
-    {
-        for (int i = 0; i < transform.childCount; i++)
+        private void Awake()
         {
-            if (tTltTxt = transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>())
-                break;
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                if (tTltTxt = transform.GetChild(i).GetComponent<TMPro.TextMeshProUGUI>())
+                    break;
+            }
+
+
+            EventTrigger ev = gameObject.GetComponent<EventTrigger>();
+
+            EventTrigger.Entry entry = new EventTrigger.Entry
+            {
+                eventID = EventTriggerType.PointerClick
+            };
+            entry.callback.AddListener((data) => { Click(); });
+            ev.triggers.Add(entry);
         }
-
-
-        EventTrigger ev = gameObject.GetComponent<EventTrigger>();
-
-        EventTrigger.Entry entry = new EventTrigger.Entry
+        private void Click()
         {
-            eventID = EventTriggerType.PointerClick
-        };
-        entry.callback.AddListener((data) => { Click(); });
-        ev.triggers.Add(entry);
-    }
-    private void Click()
-    {
-        _loader.LoadWorld(this);
+            _loader.LoadWorld(this);
+        }
     }
 }

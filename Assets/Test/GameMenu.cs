@@ -22,15 +22,20 @@ public sealed class GameMenu : MonoBehaviour
     }
     [SerializeField] private Saver _saver;
     [SerializeField] private GameObject _buttonsSaveOrNotSave;
+    private AudioSource _playerSource;
+    public AudioClip _buttonClick;
     private void Start()
     {
         _inventory = InventoryAndItems.Inventory.Instance;
         MainInput.input_I += this.SetVisible;
         MainInput.input_Escape += this.MenuEvent;
+        _playerSource = FindObjectOfType<BuildHouse>().GetComponent<AudioSource>();
     }
 
     public void OnClick(int num)
     {
+        _playerSource.clip = _buttonClick;
+        _playerSource.Play();
         switch (num)
         {
             case 0:

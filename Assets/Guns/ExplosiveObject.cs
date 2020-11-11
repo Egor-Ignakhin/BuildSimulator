@@ -17,7 +17,18 @@ public abstract class ExplosiveObject : MonoBehaviour//Классы, насле�
     protected BaseBlock FoundBlock;
     protected ExplosiveObject FoundExplosiveObject;
 
-    protected abstract void FindNearestObjects();
+    protected virtual void FindNearestObjects()
+    {
+        FoundObjects = _objectDown.GetNearestObject(transform.position, Raduis);
+        for (int i = 0; i < FoundObjects.Count; i++)
+        {
+            if (FoundBlock = FoundObjects[i] as BaseBlock)
+                FoundBlock.Destroy(Power);
+            else if (FoundExplosiveObject = FoundObjects[i] as ExplosiveObject)
+                FoundExplosiveObject.Detonation();
+        }
+        Destroy(gameObject);
+    }
     internal abstract void Detonation();
 
     protected virtual void OnDestroy() => _objectDown.Explosives.Remove(this);

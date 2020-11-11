@@ -24,6 +24,9 @@ public sealed class InputPlayer : MonoBehaviour
         _cam = Camera.main;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        MainInput.mouseSrollMax += () => { ScrollHoldobjects(true); };
+        MainInput.mouseSrollMin += () => { ScrollHoldobjects(false); };
     }
 
     private Trader _lastTrader;
@@ -102,5 +105,16 @@ public sealed class InputPlayer : MonoBehaviour
             CanHolding = false;
         else if (retentionBlock.velocity.z > 1 || retentionBlock.velocity.z < -1)
             CanHolding = false;
+    }
+    private void ScrollHoldobjects(bool upScroll)
+    {
+        if (!_holderObject)
+            return;
+        _holderObject.localPosition = Vector3.MoveTowards(_holderObject.localPosition, new Vector3(0, 0, upScroll ? _getItemDistance : 1), 0.5f);
+    }
+    private void OnDestroy()
+    {
+        MainInput.mouseSrollMax -= () => { ScrollHoldobjects(true); };
+        MainInput.mouseSrollMin -= () => { ScrollHoldobjects(false); };
     }
 }

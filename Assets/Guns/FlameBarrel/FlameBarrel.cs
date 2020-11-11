@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FlameBarrel : ExplosiveObject
 {
@@ -20,6 +18,7 @@ public class FlameBarrel : ExplosiveObject
         _myAud = transform.GetChild(0).GetComponent<AudioSource>();
         _myRb = GetComponent<Rigidbody>();
         _myAud.clip = FindObjectOfType<BarrelsManager>().DetonationClip;
+        gameObject.AddComponent<RetentionObject>();
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -40,18 +39,7 @@ public class FlameBarrel : ExplosiveObject
         FindNearestObjects();
     }
 
-    protected override void FindNearestObjects()
-    {
-        FoundObjects = _objectDown.GetNearestObject(transform.position, Raduis);
-        for (int i = 0; i < FoundObjects.Count; i++)
-        {
-            if (FoundBlock = FoundObjects[i] as BaseBlock)
-                FoundBlock.Destroy(Power);
-            else if (FoundExplosiveObject = FoundObjects[i] as ExplosiveObject)
-                FoundExplosiveObject.Detonation();
-        }
-        Destroy(gameObject);
-    }
+    protected override void FindNearestObjects() => base.FindNearestObjects();
 
     protected override void OnDestroy()
     {
