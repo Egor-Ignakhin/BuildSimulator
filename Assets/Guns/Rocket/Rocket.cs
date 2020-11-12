@@ -8,6 +8,9 @@ public sealed class Rocket : ExplosiveObject
     [SerializeField] private GameObject _flyingEffect;
     internal RocketLauncher Launcher { get; set; }
     internal Vector3 StartPosition { get; private set; }
+
+    internal override byte Type => 255;
+
     private void Awake()
     {
         Raduis = 2.2f;

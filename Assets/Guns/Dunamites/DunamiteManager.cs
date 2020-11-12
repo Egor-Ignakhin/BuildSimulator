@@ -10,12 +10,6 @@ namespace Dunamites
         internal List<DunamiteClon> Dunamites = new List<DunamiteClon>();
         [SerializeField] internal AudioClip _boomClip;
         [SerializeField] internal AudioClip _timerTickClip;
-        private BuildHouse _bh;
-        private void Start()
-        {
-            _bh = FindObjectOfType<BuildHouse>();
-            BuildHouse.ChMode += this.ChangeColliders;
-        }
 
         internal void AddInList(DunamiteClon dunamite)
         {
@@ -38,11 +32,5 @@ namespace Dunamites
             Dunamites.Clear();
             changeList?.Invoke();
         }
-        private void ChangeColliders()
-        {
-            for (int i = 0; i < Dunamites.Count; i++)
-                Dunamites[i].MyBoxColl.enabled = _bh.CanActiveCollier;
-        }
-        private void OnDestroy() => BuildHouse.ChMode -= this.ChangeColliders;
     }
 }

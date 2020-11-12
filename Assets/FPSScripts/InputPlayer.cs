@@ -1,7 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
 using InventoryAndItems;
-using System;
 
 public sealed class InputPlayer : MonoBehaviour
 {
@@ -16,6 +15,7 @@ public sealed class InputPlayer : MonoBehaviour
     [SerializeField] internal Dunamites.DunamiteField DunamiteFieldCs;
 
     [SerializeField] private Transform _holderObject;
+    [SerializeField] internal RectTransform _holdSlider;
 
     private void OnEnable() => HelpingText.enabled = false;
     private void Start()

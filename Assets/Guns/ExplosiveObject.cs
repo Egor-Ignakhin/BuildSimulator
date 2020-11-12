@@ -6,6 +6,7 @@ public abstract class ExplosiveObject : MonoBehaviour//Классы, насле�
     public float Raduis = 2.2f;
     public float Power = 2.75f;
     protected ObjectDown _objectDown;
+    internal abstract byte Type { get; }
 
     protected virtual void Start()
     {

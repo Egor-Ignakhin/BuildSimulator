@@ -63,11 +63,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Buildings\Dunamites\Detonator.cs" />
-    <Compile Include="Assets\Buildings\Dunamites\DunamiteClon.cs" />
-    <Compile Include="Assets\Buildings\Dunamites\DunamiteField.cs" />
-    <Compile Include="Assets\Buildings\Dunamites\DunamiteInteract.cs" />
-    <Compile Include="Assets\Buildings\Dunamites\DunamiteManager.cs" />
     <Compile Include="Assets\Buildings\Scripts\BaseBlock.cs" />
     <Compile Include="Assets\Buildings\Scripts\BlocksLoader.cs" />
     <Compile Include="Assets\Buildings\Scripts\BuildHouse.cs" />
@@ -84,6 +79,11 @@
     <Compile Include="Assets\FPSScripts\PlayerCheckPoint.cs" />
     <Compile Include="Assets\FPSScripts\PlayerStatements.cs" />
     <Compile Include="Assets\FpsCount.cs" />
+    <Compile Include="Assets\Guns\Dunamites\Detonator.cs" />
+    <Compile Include="Assets\Guns\Dunamites\DunamiteClon.cs" />
+    <Compile Include="Assets\Guns\Dunamites\DunamiteField.cs" />
+    <Compile Include="Assets\Guns\Dunamites\DunamiteInteract.cs" />
+    <Compile Include="Assets\Guns\Dunamites\DunamiteManager.cs" />
     <Compile Include="Assets\Guns\ExplosiveObject.cs" />
     <Compile Include="Assets\Guns\FlameBarrel\BarrelsManager.cs" />
     <Compile Include="Assets\Guns\FlameBarrel\FlameBarrel.cs" />

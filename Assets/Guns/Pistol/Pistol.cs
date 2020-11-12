@@ -17,11 +17,10 @@ public sealed class Pistol : Gun
         _inventory = Inventory.Instance;
         Damage = 1;
     }
-    private void OnEnable()
-    {
-        MainInput.input_MouseButtonDown0 += this.Fire;  
-    }
-    private FlameBarrel _lastFlameBarrel;
+    private void OnEnable() => MainInput.input_MouseButtonDown0 += this.Fire;
+
+    private ExplosiveObject _lastExplosion;
+    private RetentionObject _lastRb;
     private void Fire()
     {
         if (Ammo > 0)
@@ -35,9 +34,11 @@ public sealed class Pistol : Gun
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                if (_lastFlameBarrel = hit.transform.GetComponent<FlameBarrel>())
+                if (_lastExplosion = hit.transform.GetComponent<ExplosiveObject>())
+                    Delay((int)(Vector3.Distance(hit.point, transform.position) * 2.5f),true);
+                else if (_lastRb = hit.transform.GetComponent<RetentionObject>())
                 {
-                    Delay((int)(Vector3.Distance(hit.point, transform.position) * 2.5f));
+                    Delay((int)(Vector3.Distance(hit.point, transform.position) * 2.5f),false);
                 }
 
             }
@@ -46,16 +47,15 @@ public sealed class Pistol : Gun
         }
     }
 
-    private async void Delay(int delay)
+    private async void Delay(int delay, bool isExplosion)
     {
         await Task.Delay(delay);
-
-        _lastFlameBarrel.Detonation();
+        if (isExplosion)
+            _lastExplosion.Detonation();
+        else
+            _lastRb._myRb.AddForce(transform.forward * Damage, ForceMode.Impulse);
     }
 
 
-    private void OnDisable()
-    {
-        MainInput.input_MouseButtonDown0 -= this.Fire;
-    }
+    private void OnDisable() => MainInput.input_MouseButtonDown0 -= this.Fire;
 }

@@ -18,19 +18,15 @@ public sealed class BuildHouse : MonoBehaviour
     private Camera _cam;
 
     private AudioSource _myAudioSource;
-    private BaseBlock _lastSelectedBlock;
+    private Color _lastMeshColor;
+    private MeshRenderer _lastMesh;
 
     private byte _selectBlock = 0;
     internal bool IsBuild { get; set; }
     internal bool IsDestroy { get; set; }
 
-    internal bool CanActiveCollier;//Активирует коллайдеры на динамитах
-
     [SerializeField] private LayerMask _layer;// buildings
 
-
-    internal delegate void ChangeMode();
-    internal static event ChangeMode ChMode;
 
     private void Awake() => _obDown = FindObjectOfType<ObjectDown>();
 
@@ -58,6 +54,7 @@ public sealed class BuildHouse : MonoBehaviour
         Inventory.changeItem += this.ChangeSelectedBlock;
     }
     private BaseBlock _hitBlock;//блок, в который попал луч
+    private ExplosiveObject _hitExplosive;//взрывчатка, в который попал луч
     private Ray ray;
     private void Update()
     {
@@ -67,26 +64,10 @@ public sealed class BuildHouse : MonoBehaviour
         if (IsBuild)
         {
             if (_inventory.SelectedItem != null)
-            {
-                CanActiveCollier = false;
-                ChMode?.Invoke();
                 Build();
-            }
         }
-        if (IsDestroy)
-        {
-            CanActiveCollier = true;
-            ChMode?.Invoke();
+        else if (IsDestroy)
             Destroy();
-        }
-        else
-        {
-            if (_lastSelectedBlock != null)
-            {
-                _lastSelectedBlock.ChangeColor(0);
-                _lastSelectedBlock = null;
-            }
-        }
     }
 
     #region Create || Destroy blocks
@@ -136,7 +117,7 @@ public sealed class BuildHouse : MonoBehaviour
                     }
                     else
                         _blockPos = hit.collider.transform.position + hit.normal;/////////////
-                    _blocks[_selectBlock].transform.rotation = hit.transform.rotation;
+                    _blocks[_selectBlock].transform.rotation =Quaternion.identity;
                 }
                 _blocks[_selectBlock].transform.position = _blockPos;
                 if (Input.GetMouseButtonDown(0))
@@ -183,7 +164,7 @@ public sealed class BuildHouse : MonoBehaviour
                 for (int i = 0; i < _blocks.Count; i++)
                     _blocks[i].SetActive(false);
                 IsBuild = false;
-                _lastSelectedBlock = null;
+                _lastMesh = null;
             }
             block.SetParent(_lastBlock != null ? _lastBlock.transform : hit.transform);
             return;
@@ -202,7 +183,7 @@ public sealed class BuildHouse : MonoBehaviour
                 for (int i = 0; i < _blocks.Count; i++)
                     _blocks[i].SetActive(false);
                 IsBuild = false;
-                _lastSelectedBlock = null;
+                _lastMesh = null;
             }
             return;
         }
@@ -219,7 +200,7 @@ public sealed class BuildHouse : MonoBehaviour
                 for (int i = 0; i < _blocks.Count; i++)
                     _blocks[i].SetActive(false);
                 IsBuild = false;
-                _lastSelectedBlock = null;
+                _lastMesh = null;
             }
             return;
         }
@@ -238,7 +219,7 @@ public sealed class BuildHouse : MonoBehaviour
             for (int i = 0; i < _instruments.Count; i++)
                 _instruments[i].SetActive(false);
             IsBuild = false;
-            _lastSelectedBlock = null;
+            _lastMesh = null;
         }
     }
     public void LoadBlock(Vector3 pos, Quaternion quat, string parent, byte type, string name)
@@ -255,6 +236,7 @@ public sealed class BuildHouse : MonoBehaviour
         newBaseBlock._obDown = _obDown;
 
         block.SetParent(trueParent);
+        block.rotation = quat;
         block.gameObject.SetActive(true);
 
         block.name = name;
@@ -263,30 +245,49 @@ public sealed class BuildHouse : MonoBehaviour
     private void Destroy()
     {
         ray = _cam.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, 10, _layer))
+        if (Physics.Raycast(ray, out RaycastHit hit, 10))
         {
             if (_hitBlock = hit.transform.GetComponent<BaseBlock>())
             {
-                if (_lastSelectedBlock != null)
-                    _lastSelectedBlock.ChangeColor(0);
+                if (_lastMesh != null)
+                    _lastMesh.material.color = _lastMeshColor;
 
-                _hitBlock.ChangeColor(3);
-                _lastSelectedBlock = _hitBlock;
+                _lastMesh = _hitBlock.GetComponent<MeshRenderer>();
+                _lastMeshColor = _lastMesh.material.color;
+                _lastMesh.material.color = new TransparentColors(3).color;
 
                 if (Input.GetMouseButtonDown(0))
-                    DestroyBlock(hit);
+                    DestroyBlock(hit,false);
+            }
+            else if (_hitExplosive = hit.transform.GetComponent<ExplosiveObject>())
+            {
+
+                if (_lastMesh != null)
+                    _lastMesh.material.color = _lastMeshColor;
+
+                _lastMesh = _hitExplosive.GetComponent<MeshRenderer>();
+                _lastMeshColor = _lastMesh.material.color;
+                _lastMesh.material.color = new TransparentColors(3).color;
+
+                if (Input.GetMouseButtonDown(0))
+                    DestroyBlock(hit,true);
             }
             else
             {
-                if (_lastSelectedBlock != null)
-                    _lastSelectedBlock.ChangeColor(0);
+                if (_lastMesh != null)
+                    _lastMesh.material.color = _lastMeshColor;
             }
         }
     }
-    
-    private void DestroyBlock(RaycastHit hit)
+
+    private void DestroyBlock(RaycastHit hit, bool isExplosive)
     {
-        _myAudioSource.clip = SoundsDestroy[_hitBlock.Type];
+        if (isExplosive)
+        {
+            if (_hitExplosive.Type == 255)
+                return;
+        }
+        _myAudioSource.clip = isExplosive ? SoundsDestroy[_hitExplosive.Type] : SoundsDestroy[_hitBlock.Type];
 
         float lastVolume = Assets.AdvancedSettings.SoundVolume * 0.01f;
         float Volume = Random.Range(0.5f, 1f);// музыкальный эффект 
@@ -294,11 +295,25 @@ public sealed class BuildHouse : MonoBehaviour
         _myAudioSource.spatialBlend = Volume / 95;
         _myAudioSource.Play();
 
+        if (isExplosive)
+        {
+            if (_hitExplosive.Type == 3)
+            {
+                Destroy(_hitExplosive.transform.parent.gameObject);
+                return;
+            }
+        }
         Destroy(hit.transform.gameObject);
     }
     #endregion
     public void ChangeSelectedBlock()
     {
+        if (_lastMesh != null)
+        {
+            _lastMesh.material.color = _lastMeshColor;
+            _lastMesh = null;
+            IsDestroy = false;
+        }
         if (_inventory.SelectedItem == null)
         {
             for (int i = 0; i < _blocks.Count; i++)
@@ -313,20 +328,23 @@ public sealed class BuildHouse : MonoBehaviour
         if (_selectBlock != 255)
         {
             if (_selectBlock == 10)
+            {
                 _instruments[0].SetActive(false);
+                IsDestroy = false;
+            }
             else if (_selectBlock == 11)
                 _instruments[1].SetActive(false);
-            else if(_selectBlock == 12)
+            else if (_selectBlock == 12)
                 _instruments[2].SetActive(false);
-            else if( _selectBlock == 13)// is a rockets
+            else if (_selectBlock == 13)// is a rockets
             {
 
             }
-            else if(_selectBlock == 14)//pistol
+            else if (_selectBlock == 14)//pistol
             {
                 _instruments[3].SetActive(false);
             }
-            else if(_selectBlock == 15)// it's a bullet for pistol
+            else if (_selectBlock == 15)// it's a bullet for pistol
             {
 
             }
@@ -413,7 +431,7 @@ public sealed class BuildHouse : MonoBehaviour
             return;
         IsBuild = true;
         IsDestroy = false;
-        _lastSelectedBlock = _blocksCs[_selectBlock];
+        _lastMesh = _blocksCs[_selectBlock].GetComponent<MeshRenderer>();
         _blocks[_selectBlock].SetActive(true);
 
     }
@@ -426,7 +444,12 @@ public sealed class BuildHouse : MonoBehaviour
         for (int i = 0; i < _instruments.Count; i++)
             _instruments[i].SetActive(false);
         IsBuild = false;
-        _lastSelectedBlock = null;
+        IsDestroy = false;
+        if (_lastMesh)
+        {
+            _lastMesh.material.color = _lastMeshColor;
+            _lastMesh = null;
+        }
     }
     private void OnDestroy() => Inventory.changeItem -= this.ChangeSelectedBlock;
 }

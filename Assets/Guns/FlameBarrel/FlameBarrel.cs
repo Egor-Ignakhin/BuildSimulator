@@ -5,6 +5,8 @@ public class FlameBarrel : ExplosiveObject
     private AudioSource _myAud;
     private Rigidbody _myRb;
     internal CapsuleCollider _myCollider { get; private set; }
+
+    internal override byte Type => 4;
     private void Awake()
     {
         Raduis = 2.25f;

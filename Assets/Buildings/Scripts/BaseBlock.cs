@@ -3,7 +3,7 @@
 public sealed class BaseBlock : MonoBehaviour
 {
     public bool IsBlock = true;
-    [Range(0, 5)] public int Type;
+    [Range(0, 6)] public int Type;
     private Renderer myRend;
     internal Rigidbody _myRb { get; private set; }
     internal ObjectDown _obDown { get; set; }

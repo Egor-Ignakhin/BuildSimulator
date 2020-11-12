@@ -8,6 +8,8 @@ namespace Dunamites
         private AudioClip _boom, _tick;
         internal BoxCollider MyBoxColl { get; private set; }
 
+        internal override byte Type => 3;
+
         private float timerToExplosion;
         internal float TimerToExplosion
         {
@@ -44,9 +46,11 @@ namespace Dunamites
             _tick = FindObjectOfType<DunamiteManager>()._timerTickClip;
             _boom = FindObjectOfType<DunamiteManager>()._boomClip;
             gameObject.AddComponent<DunamiteInteract>().MyDunamite = this;
+            Destroy(transform.parent.GetComponent<BaseBlock>());
 
         }
         internal bool _isManagerStart { get; set; }
+
         internal override void Detonation()
         {
             if(_isManagerStart == false)

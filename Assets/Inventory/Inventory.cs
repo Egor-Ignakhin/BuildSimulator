@@ -5,7 +5,7 @@ namespace InventoryAndItems
 {
     public sealed class Inventory : Singleton<Inventory>
     {
-        public const byte TypesCount = 6;//всего блоков в игре
+        public const byte TypesCount = 7;//всего блоков в игре
 
         private RectTransform _myRt;//рект-трансформ объекта
 
@@ -23,6 +23,7 @@ namespace InventoryAndItems
                 if (value == null)
                 {
                     _bh.DeactiveAll();
+                    SelectedSlot = null;
                     return;
                 }
                 LastParentOfObject = (RectTransform)value.parent;
@@ -63,17 +64,16 @@ namespace InventoryAndItems
             get => _selectedSlot;
             set
             {
-                _selectedSlot = value;
                 if (value != null)
-                {
                     SelectedItem = value.transform.GetChild(0).GetComponent<ImageInv>();
-                    changeItem?.Invoke();
-                }
                 else
                 {
                     SelectedItem = null;
-                    changeItem?.Invoke();
+                    if(_selectedSlot)
+                        SelectedSlot.SelectMe(true);
                 }
+                _selectedSlot = value;
+                changeItem?.Invoke();
             }
         }
 
@@ -230,7 +230,6 @@ namespace InventoryAndItems
                 }
                 SelectedSlot = _fastSlots[number];
                 SelectedSlot.SelectMe(false);
-
             }
         }
         public void OnDrag(RectTransform item)//пока удерживается слот
