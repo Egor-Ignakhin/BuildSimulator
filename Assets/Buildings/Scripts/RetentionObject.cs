@@ -27,7 +27,6 @@ public sealed class RetentionObject : Interacteble// навесив этот к�
                 _force -= Time.deltaTime;
         }
 
-        Debug.Log(_force);
         if (Input.GetKey(inputPlayer._getItemKey))        
             inputPlayer.HoldObject(_myRb);        
         else
