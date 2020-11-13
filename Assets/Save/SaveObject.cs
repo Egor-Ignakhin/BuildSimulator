@@ -4,13 +4,17 @@ public sealed class SaveObject : MonoBehaviour
 {
     private void Start()
     {
-        FindObjectOfType<SaveObjectsManager>().Objects.Add(this);
+        if (!FindObjectOfType<ObjectDown>()._isMission)
+            FindObjectOfType<SaveObjectsManager>().Objects.Add(this);
     }
     private void OnDestroy()
     {
-        if (FindObjectOfType<SaveObjectsManager>())
+        if (!FindObjectOfType<ObjectDown>()._isMission)
         {
-            FindObjectOfType<SaveObjectsManager>().Objects.Remove(this);
+            if (FindObjectOfType<SaveObjectsManager>())
+            {
+                FindObjectOfType<SaveObjectsManager>().Objects.Remove(this);
+            }
         }
     }
 }

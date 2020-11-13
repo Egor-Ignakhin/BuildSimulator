@@ -40,8 +40,6 @@ namespace InventoryAndItems
         {
             Type = type;
             ItemsCount = itemsCount;
-            if (_isBlock)
-                GetComponent<Renderer>().material = _manager.GetMaterial(Type);
         }
         public void GetItem() => gameObject.SetActive(false);
 

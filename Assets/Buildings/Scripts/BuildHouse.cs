@@ -26,6 +26,7 @@ public sealed class BuildHouse : MonoBehaviour
     internal bool IsDestroy { get; set; }
 
     [SerializeField] private LayerMask _layer;// buildings
+    private MainInput _mainInput;
 
 
     private void Awake() => _obDown = FindObjectOfType<ObjectDown>();
@@ -34,6 +35,7 @@ public sealed class BuildHouse : MonoBehaviour
     {
         _myAudioSource = GetComponent<AudioSource>();
         _myAudioSource.volume = Assets.AdvancedSettings.SoundVolume * 0.01f;
+        _mainInput = MainInput.Instance;
     }
     private void Start()
     {
