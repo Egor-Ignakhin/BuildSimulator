@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBlock: 1
-  _startType: 4
+  _startType: 3
   _startItemsCount: 1
 --- !u!65 &7750521945586997032
 BoxCollider:

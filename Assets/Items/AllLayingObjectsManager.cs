@@ -9,8 +9,6 @@ namespace InventoryAndItems
         private readonly float _multiply = 0.025f;
         public static AllLayingObjectsManager Manager { get; private set; }
 
-        public Material[] Materials = new Material[Inventory.TypesCount + 1];
-
         private IEnumerator Rotater()
         {
             while (true)
@@ -31,17 +29,5 @@ namespace InventoryAndItems
         }
         public void AddInList(LayingItem item) => _layingItems.Add(item);
         public void RemoveInList(LayingItem item) => _layingItems.Remove(item);
-        public Material GetMaterial(byte typeObject)
-        {
-            try
-            {
-                return Materials[typeObject];
-            }
-            catch (System.IndexOutOfRangeException)
-            {
-                Debug.LogError("In AllLayingObjectsManager slot of material is null!");
-            }
-            return Materials[0];
-        }
     }
 }

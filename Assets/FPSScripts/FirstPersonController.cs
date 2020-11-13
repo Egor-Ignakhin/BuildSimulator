@@ -11,12 +11,10 @@ public sealed class FirstPersonController :MonoBehaviour ,ILooking
     #region Variables
 
     #region Look Settings
-    private bool EnableCameraMovement = true;//возможность вращать камеру
-
     public float VerticalRotationRange { get; set; } = 0f;
-    public float HeadMaxY { get; set; }
-    public float HeadMinY { get; set; }
-    public int Sensitivity { get; set; } = 10;
+    public float HeadMaxY { get; set; } = 90;
+    public float HeadMinY { get; set; } = -90;
+    public int Sensitivity { get; set; } = 3;
     public float FOVToMouseSensitivity { get; private set; } = 1f;
     public float CameraSmoothing { get; private set; } = 5f;
 
@@ -98,7 +96,8 @@ public sealed class FirstPersonController :MonoBehaviour ,ILooking
     private void Awake()
     {
         #region Movement Settings - Awake
-       
+
+        PlayerCamera = Camera.main;
         JumpPowerInternal = JumpPower;
         capsule = GetComponent<CapsuleCollider>();
         IsGrounded = true;
@@ -155,25 +154,22 @@ public sealed class FirstPersonController :MonoBehaviour ,ILooking
             return;
         #region Look Settings - Update
 
-        if (EnableCameraMovement)
-        {
-            float camFOV = PlayerCamera.fieldOfView;
-            float mouseYInput =  Input.GetAxis("Mouse Y");
-            float mouseXInput =  Input.GetAxis("Mouse X");
+        float camFOV = PlayerCamera.fieldOfView;
+        float mouseYInput = Input.GetAxis("Mouse Y");
+        float mouseXInput = Input.GetAxis("Mouse X");
 
-            if (targetAngles.y > 180) { targetAngles.y -= 360; followAngles.y -= 360; } else if (targetAngles.y < -180) { targetAngles.y += 360; followAngles.y += 360; }
-            if (targetAngles.x > 180) { targetAngles.x -= 360; followAngles.x -= 360; } else if (targetAngles.x < -180) { targetAngles.x += 360; followAngles.x += 360; }
+        if (targetAngles.y > 180) { targetAngles.y -= 360; followAngles.y -= 360; } else if (targetAngles.y < -180) { targetAngles.y += 360; followAngles.y += 360; }
+        if (targetAngles.x > 180) { targetAngles.x -= 360; followAngles.x -= 360; } else if (targetAngles.x < -180) { targetAngles.x += 360; followAngles.x += 360; }
 
-            targetAngles.y += mouseXInput * (Sensitivity - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);//rotate camera
+        targetAngles.y += mouseXInput * (Sensitivity - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);//rotate camera
 
-            targetAngles.x += mouseYInput * (Sensitivity - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);
+        targetAngles.x += mouseYInput * (Sensitivity - ((baseCamFOV - camFOV) * FOVToMouseSensitivity) / 6f);
 
-            targetAngles.x = Mathf.Clamp(targetAngles.x, -0.5f * VerticalRotationRange, 0.5f * VerticalRotationRange);
-            followAngles = Vector3.SmoothDamp(followAngles, targetAngles, ref followVelocity, (CameraSmoothing) / 100);
+        targetAngles.x = Mathf.Clamp(targetAngles.x, -0.5f * VerticalRotationRange, 0.5f * VerticalRotationRange);
+        followAngles = Vector3.SmoothDamp(followAngles, targetAngles, ref followVelocity, (CameraSmoothing) / 100);
 
-            PlayerCamera.transform.localRotation = Quaternion.Euler(-followAngles.x + originalRotation.x, 0, 0);
-            transform.localRotation = Quaternion.Euler(0, followAngles.y + originalRotation.y, 0);
-        }
+        PlayerCamera.transform.localRotation = Quaternion.Euler(-followAngles.x + originalRotation.x, 0, 0);
+        transform.localRotation = Quaternion.Euler(0, followAngles.y + originalRotation.y, 0);
 
         #endregion
 

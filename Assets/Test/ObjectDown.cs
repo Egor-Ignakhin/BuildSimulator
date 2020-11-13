@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public sealed class ObjectDown : MonoBehaviour
 {
+    [SerializeField] internal bool _isMission = false;
     [SerializeField] private AudioSource _bgAudio, _boomSource;
     [SerializeField] private Image _bGImage;
 
@@ -24,16 +25,22 @@ public sealed class ObjectDown : MonoBehaviour
     private void OnEnable() => _bgAudio.volume = AdvancedSettings.SoundVolume * 0.01f;
     private void Start()
     {
-        slider.value = _timeToBoom;
+        if (!_isMission)
+        {
+            slider.value = _timeToBoom;
+            MainInput._input_GetP += this.Ignition;
+            MainInput._input_UpP += this.Suppresion;
+        }
         _bH = (BuildHouse)FindObjectOfType(typeof(BuildHouse));
-        MainInput._input_GetP += this.Ignition;
-        MainInput._input_UpP += this.Suppresion;
         StartCoroutine(nameof(Checker));
     }
 
     private void Ignition()
     {
         if (GameMenu.ActiveGameMenu)
+            return;
+
+        if (_isMission)
             return;
 
         _timeToBoom += 1 * Time.deltaTime;
@@ -52,7 +59,6 @@ public sealed class ObjectDown : MonoBehaviour
             MainInput._input_GetP -= this.Ignition;
             MainInput._input_UpP -= this.Suppresion;
         }
-        slider.value = _timeToBoom;
     }
     private void Suppresion()
     {
@@ -95,8 +101,11 @@ public sealed class ObjectDown : MonoBehaviour
     }
     private void OnDestroy()
     {
-        MainInput._input_GetP -= this.Ignition;
-        MainInput._input_UpP -= this.Suppresion;
+        if (!_isMission)
+        {
+            MainInput._input_GetP -= this.Ignition;
+            MainInput._input_UpP -= this.Suppresion;
+        }
     }
 
     private readonly List<MonoBehaviour> _returnedObjects = new List<MonoBehaviour>();
