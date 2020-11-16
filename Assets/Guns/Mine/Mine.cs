@@ -11,7 +11,8 @@ public sealed class Mine : ExplosiveObject
 
     private void Awake()
     {
-        Raduis = 1.75f;
+        Raduis = 2;
+        RaduisExplosion = 3.75f;
         Power = 4;
     }
     protected override void Start()
@@ -21,13 +22,16 @@ public sealed class Mine : ExplosiveObject
         _myAud.clip = FindObjectOfType<MinesManager>().DetonationClip;
         _myRb = gameObject.AddComponent<Rigidbody>();
         gameObject.AddComponent<RetentionObject>();
+        transform.SetParent(_objectDown.transform);
+        Destroy(GetComponent<BaseBlock>());
+        GetComponent<MeshCollider>().isTrigger = false;
         SleppForPlaint();
     }
     protected override void FindNearestObjects() => base.FindNearestObjects();
 
     private async void SleppForPlaint()
     {
-        await Task.Delay(1000);
+        await Task.Delay(500);
         _sensivity = 0.0005f;
     }
     internal override void Detonation()

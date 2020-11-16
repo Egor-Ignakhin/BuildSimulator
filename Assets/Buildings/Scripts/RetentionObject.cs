@@ -13,7 +13,12 @@ public sealed class RetentionObject : Interacteble// навесив этот к�
 
         if(_force > 0.005f)
         {
+            inputPlayer._holdSlider.parent.parent.gameObject.SetActive(true);
             inputPlayer._holdSlider.localScale = new Vector2( _force * 0.1f,1);
+        }
+        else
+        {
+            inputPlayer._holdSlider.parent.parent.gameObject.SetActive(false);
         }
 
         if (Input.GetMouseButton(2))
@@ -37,6 +42,7 @@ public sealed class RetentionObject : Interacteble// навесив этот к�
             _myRb.AddForce(inputPlayer.transform.forward * _force * 100);
             _force = 0;
             inputPlayer._holdSlider.localScale = new Vector2(_force * 0.1f, 1);
+            inputPlayer._holdSlider.parent.parent.gameObject.SetActive(false);
         }
     }
 }

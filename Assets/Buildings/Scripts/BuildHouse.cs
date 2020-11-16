@@ -18,8 +18,6 @@ public sealed class BuildHouse : MonoBehaviour
     private Camera _cam;
 
     private AudioSource _myAudioSource;
-    private Color _lastMeshColor;
-    private MeshRenderer _lastMesh;
 
     private byte _selectBlock = 0;
     internal bool IsBuild { get; set; }
@@ -27,7 +25,7 @@ public sealed class BuildHouse : MonoBehaviour
 
     [SerializeField] private LayerMask _layer;// buildings
     private MainInput _mainInput;
-
+    public List<Material> materials = new List<Material>();
 
     private void Awake() => _obDown = FindObjectOfType<ObjectDown>();
 
@@ -46,10 +44,6 @@ public sealed class BuildHouse : MonoBehaviour
         {
             _blocksCs.Add(_blocks[i].GetComponent<BaseBlock>());
             _blocksCs[i].OnEnable();
-        }
-
-        for (int i = 0; i < _blocks.Count; i++)
-        {
             _blocks[i].SetActive(false);
         }
 
@@ -70,6 +64,14 @@ public sealed class BuildHouse : MonoBehaviour
         }
         else if (IsDestroy)
             Destroy();
+        else
+        {
+            if (_lastRenderer != null)
+            {
+                _lastRenderer.sharedMaterial = _lastSharedMaterial;
+                _lastRenderer = null;
+            }
+        }
     }
 
     #region Create || Destroy blocks
@@ -84,7 +86,7 @@ public sealed class BuildHouse : MonoBehaviour
         ray = _cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 10, _layer))
         {
-            _blocksCs[_selectBlock].ChangeColor((byte) (_inventory.SelectedItem.ItemsCount > 0?1:2));
+            _blocksCs[_selectBlock].ChangeColor((byte)(_inventory.SelectedItem.ItemsCount > 0 ? 1 : 2));
 
             if ((_lastBlock = hit.transform.GetComponent<BaseBlock>()) || (_lastGreed = hit.transform.GetComponent<Greed>()))
             {
@@ -118,8 +120,8 @@ public sealed class BuildHouse : MonoBehaviour
                         _blockPos.y += 0.5f;
                     }
                     else
-                        _blockPos = hit.collider.transform.position + hit.normal;/////////////
-                    _blocks[_selectBlock].transform.rotation =Quaternion.identity;
+                        _blockPos = hit.collider.transform.position + hit.normal;
+                    _blocks[_selectBlock].transform.rotation = Quaternion.identity;
                 }
                 _blocks[_selectBlock].transform.position = _blockPos;
                 if (Input.GetMouseButtonDown(0))
@@ -130,13 +132,10 @@ public sealed class BuildHouse : MonoBehaviour
                         _blocksCs[_selectBlock].ChangeColor(1);
                     }
                     else
-                    {
-                        Debug.Log("Count items = 0");
                         _blocksCs[_selectBlock].ChangeColor(2);
-                    }
                 }
                 _lastGreed = null;
-            } 
+            }
         }
         else
         {
@@ -156,63 +155,8 @@ public sealed class BuildHouse : MonoBehaviour
 
         Transform block = Instantiate(_blocks[_selectBlock].transform, _blockPos, _blocks[_selectBlock].transform.rotation);//инстанс
         block.gameObject.layer = 8;
+        block.GetComponent<MeshRenderer>().sharedMaterial = materials[_selectBlock];
 
-        if (_blocksCs[_selectBlock].Type == 3)//dunamite
-        {
-            block.GetComponent<Renderer>().material.color = new Color(1, 1, 1, 1);
-            block.GetChild(0).gameObject.AddComponent<Dunamites.DunamiteClon>();
-            if (_inventory.SelectedItem == null)
-            {
-                for (int i = 0; i < _blocks.Count; i++)
-                    _blocks[i].SetActive(false);
-                IsBuild = false;
-                _lastMesh = null;
-            }
-            block.SetParent(_lastBlock != null ? _lastBlock.transform : hit.transform);
-            return;
-        }
-
-        else if (_blocksCs[_selectBlock].Type == 4)// flame barrel
-        {
-            block.SetParent(_obDown.transform);
-            block.gameObject.AddComponent<FlameBarrel>();
-            block.GetComponent<Renderer>().material.color = new Color(1, 0, 0, 1);
-            Destroy(block.GetComponent<BaseBlock>());
-                block.GetComponent<CapsuleCollider>().isTrigger = false;
-
-            if (_inventory.SelectedItem == null)
-            {
-                for (int i = 0; i < _blocks.Count; i++)
-                    _blocks[i].SetActive(false);
-                IsBuild = false;
-                _lastMesh = null;
-            }
-            return;
-        }
-        else if(_blocksCs[_selectBlock].Type == 5)
-        {
-            block.SetParent(_obDown.transform);
-            block.gameObject.AddComponent<Mine>();
-            block.GetComponent<Renderer>().material.color = new Color(0.6f, 0.44f, 0.44f, 1);
-            Destroy(block.GetComponent<BaseBlock>());
-            block.GetComponent<MeshCollider>().isTrigger = false;
-
-            if (_inventory.SelectedItem == null)
-            {
-                for (int i = 0; i < _blocks.Count; i++)
-                    _blocks[i].SetActive(false);
-                IsBuild = false;
-                _lastMesh = null;
-            }
-            return;
-        }
-
-        block.SetParent(_lastBlock != null ? _lastBlock.transform.parent.parent.GetChild(1) : hit.transform.parent.GetChild(1));
-
-        BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
-        newBaseBlock.enabled = true;
-        if(block.GetComponent<BoxCollider>())
-            block.GetComponent<BoxCollider>().isTrigger = false;
 
         if (_inventory.SelectedItem == null)
         {
@@ -221,63 +165,98 @@ public sealed class BuildHouse : MonoBehaviour
             for (int i = 0; i < _instruments.Count; i++)
                 _instruments[i].SetActive(false);
             IsBuild = false;
-            _lastMesh = null;
         }
+
+        if (_blocksCs[_selectBlock].Type == 3)//dunamite
+        {
+            block.gameObject.AddComponent<Dunamites.DunamiteClon>();
+            block.SetParent(_lastBlock != null ? _lastBlock.transform : hit.transform);
+            return;
+        }
+        else if (_blocksCs[_selectBlock].Type == 4)// flame barrel
+        {
+            block.gameObject.AddComponent<FlameBarrel>();
+            return;
+        }
+        else if (_blocksCs[_selectBlock].Type == 5)// mine
+        {
+            block.gameObject.AddComponent<Mine>();
+            return;
+        }
+
+        block.SetParent(_lastBlock != null ? _lastBlock.transform.parent.parent.GetChild(1) : hit.transform.parent.GetChild(1));
+        BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
+        newBaseBlock.enabled = true;
+        newBaseBlock.ObDown = _obDown;
+        block.GetComponent<BoxCollider>().isTrigger = false;
     }
     public void LoadBlock(Vector3 pos, Quaternion quat, string parent, byte type, string name)
     {
         Transform trueParent = GameObject.Find(parent).transform;
         trueParent = trueParent.GetChild(0).GetChild(1);//Специальный контейнер для блоков
-        
+
         Transform block = Instantiate(_blocks[type].transform, pos, quat);//инстанс
 
         block.gameObject.layer = 8;
         BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
         newBaseBlock.enabled = true;
         block.GetComponent<BoxCollider>().isTrigger = false;
-        newBaseBlock._obDown = _obDown;
+        newBaseBlock.ObDown = _obDown;
 
         block.SetParent(trueParent);
-        block.rotation = quat;
         block.gameObject.SetActive(true);
-
         block.name = name;
     }
-
-    private void Destroy()
+    private Material _lastSharedMaterial;// это для того, что бы память не выделялась для каждого отдельного объекта, а считывала все как один
+    private MeshRenderer _lastRenderer;// то же самое
+    private void Destroy()// методе мы проверяем можно ли удалять объект, и если можно, то удаляем
     {
         ray = _cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 10))
         {
             if (_hitBlock = hit.transform.GetComponent<BaseBlock>())
             {
-                if (_lastMesh != null)
-                    _lastMesh.material.color = _lastMeshColor;
+                if (!_lastRenderer || _lastRenderer.GetHashCode() != _hitBlock.GetComponent<MeshRenderer>().GetHashCode())
+                {
+                    if (_lastRenderer != null)
+                        _lastRenderer.sharedMaterial = _lastSharedMaterial;
 
-                _lastMesh = _hitBlock.GetComponent<MeshRenderer>();
-                _lastMeshColor = _lastMesh.material.color;
-                _lastMesh.material.color = new TransparentColors(3).color;
-
+                    _lastRenderer = _hitBlock.GetComponent<MeshRenderer>();
+                    _lastSharedMaterial = _lastRenderer.sharedMaterial;
+                    _lastRenderer.material.color = new TransparentColors(3).color;
+                }
                 if (Input.GetMouseButtonDown(0))
-                    DestroyBlock(hit,false);
+                    DestroyBlock(hit, false);
             }
             else if (_hitExplosive = hit.transform.GetComponent<ExplosiveObject>())
             {
+                if (!_lastRenderer || _lastRenderer.GetHashCode() != _hitExplosive.GetComponent<MeshRenderer>().GetHashCode())
+                {
+                    if (_lastRenderer != null)
+                        _lastRenderer.sharedMaterial = _lastSharedMaterial;
 
-                if (_lastMesh != null)
-                    _lastMesh.material.color = _lastMeshColor;
-
-                _lastMesh = _hitExplosive.GetComponent<MeshRenderer>();
-                _lastMeshColor = _lastMesh.material.color;
-                _lastMesh.material.color = new TransparentColors(3).color;
-
+                    _lastRenderer = _hitExplosive.GetComponent<MeshRenderer>();
+                    _lastSharedMaterial = _lastRenderer.sharedMaterial;
+                    _lastRenderer.material.color = new TransparentColors(3).color;
+                }
                 if (Input.GetMouseButtonDown(0))
-                    DestroyBlock(hit,true);
+                    DestroyBlock(hit, true);
             }
             else
             {
-                if (_lastMesh != null)
-                    _lastMesh.material.color = _lastMeshColor;
+                if (_lastRenderer != null)
+                {
+                    _lastRenderer.sharedMaterial = _lastSharedMaterial;
+                    _lastRenderer = null;
+                }
+            }
+        }
+        else
+        {
+            if (_lastRenderer != null)
+            {
+                _lastRenderer.sharedMaterial = _lastSharedMaterial;
+                _lastRenderer = null;
             }
         }
     }
@@ -308,136 +287,61 @@ public sealed class BuildHouse : MonoBehaviour
         Destroy(hit.transform.gameObject);
     }
     #endregion
-    public void ChangeSelectedBlock()
+    public void ChangeSelectedBlock()// при смене предмета в руке мы сначал всё выключаем а потом включаем нужное
     {
-        if (_lastMesh != null)
+        if (_lastRenderer != null)
         {
-            _lastMesh.material.color = _lastMeshColor;
-            _lastMesh = null;
-            IsDestroy = false;
+            _lastRenderer.sharedMaterial = _lastSharedMaterial;
+            _lastRenderer = null;
         }
+        for (int i = 0; i < _blocks.Count; i++)
+            _blocks[i].SetActive(false);
+        for (int i = 0; i < _instruments.Count; i++)
+            _instruments[i].SetActive(false);
+        IsBuild = false;
+        IsDestroy = false;
+
         if (_inventory.SelectedItem == null)
-        {
-            for (int i = 0; i < _blocks.Count; i++)
-                _blocks[i].SetActive(false);
-            for (int i = 0; i < _instruments.Count; i++)
-                _instruments[i].SetActive(false);
-            IsBuild = false;
-            IsDestroy = false;
             return;
-        }
 
-        if (_selectBlock != 255)
-        {
-            if (_selectBlock == 10)
-            {
-                _instruments[0].SetActive(false);
-                IsDestroy = false;
-            }
-            else if (_selectBlock == 11)
-                _instruments[1].SetActive(false);
-            else if (_selectBlock == 12)
-                _instruments[2].SetActive(false);
-            else if (_selectBlock == 13)// is a rockets
-            {
-
-            }
-            else if (_selectBlock == 14)//pistol
-            {
-                _instruments[3].SetActive(false);
-            }
-            else if (_selectBlock == 15)// it's a bullet for pistol
-            {
-
-            }
-            else
-            {
-                _blocks[_selectBlock].SetActive(false);
-            }
-        }
         _selectBlock = _inventory.SelectedItem.Type;
 
-        if(_inventory.SelectedItem.Type == 10)//molot
-        {           
-            IsBuild = false;
+        if (_inventory.SelectedItem.Type == 10)//molot
+        {
             IsDestroy = true;
-
             _instruments[0].SetActive(true);
-
-            for (int i = 0; i < _blocks.Count; i++)
-                _blocks[i].SetActive(false);
-
             return;
         }
 
         if (_inventory.SelectedItem.Type == 11)//detonator
         {
             _instruments[1].SetActive(true);
-
-            for (int i = 0; i < _blocks.Count; i++)
-                _blocks[i].SetActive(false);
-            IsBuild = false;
-            IsDestroy = false;
             return;
         }
 
         if (_inventory.SelectedItem.Type == 12)//RocketLauncher
         {
             _instruments[2].SetActive(true);
-
-            for (int i = 0; i < _blocks.Count; i++)
-                _blocks[i].SetActive(false);
-            IsBuild = false;
-            IsDestroy = false;
             return;
         }
 
         if (_inventory.SelectedItem.Type == 13)//Rocket
-        {
-            for (int i = 0; i < _instruments.Count; i++)
-                _instruments[i].SetActive(false);
-
-            for (int i = 0; i < _blocks.Count; i++)
-                _blocks[i].SetActive(false);
-            IsBuild = false;
-            IsDestroy = false;
             return;
-        }
 
         if (_inventory.SelectedItem.Type == 14)//Pistol
         {
-            for (int i = 0; i < _instruments.Count; i++)
-                _instruments[i].SetActive(false);
-
-            for (int i = 0; i < _blocks.Count; i++)
-                _blocks[i].SetActive(false);
-            IsBuild = false;
-            IsDestroy = false;
             _instruments[3].SetActive(true);
             return;
         }
-        if(_inventory.SelectedItem.Type == 15)// pistol bullet
-        {
-            for (int i = 0; i < _instruments.Count; i++)
-                _instruments[i].SetActive(false);
-
-            for (int i = 0; i < _blocks.Count; i++)
-                _blocks[i].SetActive(false);
-            IsBuild = false;
-            IsDestroy = false;
+        if (_inventory.SelectedItem.Type == 15)// pistol bullet
             return;
-        }
 
 
         if (_selectBlock == 255)
             return;
         IsBuild = true;
-        IsDestroy = false;
-        _lastMesh = _blocksCs[_selectBlock].GetComponent<MeshRenderer>();
         _blocks[_selectBlock].SetActive(true);
-
     }
-    
 
     internal void DeactiveAll()
     {
@@ -447,11 +351,6 @@ public sealed class BuildHouse : MonoBehaviour
             _instruments[i].SetActive(false);
         IsBuild = false;
         IsDestroy = false;
-        if (_lastMesh)
-        {
-            _lastMesh.material.color = _lastMeshColor;
-            _lastMesh = null;
-        }
     }
     private void OnDestroy() => Inventory.changeItem -= this.ChangeSelectedBlock;
 }

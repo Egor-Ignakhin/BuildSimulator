@@ -14,6 +14,7 @@ public sealed class Rocket : ExplosiveObject
     private void Awake()
     {
         Raduis = 2.2f;
+        RaduisExplosion = 4;
         Power = 2.75f;
     }
     protected override void Start()

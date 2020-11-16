@@ -31,7 +31,7 @@ namespace InventoryAndItems
         }// последний предмет который был передвинут
 
         private SlotLocation _lastParentOfObjectSlot;
-        private RectTransform _lastParentOfObject;//последний родитель сдвинутого объетка
+        private RectTransform _lastParentOfObject;//последний родитель сдвинутого объекта
         internal RectTransform LastParentOfObject
         {
             get => _lastParentOfObject;
@@ -83,6 +83,7 @@ namespace InventoryAndItems
         public ImageInv SelectedItem { get; private set; }
 
         private BuildHouse _bh;
+        private AllLayingObjectsManager _layingManager;
 
         #region instruments
         private RocketLauncher _rocketLauncher;
@@ -92,7 +93,8 @@ namespace InventoryAndItems
 
         private void Awake()
         {
-            _myRt = GetComponent<RectTransform>();
+            _layingManager = FindObjectOfType<AllLayingObjectsManager>();
+               _myRt = GetComponent<RectTransform>();
 
             for (int i = 0; i < transform.childCount; i++)
             {
@@ -158,9 +160,9 @@ namespace InventoryAndItems
             return false;
         }
 
-        public bool GetItem(byte type, byte count)
+        public bool GetItem(byte type, byte count)// метод используют классы, которые "покупают" предмет из инвентаря
         {
-            if (type == 13)//it's rocket
+            if (type == 13 || type == 15)//it's rocket or pistol bullets
             {
                 for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
                 {
@@ -171,19 +173,6 @@ namespace InventoryAndItems
                     }
                 }
             }
-
-            if (type == 15)
-            {
-                for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
-                {
-                    if (ItemsCs[i].Type == type)
-                    {
-                        ItemsCs[i].GetItem(count);
-                        return true;
-                    }
-                }
-            }
-
             return SelectedItem.GetItem(count);
         }
 
@@ -249,11 +238,16 @@ namespace InventoryAndItems
 
         public void OnDragUp()
         {
-            ChangePositionItem?.Invoke();
+            ChangePositionItem?.Invoke();// вызывается событие, подписанные слоты будут проверять близко ли от них предмет
             if (LastItem != null)
             {
-                if (LastItem.parent == transform)
+                if (LastItem.parent == transform)// если никакой из слотов не принял в себя предмет
                 {
+                    //выкидываем предмет
+                    ImageInv item = LastItem.GetComponent<ImageInv>();
+
+                    _layingManager.AddNewItem(item.Type, item.ItemsCount, _bh.transform.position);
+                    item.GetItem(255);
                     LastItem.SetParent(LastParentOfObject);
                     LastItem.position = LastParentOfObject.position;
                 }

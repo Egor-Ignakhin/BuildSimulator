@@ -267,5 +267,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isBlock: 1
-  _startType: 16
+  _startType: 5
   _startItemsCount: 5

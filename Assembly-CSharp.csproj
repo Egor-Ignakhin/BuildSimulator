@@ -65,12 +65,15 @@
   <ItemGroup>
     <Compile Include="Assets\Buildings\Scripts\BaseBlock.cs" />
     <Compile Include="Assets\Buildings\Scripts\BlocksLoader.cs" />
+    <Compile Include="Assets\Buildings\Scripts\BuildHouse.cs" />
     <Compile Include="Assets\Buildings\Scripts\Platforms\PlatformLoader.cs" />
+    <Compile Include="Assets\Buildings\Scripts\RetentionObject.cs" />
     <Compile Include="Assets\Buildings\Scripts\SaveObjectsManager.cs" />
     <Compile Include="Assets\Chanks\ChankVisible.cs" />
     <Compile Include="Assets\Chanks\SeePlayerChanks.cs" />
     <Compile Include="Assets\FPSScripts\Camera\CameraMove.cs" />
     <Compile Include="Assets\FPSScripts\Camera\CameraRotate.cs" />
+    <Compile Include="Assets\FPSScripts\FirstPersonController.cs" />
     <Compile Include="Assets\FPSScripts\InputPlayer.cs" />
     <Compile Include="Assets\FPSScripts\Interacteble.cs" />
     <Compile Include="Assets\FPSScripts\PlayerCheckPoint.cs" />
@@ -96,7 +99,9 @@
     <Compile Include="Assets\Inventory\Inventory.cs" />
     <Compile Include="Assets\Inventory\Singleton.cs" />
     <Compile Include="Assets\Inventory\SlotLocation.cs" />
+    <Compile Include="Assets\Items\AllLayingObjectsManager.cs" />
     <Compile Include="Assets\Items\InventoryActivator.cs" />
+    <Compile Include="Assets\Items\LayingItem.cs" />
     <Compile Include="Assets\MainInput.cs" />
     <Compile Include="Assets\Menu\ButtonInMenu.cs" />
     <Compile Include="Assets\Menu\DayNightMenu.cs" />
@@ -111,11 +116,13 @@
     <Compile Include="Assets\Menu\WorldLabel.cs" />
     <Compile Include="Assets\Menu\WorldLoader.cs" />
     <Compile Include="Assets\SHA1_Encode.cs" />
+    <Compile Include="Assets\Save\SaveObject.cs" />
     <Compile Include="Assets\Save\Saver.cs" />
     <Compile Include="Assets\Shop\Trader.cs" />
     <Compile Include="Assets\Shop\TraderInventory.cs" />
     <Compile Include="Assets\Test\GameMenu.cs" />
     <Compile Include="Assets\Test\Greed.cs" />
+    <Compile Include="Assets\Test\ObjectDown.cs" />
     <Compile Include="Assets\Water Float\Core\WaterFloat.cs" />
     <Compile Include="Assets\Water Float\Standard Assets\Environment\Water\Water\Scripts\Displace.cs" />
     <Compile Include="Assets\Water Float\Standard Assets\Environment\Water\Water\Scripts\GerstnerDisplace.cs" />

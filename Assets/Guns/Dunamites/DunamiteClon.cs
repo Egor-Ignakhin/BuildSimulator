@@ -29,7 +29,8 @@ namespace Dunamites
         private void Awake()
         {
             Raduis = 4;
-            Power = 4;
+            RaduisExplosion = 8;
+            Power = 4;            
         }
         protected override void Start()
         {
@@ -37,17 +38,16 @@ namespace Dunamites
             _manager = FindObjectOfType<DunamiteManager>();
             _manager.AddInList(this);
 
-            _childAud = transform.parent.GetChild(1).GetComponent<AudioSource>();
-            MyBoxColl = transform.parent.GetComponent<BoxCollider>();
-            _textTimer = transform.GetChild(0).GetComponent<TMPro.TextMeshPro>();
+            _childAud = transform.GetChild(1).GetComponent<AudioSource>();
+            MyBoxColl = transform.GetComponent<BoxCollider>();
+            _textTimer = transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshPro>();
             _textTimer.color = new Color(0, 0.5f, 0);
             TimerToExplosion = 0;
 
-            _tick = FindObjectOfType<DunamiteManager>()._timerTickClip;
-            _boom = FindObjectOfType<DunamiteManager>()._boomClip;
+            _tick = _manager._timerTickClip;
+            _boom = _manager._boomClip;
             gameObject.AddComponent<DunamiteInteract>().MyDunamite = this;
-            Destroy(transform.parent.GetComponent<BaseBlock>());
-
+            Destroy(GetComponent<BaseBlock>());         
         }
         internal bool _isManagerStart { get; set; }
 
@@ -91,10 +91,10 @@ namespace Dunamites
             _childAud.transform.GetChild(0).gameObject.SetActive(true);
             _childAud.clip = _boom;
             _childAud.Play();
+            _childAud.enabled = true;
             GetComponent<Renderer>().enabled = false;
-            transform.parent.GetComponent<Renderer>().enabled = false;
             Destroy(_childAud.gameObject, _childAud.clip.length + 1);
-            Destroy(transform.parent.gameObject, _childAud.clip.length + 1);
+            Destroy(gameObject, _childAud.clip.length + 1);
             CancelInvoke();
         }
     }

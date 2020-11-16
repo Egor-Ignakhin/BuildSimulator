@@ -109,7 +109,10 @@ public sealed class ObjectDown : MonoBehaviour
     }
 
     private readonly List<MonoBehaviour> _returnedObjects = new List<MonoBehaviour>();
-    public List<MonoBehaviour> GetNearestObject(Vector3 currentPosition,float radius)
+    /// <summary>
+    /// метод возвращает ближайшие блоки и взрывОбъекты
+    /// </summary>
+    public List<MonoBehaviour> GetNearestObject(Vector3 currentPosition,float radius,float radiusExplosion)
     {
         _returnedObjects.Clear();
         for (int i = 0; i < Objects.Count; i++)
@@ -120,7 +123,7 @@ public sealed class ObjectDown : MonoBehaviour
 
         for (int i = 0; i < Explosives.Count; i++)
         {
-            if (Vector3.Distance(currentPosition, Explosives[i].transform.position) < radius * 3)
+            if (Vector3.Distance(currentPosition, Explosives[i].transform.position) < radiusExplosion)
                 _returnedObjects.Add(Explosives[i]);
         }
 

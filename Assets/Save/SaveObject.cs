@@ -9,8 +9,10 @@ public sealed class SaveObject : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (!FindObjectOfType<ObjectDown>()._isMission)
+        if (FindObjectOfType<ObjectDown>())
         {
+            if (FindObjectOfType<ObjectDown>()._isMission)
+                return;
             if (FindObjectOfType<SaveObjectsManager>())
             {
                 FindObjectOfType<SaveObjectsManager>().Objects.Remove(this);

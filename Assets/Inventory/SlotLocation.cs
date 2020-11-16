@@ -69,5 +69,9 @@ namespace InventoryAndItems
         internal void SelectMe(bool isLast) => _myImage.color = isLast ? _myImage.color = new Color(1, 1, 1) : _myImage.color = new Color(0.25f, 0.5f, 1);
 
         internal void ClearSlot() => _itemCs.ChangeItemImage(255);//code key for clear
+        private void OnDestroy()
+        {
+            Inventory.ChangePositionItem -= this.NewDistance;
+        }
     }
 }

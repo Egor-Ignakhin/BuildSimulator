@@ -7,8 +7,8 @@ namespace InventoryAndItems
     {
         private readonly List<LayingItem> _layingItems = new List<LayingItem>();
         private readonly float _multiply = 0.025f;
-        public static AllLayingObjectsManager Manager { get; private set; }
 
+        public List<GameObject> Items = new List<GameObject>(16);
         private IEnumerator Rotater()
         {
             while (true)
@@ -22,12 +22,19 @@ namespace InventoryAndItems
                 yield return new WaitForSeconds(_multiply);
             }
         }
-        private void Awake()
-        {
-            Manager = this;
-            StartCoroutine(nameof(Rotater));
-        }
+        private void Awake() => StartCoroutine(nameof(Rotater));
         public void AddInList(LayingItem item) => _layingItems.Add(item);
         public void RemoveInList(LayingItem item) => _layingItems.Remove(item);
+        LayingItem layingItem;
+        internal void AddNewItem(byte type, byte count, Vector3 position)
+        {
+            GameObject newItem = Instantiate(Items[type], position, Items[type].transform.rotation);
+            newItem.transform.parent = transform;
+            layingItem = newItem.GetComponent<LayingItem>();
+            layingItem.Type = type;
+            layingItem.ItemsCount = count;
+            layingItem._startType = type;
+            layingItem._startItemsCount = count;
+        }
     }
 }

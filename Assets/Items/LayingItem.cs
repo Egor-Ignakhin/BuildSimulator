@@ -4,13 +4,13 @@ namespace InventoryAndItems
     public sealed class LayingItem : Interacteble
     {
         [SerializeField] private bool _isBlock;
-        [SerializeField] private byte _startType;
-        [SerializeField] private byte _startItemsCount;
+        [SerializeField] internal byte _startType;
+        [SerializeField] internal byte _startItemsCount;
         private LayerMask layers;
         private readonly float _stayPosY = 0.5f;
         private AllLayingObjectsManager _manager;
 
-        public byte Type { get; private set; }
+        public byte Type { get; set; }
         public byte ItemsCount { get; set; }
       
         private void OnEnable()
@@ -19,11 +19,13 @@ namespace InventoryAndItems
 
             layers = 1 << LayerMask.NameToLayer("Buildings");
 
-            ChangeType(_startType, _startItemsCount);
+            Type = _startType;
+            ItemsCount = _startItemsCount;
             _manager.AddInList(this);
         }
 
         public void RotateObject() => transform.eulerAngles += new Vector3(0, 1, 0);
+
         Ray ray;
         public void FindFloor()
         {
@@ -36,12 +38,7 @@ namespace InventoryAndItems
             }
         }
         private void OnDisable() => _manager.RemoveInList(this);
-        private void ChangeType(byte type, byte itemsCount)
-        {
-            Type = type;
-            ItemsCount = itemsCount;
-        }
-        public void GetItem() => gameObject.SetActive(false);
+        public void GetItem() => Destroy(gameObject);
 
         public override void Interact(InputPlayer inputPlayer) => inputPlayer.TakeItem(this);
     }

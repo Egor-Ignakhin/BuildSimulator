@@ -36,9 +36,7 @@ public sealed class PlatformLoader : MonoBehaviour
         for (int i = 0; i < MyObj.Length; i++)
         {
             if (MyObj[i].name == "FoundationPref")
-            {
                 platform = MyObj[i];
-            }
         }
         if (platform == null)
         {

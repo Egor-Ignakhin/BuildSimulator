@@ -104,6 +104,12 @@ namespace InventoryAndItems
         }
         public bool GetItem(byte count)// очистка слота, в следствии слияния или удаления
         {
+            if(count == 255)
+            {
+                ItemsCount = 0;//delete item
+                return true;
+            }
+
             if (ItemsCount >= count)
             {
                 ItemsCount -= count;//delete item

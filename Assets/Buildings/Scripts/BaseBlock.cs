@@ -5,17 +5,21 @@ public sealed class BaseBlock : MonoBehaviour
     public bool IsBlock = true;
     [Range(0, 6)] public int Type;
     private Renderer myRend;
-    internal Rigidbody _myRb { get; private set; }
-    internal ObjectDown _obDown { get; set; }
+    internal Rigidbody MyRb { get; private set; }
+    internal ObjectDown ObDown { get; set; }
 
     public void OnEnable() => myRend = GetComponent<Renderer>();
     private void Start()
     {
-        _obDown = FindObjectOfType<ObjectDown>();
-        ChangeColor(0);
+        if (Type != 2)// if block not is glass
+            myRend.sharedMaterial.color = Color.white;
+        else
+            myRend.sharedMaterial.color = new TransparentColors(0).color;
+
+
         if (IsBlock)
         {
-            _obDown.Objects.Add(this);//добавление в список ВзрывОбъектов
+            ObDown.Objects.Add(this);//добавление в список ВзрывОбъектов
 
             gameObject.AddComponent<SaveObject>().enabled = true;
         }
@@ -30,26 +34,22 @@ public sealed class BaseBlock : MonoBehaviour
         power = multiply == 1 ? power : power * -1;
 
         //в зависимости от типа блока нужно определять сопротивление
-        if (Type == 0)
-        {
+        if (Type == 0)//кирпич
             power *= 0.74f;
-        }
         else if (Type == 1)//дерево
-        {
             power *= 1;
-        }
         else if (Type == 2)//стекло
-        {
             power *= 1.43f;
-        }
+        else if (Type == 6)//камень
+            power *= 0.55f;
 
-        if (!_myRb)
+        if (!MyRb)// если объект не был взорван
         {
-            _myRb = gameObject.AddComponent<Rigidbody>();
-            _obDown.ExplosivedObjects.Add(this);
+            MyRb = gameObject.AddComponent<Rigidbody>();
+            ObDown.ExplosivedObjects.Add(this);
             gameObject.AddComponent<RetentionObject>();
         }
-        _myRb.velocity = new Vector3(power, power, power);
+        MyRb.velocity = new Vector3(power, power, power);
     }
 
     public void ChangeColor(byte type)
@@ -78,13 +78,12 @@ public sealed class BaseBlock : MonoBehaviour
     }
     private void OnDestroy()
     {
-        if (_obDown)
+        if (!ObDown)
+            return;
+        if (IsBlock)
         {
-            if (IsBlock)
-            {
-                _obDown.Objects.Remove(this);
-                _obDown.ExplosivedObjects.Remove(this);
-            }
+            ObDown.Objects.Remove(this);
+            ObDown.ExplosivedObjects.Remove(this);
         }
     }
 }
