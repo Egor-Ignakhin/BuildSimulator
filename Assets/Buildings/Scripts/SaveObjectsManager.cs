@@ -79,7 +79,7 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
             }
         }
     }
-    public async void Save()
+    public void Save()
     {
         string[] save = new string[Objects.Count * 7];
         long lastStr = 0;
@@ -87,6 +87,8 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
             return;
         for (int i = 0; i < Objects.Count; i++)
         {
+            if (!Objects[i])//пропускаем объект если тот был удалён
+                continue;
             save[lastStr] = "[Block]"; //тип
             lastStr++;
             save[lastStr] = Objects[i].name; //имя
@@ -107,14 +109,14 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
         {
             if (File.Exists(path + "\\" + _titleWorld + ".txt"))//если файл мира существует
             {
-                await Task.Run(() => WriteText(path + "\\" + _titleWorld + ".txt", save));//запишем лог
+                WriteText(path + "\\" + _titleWorld + ".txt", save);//запишем лог
             }
             else//иначе создадим файл мира
             {
                 StreamWriter sw = File.CreateText(path + "\\" + _titleWorld + ".txt");
                 sw.Close();
 
-                await Task.Run(() => WriteText(path + "\\" + _titleWorld + ".txt", save));//запишем лог
+                WriteText(path + "\\" + _titleWorld + ".txt", save);//запишем лог
             }
         }
         else//иначе создадим папку obj
@@ -123,11 +125,11 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
             StreamWriter sw = File.CreateText(path + "\\" + _titleWorld + ".txt");
             sw.Close();
 
-            await Task.Run(() => WriteText(path + "\\" + _titleWorld + ".txt", save));//запишем лог
+            WriteText(path + "\\" + _titleWorld + ".txt", save);//запишем лог
         }
         ErrorImage.Instance.enabled = true;
         ErrorImage.Instance.OnEnableColor("Saved successfully");
-        System.GC.Collect();       
+        System.GC.Collect();
     }
 
     private void WriteText(string path, string[] save)

@@ -36,7 +36,7 @@ namespace InventoryAndItems
         private void NewDistance()
         {
             float dist = Vector2.Distance(Input.mousePosition, _myRt.position);
-            if (dist < 30f)
+            if (dist < 50f)
             {
                 if (Item == null)
                 {
@@ -51,16 +51,16 @@ namespace InventoryAndItems
                         return;
                     ImageInv newItemCs = _inventory.LastItem.GetComponent<ImageInv>();
 
-                    sbyte isMerge = _itemCs.Merge(newItemCs.ItemsCount, newItemCs.Type);
+                    sbyte isMerge = _itemCs.Merge(newItemCs.ItemsCount, newItemCs.Type);/////////
 
                     if (isMerge == 0)//если нельзя слиять
-                        _inventory.RevertItem(Item, this);//поменять местами
-                    else
                     {
-                        byte oldItem = _itemCs.ItemsCount, newItem = newItemCs.ItemsCount;
-                        _inventory.MergeItems(ref oldItem, ref newItem, isMerge == 1);
-                        _itemCs.ItemsCount = oldItem;
-                        newItemCs.ItemsCount = newItem;
+                        _inventory.RevertItem(Item, this);//поменять местами
+                    }
+                    else if (isMerge == 1)
+                    {
+                        // здесь баг 
+                        _inventory.MergeItems(ref _itemCs, ref newItemCs, true);
                     }
                 }
             }

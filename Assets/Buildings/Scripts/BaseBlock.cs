@@ -3,7 +3,7 @@
 public sealed class BaseBlock : MonoBehaviour
 {
     public bool IsBlock = true;
-    [Range(0, 6)] public int Type;
+    [Range(0, 7)] public int Type;
     private Renderer myRend;
     internal Rigidbody MyRb { get; private set; }
     internal ObjectDown ObDown { get; set; }
@@ -50,31 +50,6 @@ public sealed class BaseBlock : MonoBehaviour
             gameObject.AddComponent<RetentionObject>();
         }
         MyRb.velocity = new Vector3(power, power, power);
-    }
-
-    public void ChangeColor(byte type)
-    {
-        switch (type)
-        {
-            case 0:
-                if (Type != 2)// if block not is glass
-                    myRend.material.color = Color.white;
-                else
-                    myRend.material.color = new TransparentColors(0).color;
-                break;
-            case 1:
-                myRend.material.color = new TransparentColors(1).color;
-                break;
-            case 2:
-                myRend.material.color = new TransparentColors(2).color;
-                break;
-            case 3:
-                myRend.material.color = new TransparentColors(3).color;
-                break;
-
-            default:
-                break;
-        }
     }
     private void OnDestroy()
     {

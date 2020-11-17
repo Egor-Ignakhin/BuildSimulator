@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public sealed class ObjectDown : MonoBehaviour
 {
     [SerializeField] internal bool _isMission = false;
-    [SerializeField] private AudioSource _bgAudio, _boomSource;
+     private AudioSource  _boomSource;
     [SerializeField] private Image _bGImage;
 
     [SerializeField] private Slider slider;
@@ -22,7 +22,6 @@ public sealed class ObjectDown : MonoBehaviour
     public List<BaseBlock> ExplosivedObjects { get; private set; } = new List<BaseBlock>();
     public List<ExplosiveObject> Explosives { get; private set; } = new List<ExplosiveObject>();
 
-    private void OnEnable() => _bgAudio.volume = AdvancedSettings.SoundVolume * 0.01f;
     private void Start()
     {
         if (!_isMission)
@@ -32,6 +31,7 @@ public sealed class ObjectDown : MonoBehaviour
             MainInput._input_UpP += this.Suppresion;
         }
         _bH = (BuildHouse)FindObjectOfType(typeof(BuildHouse));
+        _boomSource = GetComponent<AudioSource>();
         StartCoroutine(nameof(Checker));
     }
 
@@ -46,13 +46,13 @@ public sealed class ObjectDown : MonoBehaviour
         _timeToBoom += 1 * Time.deltaTime;
         _bH.IsBuild = false;
         _bH.IsDestroy = false;
+        slider.value = _timeToBoom;
         if (_timeToBoom > 1f)
         {
             DestroyBlocks();
 
             _boomSource.enabled = true;
             _bH.enabled = false;
-            _bgAudio.volume = 0.5f;
 
             StartCoroutine(nameof(Exiting));
 
@@ -78,7 +78,6 @@ public sealed class ObjectDown : MonoBehaviour
             if (_timerToMenu > 3)
             {
                 _bGImage.color += new Color(0, 0, 0, 0.005f);
-                _bgAudio.volume -= 0.002f;
                 returnSpeed = 0.02f;
 
                 if (_bGImage.color.a >= 1)

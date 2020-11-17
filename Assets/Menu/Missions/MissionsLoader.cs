@@ -28,7 +28,7 @@ namespace MainMenu
         }
         public void LoadMission(string name)//загружает миссии исходя из названий дочернего объекта
         {
-            MenuManager._playerSource.Play();
+            MenuManager.PlayerSource.Play();
             int.TryParse(name, out int numScene);
             Debug.Log(name);
             SceneManager.LoadScene(_nameScenes[numScene]);

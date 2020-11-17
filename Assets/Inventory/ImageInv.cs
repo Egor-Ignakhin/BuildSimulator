@@ -66,9 +66,9 @@ namespace InventoryAndItems
 
             _myRt.localScale = new Vector2(0.9f, 0.9f);
 
+            TextCount.GetComponent<RectTransform>().localPosition = new Vector2(0, TextCount.GetComponent<RectTransform>().localPosition.y);
             TextCount.rectTransform.sizeDelta = new Vector2(61, 40);
-            TextCount.color = Color.gray;
-            _inventory.ItemsCs.Add(this);
+            TextCount.color = Color.black;
             _inventory.AddItems(Type, ItemsCount);
         }
 
@@ -83,11 +83,10 @@ namespace InventoryAndItems
         {
             if (newItemType == Type)
             {
-                 if (newItemCount + ItemsCount < 256)
+                if (newItemCount + ItemsCount < 256)
                     return 1;
-                else if (ItemsCount < 255)
-                    return 2;//return example 80% + 20% 
             }
+
             return 0;
         }
         public void ChangeItemImage(byte newType)

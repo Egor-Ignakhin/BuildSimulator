@@ -29,7 +29,6 @@ public sealed class InputPlayer : MonoBehaviour
         MainInput.mouseSrollMin += () => { ScrollHoldobjects(false); };
     }
 
-    private Trader _lastTrader;
     private Interacteble _lastInterateble;
 
     internal bool CanHolding { get; set; } = true;
@@ -70,18 +69,6 @@ public sealed class InputPlayer : MonoBehaviour
         }
 
     }
-    internal void BuyItem(Trader trader)
-    {
-        _lastTrader = trader;
-        HelpingText.text = "Trade [" + _getItemKey + ']';
-        if (Input.GetKeyDown(_getItemKey))
-        {
-            _inventory.ActiveTrade = true;
-            _inventory.TurnOffOn();
-            _lastTrader.OpenShop();
-        }
-    }
-
     private Rigidbody _lastRetentionBlock;
     internal void HoldObject(Rigidbody retentionBlock)
     {

@@ -5,13 +5,12 @@ namespace InventoryAndItems
 {
     public sealed class Inventory : Singleton<Inventory>
     {
-        public const byte TypesCount = 7;//всего блоков в игре
+        public const byte TypesCount = 8;//всего блоков в игре
 
         private RectTransform _myRt;//рект-трансформ объекта
 
         public delegate void ChangePosition();// событие  определения положения
         public static event ChangePosition ChangePositionItem;// событие  определения положения
-
         private RectTransform _lastItem;
         public RectTransform LastItem
         {
@@ -52,7 +51,7 @@ namespace InventoryAndItems
 
         public Sprite[] AllImages = new Sprite[TypesCount + 10];//все спрайты для строительных объектов
 
-        public List<ImageInv> ItemsCs { get; } = new List<ImageInv>();// все классы со слотов
+        public List<ImageInv> ItemsCs = new List<ImageInv>(28);// все классы со слотов
 
         public bool ActiveTrade { get; set; }
 
@@ -137,6 +136,7 @@ namespace InventoryAndItems
                     }
                 }
             }
+
             //Если нужного слота так и не нашёл, будем искать пустые
             for (int i = 0; i < ItemsCs.Count; i++) //проверяем все объекты
             {
@@ -152,8 +152,8 @@ namespace InventoryAndItems
                         ItemsCs[i].ChangeItemImage(type);
                         ItemsCs[i].AddItem(count);
                         _bh.ChangeSelectedBlock();
+                        return true;
                     }
-                    return true;
                 }
             }
 
@@ -238,7 +238,7 @@ namespace InventoryAndItems
 
         public void OnDragUp()
         {
-            ChangePositionItem?.Invoke();// вызывается событие, подписанные слоты будут проверять близко ли от них предмет
+               ChangePositionItem?.Invoke();// вызывается событие, подписанные слоты будут проверять близко ли от них предмет
             if (LastItem != null)
             {
                 if (LastItem.parent == transform)// если никакой из слотов не принял в себя предмет
@@ -253,9 +253,9 @@ namespace InventoryAndItems
                 }
             }
 
+            LastParentOfObject = null;
             _dragObj = false;
         }
-
         public void RevertItem(RectTransform Item, SlotLocation itemSlot)//смена позициями слотов
         {
             LastItem.position = Item.position;
@@ -268,22 +268,20 @@ namespace InventoryAndItems
             _lastParentOfObjectSlot.Item = clone;
             LastItem = null;
         }
-        public void MergeItems(ref byte item, ref byte newItem, bool isFullMerge)//сложение слотов
+        public void MergeItems(ref ImageInv item, ref ImageInv newItem, bool isFullMerge)//сложение слотов
         {
             if (isFullMerge)
             {
-                item += newItem;
+                item.ItemsCount += newItem.ItemsCount;
                 _lastParentOfObjectSlot.ClearSlot();
 
                 Debug.Log("Full merge success");
-                Debug.Log(item + " /" + newItem);
             }
             else
             {
-                //200 and 70
-                byte countItems = (byte)(item + newItem - 255);
-                item = 255;
-                newItem = countItems;
+                byte countItems = (byte)(item.ItemsCount + newItem.ItemsCount - 255);
+                item.ItemsCount = 255;
+                newItem.ItemsCount = countItems;
 
                 Debug.Log("Dont full merge success");
             }

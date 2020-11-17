@@ -30,6 +30,7 @@ public sealed class Pistol : Gun
             _myAud.Play();
             GameObject effect = Instantiate(_FireEffect, _FireEffect.transform.position, _FireEffect.transform.rotation);
             effect.SetActive(true);
+            effect.transform.SetParent(transform);
 
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit))

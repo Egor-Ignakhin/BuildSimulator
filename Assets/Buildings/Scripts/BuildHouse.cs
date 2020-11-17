@@ -24,8 +24,9 @@ public sealed class BuildHouse : MonoBehaviour
     internal bool IsDestroy { get; set; }
 
     [SerializeField] private LayerMask _layer;// buildings
-    private MainInput _mainInput;
-    public List<Material> materials = new List<Material>();
+    private MainInput _mainInput;// сделано, что бы в dev mod'е работал input
+    public List<Material> materials = new List<Material>();// листы материалов для анти-эллоцирования памяти при изменении цвета(для строительства или дестроя)
+    private readonly List<Material> _changedMaterials = new List<Material>();
 
     private void Awake() => _obDown = FindObjectOfType<ObjectDown>();
 
@@ -48,6 +49,15 @@ public sealed class BuildHouse : MonoBehaviour
         }
 
         Inventory.changeItem += this.ChangeSelectedBlock;
+
+        for (int i = 0; i < materials.Count; i++)
+        {
+            if (materials[i])
+            {
+                _changedMaterials.Add(new Material(materials[i]));
+                    _changedMaterials[i].color = new Color(1, 0.75f, 0, 1);
+            }
+        }
     }
     private BaseBlock _hitBlock;//блок, в который попал луч
     private ExplosiveObject _hitExplosive;//взрывчатка, в который попал луч
@@ -86,7 +96,8 @@ public sealed class BuildHouse : MonoBehaviour
         ray = _cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit, 10, _layer))
         {
-            _blocksCs[_selectBlock].ChangeColor((byte)(_inventory.SelectedItem.ItemsCount > 0 ? 1 : 2));
+            _changedMaterials[_selectBlock].color = _inventory.SelectedItem.ItemsCount > 0 ? new TransparentColors(1).color : new TransparentColors(2).color;
+            _blocks[_selectBlock].GetComponent<MeshRenderer>().sharedMaterial = _changedMaterials[_selectBlock];
 
             if ((_lastBlock = hit.transform.GetComponent<BaseBlock>()) || (_lastGreed = hit.transform.GetComponent<Greed>()))
             {
@@ -126,13 +137,8 @@ public sealed class BuildHouse : MonoBehaviour
                 _blocks[_selectBlock].transform.position = _blockPos;
                 if (Input.GetMouseButtonDown(0))
                 {
-                    if (_inventory.GetItem(_selectBlock, 1) == true)
-                    {
+                    if (_inventory.GetItem(_selectBlock, 1))
                         ChangeBlock(hit);
-                        _blocksCs[_selectBlock].ChangeColor(1);
-                    }
-                    else
-                        _blocksCs[_selectBlock].ChangeColor(2);
                 }
                 _lastGreed = null;
             }
