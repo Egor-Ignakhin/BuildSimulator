@@ -12,7 +12,7 @@ public abstract class ExplosiveObject : MonoBehaviour//Классы, насле�
 
     protected virtual void Start()
     {
-        _objectDown = FindObjectOfType<ObjectDown>();
+        _objectDown = ObjectDown.Instance;
         _objectDown.Explosives.Add(this);
         _player = FindObjectOfType<FirstPersonController>().GetComponent<Rigidbody>();
     }

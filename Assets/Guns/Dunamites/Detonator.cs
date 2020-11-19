@@ -2,7 +2,7 @@
 using UnityEngine;
 namespace Dunamites
 {
-    public sealed class Detonator : MonoBehaviour
+    sealed class Detonator : MonoBehaviour
     {
         [SerializeField] private TMPro.TextMeshPro _textDynamiteCount;
         [SerializeField] private Renderer _buttonFinger,_light;

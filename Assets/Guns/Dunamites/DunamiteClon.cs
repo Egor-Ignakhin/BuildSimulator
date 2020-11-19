@@ -49,13 +49,13 @@ namespace Dunamites
             gameObject.AddComponent<DunamiteInteract>().MyDunamite = this;
             Destroy(GetComponent<BaseBlock>());         
         }
-        internal bool _isManagerStart { get; set; }
+        internal bool IsManagerStart { get; set; }
 
         internal override void Detonation()
         {
-            if(_isManagerStart == false)
+            if(IsManagerStart == false)
                 TimerToExplosion = 0;
-            _isManagerStart = false;
+            IsManagerStart = false;
 
             _childAud.clip = _tick;
             sec = TimerToExplosion;

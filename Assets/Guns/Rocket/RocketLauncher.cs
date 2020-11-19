@@ -15,7 +15,7 @@ public sealed class RocketLauncher : MonoBehaviour
     private void OnEnable()
     {
         MainInput.input_MouseButtonDown0 += this.Fire;
-        _objectDown = FindObjectOfType<ObjectDown>();
+        _objectDown = ObjectDown.Instance;
         _inventory = InventoryAndItems.Inventory.Instance;
     }
     private void Start()

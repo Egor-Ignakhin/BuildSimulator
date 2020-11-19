@@ -1,4 +1,4 @@
-﻿using Assets;
+﻿using Settings;
 using UnityEngine;
 using UnityEngine.UI;
 namespace MainMenu

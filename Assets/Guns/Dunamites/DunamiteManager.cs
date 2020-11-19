@@ -26,7 +26,7 @@ namespace Dunamites
         {
             for (int i = 0; i < Dunamites.Count; i++)
             {
-                Dunamites[i]._isManagerStart = true;
+                Dunamites[i].IsManagerStart = true;
                 Dunamites[i].Detonation();
             }
             Dunamites.Clear();

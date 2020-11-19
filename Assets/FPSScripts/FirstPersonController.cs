@@ -111,7 +111,7 @@ public sealed class FirstPersonController :MonoBehaviour ,ILooking
 
     private void OnEnable()
     {
-        float value = Assets.AdvancedSettings.MovingSpeed;
+        float value = Settings.AdvancedSettings.MovingSpeed;
         if (value == 0)
             this.WalkSpeed = 2;
         else
@@ -225,22 +225,18 @@ public sealed class FirstPersonController :MonoBehaviour ,ILooking
             }
         }
         else
-        {
             MoveDirection = transform.forward * inputXY.y * speed + transform.right * inputXY.x * WalkSpeedInternal;
-        }
 
         #region step logic
         // здесь немного получше стало
         if (Advanced.MaxStepHeight > 0 && Physics.Raycast(transform.position - new Vector3(0, ((capsule.height / 2) * transform.localScale.y) - 0.01f, 0), MoveDirection, out RaycastHit WT, capsule.radius - 3, Physics.AllLayers, QueryTriggerInteraction.Ignore) && Vector3.Angle(WT.normal, Vector3.up) > 88)
         {
-          //  Debug.Log("drawRay");
             if (!Physics.Raycast(transform.position - new Vector3(0, (capsule.height / 2 * transform.localScale.y) - Advanced.MaxStepHeight, 0), MoveDirection, out RaycastHit ST, capsule.radius + 0.25f, Physics.AllLayers, QueryTriggerInteraction.Ignore))
             {
                 Advanced.stairMiniHop = true;
                 transform.position += new Vector3(0, Advanced.MaxStepHeight * 1.2f, 0);
             }
         }
-     //   Debug.DrawRay(transform.position, MoveDirection, Color.red, 0, false);
         #endregion
 
         float horizontalInput = Input.GetAxis("Horizontal");
@@ -363,6 +359,7 @@ public sealed class FirstPersonController :MonoBehaviour ,ILooking
 
     private void OnCollisionEnter(Collision CollisionData)
     {
+        
         for (int i = 0; i < CollisionData.contactCount; i++)
         {
             float a = Vector3.Angle(CollisionData.GetContact(i).normal, Vector3.up);
@@ -373,7 +370,8 @@ public sealed class FirstPersonController :MonoBehaviour ,ILooking
                 {
                     IsGrounded = true;
                     Advanced.stairMiniHop = false;
-                    if (didJump && a <= 70) { didJump = false; }
+                    if (didJump && a <= 70) 
+                        didJump = false; 
                 }
 
                 if (Advanced.MaxSlopeAngle > 0)

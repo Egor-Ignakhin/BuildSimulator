@@ -20,7 +20,7 @@ public sealed class PlayerStatements : MonoBehaviour
 
     private void Awake()
     {
-        Sensitivity = Assets.AdvancedSettings.Sensitvity;
+        Sensitivity = Settings.AdvancedSettings.Sensitvity;
         for (int i = 0; i < _fPSScripts.Length; i++)
         {
             if (_fPSScripts[i] is FirstPersonController fps)

@@ -28,12 +28,13 @@ public sealed class BuildHouse : MonoBehaviour
     public List<Material> materials = new List<Material>();// листы материалов для анти-эллоцирования памяти при изменении цвета(для строительства или дестроя)
     private readonly List<Material> _changedMaterials = new List<Material>();
 
-    private void Awake() => _obDown = FindObjectOfType<ObjectDown>();
+    private int _countBlocks;
+
+    private void Awake() => _obDown = ObjectDown.Instance;
 
     private void OnEnable()
     {
         _myAudioSource = GetComponent<AudioSource>();
-        _myAudioSource.volume = Assets.AdvancedSettings.SoundVolume * 0.01f;
         _mainInput = MainInput.Instance;
     }
     private void Start()
@@ -152,15 +153,17 @@ public sealed class BuildHouse : MonoBehaviour
 
     private void ChangeBlock(RaycastHit hit)//само создание нового блока
     {
-        float lastVolume = Assets.AdvancedSettings.SoundVolume * 0.01f;
+        float lastVolume = Settings.AdvancedSettings.SoundVolume * 0.01f;
         float Volume = Random.Range(0.5f, 1f);// музыкальный эффект 
         _myAudioSource.volume = Volume * lastVolume;
         _myAudioSource.spatialBlend = Volume / 95;
         _myAudioSource.clip = SoundsChange[_selectBlock];
         _myAudioSource.Play();
 
-        Transform block = Instantiate(_blocks[_selectBlock].transform, _blockPos, _blocks[_selectBlock].transform.rotation);//инстанс
-        block.gameObject.layer = 8;
+        GameObject block = Instantiate(_blocks[_selectBlock], _blockPos, _blocks[_selectBlock].transform.rotation, 
+            _lastBlock != null ? _lastBlock.transform.parent.parent.GetChild(1) : hit.transform.parent.GetChild(1));//инстанс
+
+        block.layer = 8;
         block.GetComponent<MeshRenderer>().sharedMaterial = materials[_selectBlock];
 
 
@@ -175,33 +178,31 @@ public sealed class BuildHouse : MonoBehaviour
 
         if (_blocksCs[_selectBlock].Type == 3)//dunamite
         {
-            block.gameObject.AddComponent<Dunamites.DunamiteClon>();
-            block.SetParent(_lastBlock != null ? _lastBlock.transform : hit.transform);
+            block.AddComponent<Dunamites.DunamiteClon>();
+            block.transform.SetParent(_lastBlock != null ? _lastBlock.transform : hit.transform);
             return;
         }
         else if (_blocksCs[_selectBlock].Type == 4)// flame barrel
         {
-            block.gameObject.AddComponent<FlameBarrel>();
+            block.AddComponent<FlameBarrel>();
             return;
         }
         else if (_blocksCs[_selectBlock].Type == 5)// mine
         {
-            block.gameObject.AddComponent<Mine>();
+            block.AddComponent<Mine>();
             return;
         }
 
-        block.SetParent(_lastBlock != null ? _lastBlock.transform.parent.parent.GetChild(1) : hit.transform.parent.GetChild(1));
+        block.name = "Block" + ++_countBlocks;
         BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
         newBaseBlock.enabled = true;
         newBaseBlock.ObDown = _obDown;
         block.GetComponent<BoxCollider>().isTrigger = false;
     }
-    public void LoadBlock(Vector3 pos, Quaternion quat, string parent, byte type, string name)
+    public void LoadBlock(Vector3 pos, Transform parent, byte type, string name)
     {
-        Transform trueParent = GameObject.Find(parent).transform;
-        trueParent = trueParent.GetChild(0).GetChild(1);//Специальный контейнер для блоков
-
-        Transform block = Instantiate(_blocks[type].transform, pos, quat);//инстанс
+       //Специальный контейнер для блоков
+        Transform block = Instantiate(_blocks[type].transform, pos, Quaternion.identity, parent.GetChild(0).GetChild(1));//инстанс
 
         block.gameObject.layer = 8;
         BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
@@ -209,9 +210,34 @@ public sealed class BuildHouse : MonoBehaviour
         block.GetComponent<BoxCollider>().isTrigger = false;
         newBaseBlock.ObDown = _obDown;
 
-        block.SetParent(trueParent);
         block.gameObject.SetActive(true);
         block.name = name;
+        block.gameObject.isStatic = true;
+        _countBlocks++;
+    }
+    public void LoadExplosive(Vector3 pos,Vector3 eulerAngles,Vector3 scale,Transform parent,byte type,string name)
+    {
+        GameObject explosive = Instantiate(_blocks[type], pos, Quaternion.identity, parent);//инстанс
+        explosive.gameObject.layer = 8;
+
+        switch (type)
+        {
+            case 3:
+                explosive.AddComponent<Dunamites.DunamiteClon>();
+                break;
+            case 4:
+                explosive.AddComponent<FlameBarrel>();
+                break;
+
+            case 5:
+                explosive.AddComponent<Mine>();
+                break;
+        }
+
+        explosive.SetActive(true);
+        explosive.name = name;
+        explosive.transform.localEulerAngles = eulerAngles;
+        explosive.transform.localScale = scale;
     }
     private Material _lastSharedMaterial;// это для того, что бы память не выделялась для каждого отдельного объекта, а считывала все как один
     private MeshRenderer _lastRenderer;// то же самое
@@ -232,7 +258,7 @@ public sealed class BuildHouse : MonoBehaviour
                     _lastRenderer.material.color = new TransparentColors(3).color;
                 }
                 if (Input.GetMouseButtonDown(0))
-                    DestroyBlock(hit, false);
+                    DestroyBlock(hit, _hitBlock.Type);
             }
             else if (_hitExplosive = hit.transform.GetComponent<ExplosiveObject>())
             {
@@ -246,7 +272,7 @@ public sealed class BuildHouse : MonoBehaviour
                     _lastRenderer.material.color = new TransparentColors(3).color;
                 }
                 if (Input.GetMouseButtonDown(0))
-                    DestroyBlock(hit, true);
+                    DestroyBlock(hit, _hitExplosive.Type);
             }
             else
             {
@@ -267,29 +293,18 @@ public sealed class BuildHouse : MonoBehaviour
         }
     }
 
-    private void DestroyBlock(RaycastHit hit, bool isExplosive)
+    private void DestroyBlock(RaycastHit hit, int type)
     {
-        if (isExplosive)
-        {
-            if (_hitExplosive.Type == 255)
+            if (type == 255)
                 return;
-        }
-        _myAudioSource.clip = isExplosive ? SoundsDestroy[_hitExplosive.Type] : SoundsDestroy[_hitBlock.Type];
+        _myAudioSource.clip = SoundsDestroy[type];
 
-        float lastVolume = Assets.AdvancedSettings.SoundVolume * 0.01f;
+        float lastVolume = Settings.AdvancedSettings.SoundVolume * 0.01f;
         float Volume = Random.Range(0.5f, 1f);// музыкальный эффект 
         _myAudioSource.volume = (Volume * lastVolume);
         _myAudioSource.spatialBlend = Volume / 95;
         _myAudioSource.Play();
 
-        if (isExplosive)
-        {
-            if (_hitExplosive.Type == 3)
-            {
-                Destroy(_hitExplosive.transform.parent.gameObject);
-                return;
-            }
-        }
         Destroy(hit.transform.gameObject);
     }
     #endregion

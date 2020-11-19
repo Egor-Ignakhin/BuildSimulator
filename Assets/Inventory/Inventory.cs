@@ -115,6 +115,11 @@ namespace InventoryAndItems
             _bh = FindObjectOfType<BuildHouse>();
             _rocketLauncher = _bh._instruments[2].GetComponent<RocketLauncher>();
             _pistol = _bh._instruments[3].GetComponent<Pistol>();
+
+            for(int i = 0; i < ItemsCs.Count; i++)
+            {
+                ItemsCs[i].Enable();
+            }
         }
         public bool AddItems(byte type, byte count, bool isLayeing = false)
         {

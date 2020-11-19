@@ -29,9 +29,9 @@ namespace InventoryAndItems
             }
         }
 
-        private void OnEnable() => _inventory = Inventory.Instance;
-        private void Start()
+        internal void Enable()
         {
+             _inventory = Inventory.Instance;
             for (int i = 0; i < transform.childCount; i++)
             {
                 if (TextCount = transform.GetChild(i).GetComponent<TextMeshProUGUI>())
@@ -71,7 +71,6 @@ namespace InventoryAndItems
             TextCount.color = Color.black;
             _inventory.AddItems(Type, ItemsCount);
         }
-
         public void AddItem(byte count) => ItemsCount += count;// метод добавляет в слот предмет, если тот пустует
 
         public void OnPointerDownDelegate()// вызывается при нажатии на предмет

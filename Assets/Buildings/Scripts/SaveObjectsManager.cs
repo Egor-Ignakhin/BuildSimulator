@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.IO;
 using UnityEngine;
 
-public sealed class SaveObjectsManager : MonoBehaviour, IStorable
+sealed class SaveObjectsManager : MonoBehaviour, IStorable
 {
-    public List<SaveObject> Objects;
+    private ObjectDown _objectDown;
     private BuildHouse _buildHouse;
     private string _titleWorld;
     private void Start()
@@ -13,6 +11,7 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
         _buildHouse = FindObjectOfType<BuildHouse>();
         Saver.saveGame += this.Save;
         _titleWorld = GetComponent<BlocksLoader>().TitleWorld;
+        _objectDown = ObjectDown.Instance;
 
         Load();
     }
@@ -28,52 +27,87 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
                 string[] save = ReadText(path + "\\" + _titleWorld + ".txt");// вытащим объекты
 
                 LoadTransformation load;
-                int blocks = 0;
+                FindParent findParent;
+                Vector3 position = Vector3.zero;
+                Vector3 eulerAngles = Vector3.zero;
+                Vector3 scalels = Vector3.zero;
+                Transform findedParent = null;
+
                 for (int i = 0; i < save.Length; i++)
                 {
                     if (save[i] == "[Block]")
                     {
                         string name = "";
-                        string parent = "";
+                        string parentName = "";
                         string pos = "";
                         string eulers = "";
                         string scale = "";
                         string type = "";
                         for (int h = 1; h <= 6; h++)
                         {
-                            if (h == 1)
+                            switch (h)
                             {
-                                name = save[i + h];
-                            }
-                            else if (h == 2)
-                            {
-                                parent = save[i + h];
-                            }
-                            else if (h == 3)
-                            {
-                                pos = save[i + h];
-                            }
-                            else if (h == 4)
-                            {
-                                eulers = save[i + h];
-                            }
-                            else if (h == 5)
-                            {
-                                scale = save[i + h];
-                            }
-                            else if (h == 6)
-                            {
-                                type = save[i + h];
+                                case 1:
+                                    name = save[i + h];
+                                    break;
+                                case 2:
+                                    parentName = save[i + h];
+                                    break;
+                                case 3:
+                                    pos = save[i + h];
+                                    break;
+                                case 4:
+                                    eulers = save[i + h];
+                                    break;
+                                case 5:
+                                    scale = save[i + h];
+                                    break;
+                                case 6:
+                                    type = save[i + h];
+                                    break;
                             }
                         }
-                        Vector3 position = load.GetPosition(pos);
-                        Vector3 eulerAngles = load.GetPosition(eulers);
-                        Quaternion rotation = Quaternion.identity;
-                        rotation.x = eulerAngles.x;
-                        rotation.y = eulerAngles.y;
-                        rotation.y = eulerAngles.z;
-                        _buildHouse.LoadBlock(position, rotation, parent, System.Convert.ToByte(type), name);
-                        blocks++;
+                        position = load.GetPosition(pos);
+                        findedParent = findParent.Find(parentName);
+                        _buildHouse.LoadBlock(position, findedParent, System.Convert.ToByte(type), name);
+                    }
+                    else if (save[i] == "[Explosive]")
+                    {
+                        string name = "";
+                        string parentName = "";
+                        string pos = "";
+                        string eulers = "";
+                        string scale = "";
+                        string type = "";
+                        for (int h = 1; h <= 6; h++)
+                        {
+                            switch (h)
+                            {
+                                case 1:
+                                    name = save[i + h];
+                                    break;
+                                case 2:
+                                    parentName = save[i + h];
+                                    break;
+                                case 3:
+                                    pos = save[i + h];
+                                    break;
+                                case 4:
+                                    eulers = save[i + h];
+                                    break;
+                                case 5:
+                                    scale = save[i + h];
+                                    break;
+                                case 6:
+                                    type = save[i + h];
+                                    break;
+                            }
+                        }
+                        position = load.GetPosition(pos);
+                        eulerAngles = load.GetPosition(eulers);
+                        scalels = load.GetPosition(scale);
+                        findedParent = findParent.Find(parentName);
+                        _buildHouse.LoadExplosive(position, eulerAngles,scalels, findedParent, System.Convert.ToByte(type), name);
                     }
                 }
             }
@@ -81,28 +115,40 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
     }
     public void Save()
     {
-        string[] save = new string[Objects.Count * 7];
+        string[] save = new string[(_objectDown.Objects.Count * 7) + (_objectDown.Explosives.Count * 7)];
         long lastStr = 0;
-        if (Objects.Count <= 0)
+        if (_objectDown.Objects.Count <= 0)
             return;
-        for (int i = 0; i < Objects.Count; i++)
+
+        Transform _lastLoadedObject;
+        for (int i = 0; i < _objectDown.Objects.Count; i++)
         {
-            if (!Objects[i])//пропускаем объект если тот был удалён
+            if (!_objectDown.Objects[i])//пропускаем объект если тот был удалён
                 continue;
-            save[lastStr] = "[Block]"; //тип
-            lastStr++;
-            save[lastStr] = Objects[i].name; //имя
-            lastStr++;
-            save[lastStr] = Objects[i].transform.parent.parent.parent.name; //родитель
-            lastStr++;
-            save[lastStr] = Objects[i].transform.position.x + "|" + Objects[i].transform.position.y + "|" + Objects[i].transform.position.z; //позиция
-            lastStr++;
-            save[lastStr] = Objects[i].transform.rotation.x + "|" + Objects[i].transform.rotation.y + "|" + Objects[i].transform.rotation.z; //углы эйлера
-            lastStr++;
-            save[lastStr] = Objects[i].transform.localScale.x + "|" + Objects[i].transform.localScale.y + "|" + Objects[i].transform.localScale.z;  //масштаб
-            lastStr++;
-            save[lastStr] = Objects[i].GetComponent<BaseBlock>().Type + "";  //тип
-            lastStr++;
+            _lastLoadedObject = _objectDown.Objects[i].transform;
+            save[lastStr++] = "[Block]"; //тип
+            save[lastStr++] = _lastLoadedObject.name; //имя
+            save[lastStr++] = _lastLoadedObject.parent.parent.parent.name; //родитель
+            save[lastStr++] = _lastLoadedObject.position.x + "|" + _lastLoadedObject.position.y + "|" + _lastLoadedObject.position.z; //позиция
+            save[lastStr++] = _lastLoadedObject.rotation.x + "|" + _lastLoadedObject.rotation.y + "|" + _lastLoadedObject.rotation.z; //углы эйлера
+            save[lastStr++] = _lastLoadedObject.localScale.x + "|" + _lastLoadedObject.localScale.y + "|" + _lastLoadedObject.localScale.z;  //масштаб
+            save[lastStr++] = _lastLoadedObject.GetComponent<BaseBlock>().Type + "";  //тип
+        }
+        for (int i = 0; i < _objectDown.Explosives.Count; i++)
+        {
+            if (!_objectDown.Explosives[i])//пропускаем объект если тот был удалён
+                continue;
+            if (_objectDown.Explosives[i].Type == 255)
+                continue;
+            _lastLoadedObject = _objectDown.Explosives[i].transform;
+
+            save[lastStr++] = "[Explosive]"; //тип
+            save[lastStr++] = _lastLoadedObject.name; //имя
+            save[lastStr++] = _lastLoadedObject.parent.name; //родитель
+            save[lastStr++] = _lastLoadedObject.position.x + "|" + _lastLoadedObject.position.y + "|" + _lastLoadedObject.position.z; //позиция
+            save[lastStr++] = _lastLoadedObject.eulerAngles.x + "|" + _lastLoadedObject.eulerAngles.y + "|" + _lastLoadedObject.eulerAngles.z; //углы эйлера
+            save[lastStr++] = _lastLoadedObject.localScale.x + "|" + _lastLoadedObject.localScale.y + "|" + _lastLoadedObject.localScale.z;  //масштаб
+            save[lastStr++] = _lastLoadedObject.GetComponent<ExplosiveObject>().Type + "";  //тип
         }
 
         if (Directory.Exists(path))//если папка obj существует
@@ -135,9 +181,7 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
     private void WriteText(string path, string[] save)
     {
         for (int i = 0; i < save.Length; i++)
-        {
             save[i] = SHA1_Encode.Encryption(save[i], "z0s%b&I)Y%PW26A8");
-        }
 
         File.WriteAllLines(path, save);
     }
@@ -146,9 +190,12 @@ public sealed class SaveObjectsManager : MonoBehaviour, IStorable
         string[] save = File.ReadAllLines(path);
 
         for (int i = 0; i < save.Length; i++)
-        {
             save[i] = SHA1_Encode.Decryption(save[i], "z0s%b&I)Y%PW26A8");
-        }
         return save;
+    }
+
+    struct FindParent
+    {
+        internal Transform Find(string name) { return GameObject.Find(name).transform;}
     }
 }

@@ -1,5 +1,4 @@
-﻿using Assets;
-using System.Collections;
+﻿using Settings;
 using UnityEngine;
 using UnityEngine.UI;
 namespace MainMenu

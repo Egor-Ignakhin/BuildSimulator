@@ -18,11 +18,7 @@ public sealed class BaseBlock : MonoBehaviour
 
 
         if (IsBlock)
-        {
             ObDown.Objects.Add(this);//добавление в список ВзрывОбъектов
-
-            gameObject.AddComponent<SaveObject>().enabled = true;
-        }
     }
     public void Destroy(float power)
     {
@@ -42,15 +38,19 @@ public sealed class BaseBlock : MonoBehaviour
             power *= 1.43f;
         else if (Type == 6)//камень
             power *= 0.55f;
+        else if (Type == 7)// песок
+            power *= 0.89f;
 
         if (!MyRb)// если объект не был взорван
         {
+            gameObject.isStatic = false;
             MyRb = gameObject.AddComponent<Rigidbody>();
             ObDown.ExplosivedObjects.Add(this);
             gameObject.AddComponent<RetentionObject>();
         }
         MyRb.velocity = new Vector3(power, power, power);
     }
+
     private void OnDestroy()
     {
         if (!ObDown)

@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Linq;
 
-namespace Assets
+namespace Settings
 {
     public static class AdvancedSettings
     {

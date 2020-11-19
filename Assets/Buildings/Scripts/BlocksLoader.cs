@@ -13,7 +13,7 @@ public sealed class BlocksLoader : MonoBehaviour, IStorable
         
         string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
 
-        Assets.RegKey.GetValue("LoadWorld", out string title, keyPath);
+        Settings.RegKey.GetValue("LoadWorld", out string title, keyPath);
 
         TitleWorld = title;
         TitleWorld = SHA1_Encode.Decryption(TitleWorld, "z0s%b&I)Y%PW26A8");

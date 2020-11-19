@@ -6,7 +6,7 @@ public sealed class SeePlayerChanks : MonoBehaviour
     [HideInInspector] public CapsuleCollider Collider { get; set; }
     private void Awake()
     {
-        _colliderRange = Assets.AdvancedSettings.ViewDistance*5;
+        _colliderRange = Settings.AdvancedSettings.ViewDistance * 5;
         if (GetComponent<Collider>() != null)
         {
             Collider = GetComponent<CapsuleCollider>();

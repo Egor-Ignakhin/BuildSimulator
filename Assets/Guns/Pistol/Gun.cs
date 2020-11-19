@@ -5,4 +5,5 @@ public abstract class Gun : MonoBehaviour
     internal int Damage { get; set; }
     internal int Ammo { get; set; }
     public AudioClip FireClip;
+    public AudioClip EmptyClick;
 }

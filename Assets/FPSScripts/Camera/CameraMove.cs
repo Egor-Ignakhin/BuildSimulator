@@ -12,11 +12,11 @@ public sealed class CameraMove : MonoBehaviour
 
     private void OnEnable()
     {
-        float value = Assets.AdvancedSettings.FlyingSpeed;
+        float value = Settings.AdvancedSettings.FlyingSpeed;
         if (value == 0)
             this.Speed = 5;
         else
-            this.Speed = Assets.AdvancedSettings.FlyingSpeed == 1 ? 10 : 20;
+            this.Speed = Settings.AdvancedSettings.FlyingSpeed == 1 ? 10 : 20;
     }
 
     private void Update()

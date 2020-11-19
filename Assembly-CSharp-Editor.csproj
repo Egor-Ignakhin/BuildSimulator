@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Fire\Shaders\unity5\Editor\CustomMaterialEditor.cs" />
     <Compile Include="Assets\Fire\Shaders\unity5\Editor\Shader_softrim_dissolve.cs" />
+    <Compile Include="Assets\JMO Assets\WarFX\Editor\CFX_SpawnSystemEditor.cs" />
     <Compile Include="Assets\Water Float\Standard Assets\Editor\Water\Water4\GerstnerDisplaceEditor.cs" />
     <Compile Include="Assets\Water Float\Standard Assets\Editor\Water\Water4\PlanarReflectionEditor.cs" />
     <Compile Include="Assets\Water Float\Standard Assets\Editor\Water\Water4\SpecularLightingEditor.cs" />
