@@ -11,13 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Map.unity
     guid: c131874c089f44a428d3f1bf2fbbd570
-  - enabled: 1
-    path: Assets/Scenes/OneMission.unity
-    guid: ab23b91677573f64aa000121ab160cf2
-  - enabled: 1
-    path: Assets/Scenes/SecondMission.unity
-    guid: 7f4313ca119b37349812e68d6e5ddd33
-  - enabled: 1
-    path: Assets/Scenes/ThreeMission.unity
-    guid: f7288c7fed06da1419e0cd5448d39220
   m_configObjects: {}

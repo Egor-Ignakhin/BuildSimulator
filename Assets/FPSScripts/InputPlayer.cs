@@ -51,7 +51,10 @@ public sealed class InputPlayer : MonoBehaviour
         else
         {
             if (_lastRetentionBlock)
+            {
                 _lastRetentionBlock.useGravity = true;
+                _lastRetentionBlock = null;
+            }
             _holdSlider.parent.parent.gameObject.SetActive(false);
             HelpingText.enabled = false;
             CanHolding = true;

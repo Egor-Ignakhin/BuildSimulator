@@ -89,6 +89,8 @@ public sealed class BuildHouse : MonoBehaviour
     private BaseBlock _lastBlock;
     private Greed _lastGreed;
     private Vector3 _blockPos;
+
+    private int _lastType;
     private void Build()
     {
         if (_selectBlock == 255)
@@ -102,38 +104,32 @@ public sealed class BuildHouse : MonoBehaviour
 
             if ((_lastBlock = hit.transform.GetComponent<BaseBlock>()) || (_lastGreed = hit.transform.GetComponent<Greed>()))
             {
-                if (_blocksCs[_selectBlock].Type == 3)
+                _lastType = _blocksCs[_selectBlock].Type;
+
+                switch (_lastType)
                 {
-                    _blockPos = hit.point;
-                    _blocks[_selectBlock].transform.forward = -hit.normal;
-                }
-                else if (_blocksCs[_selectBlock].Type == 4)
-                {
-                    if (_lastGreed)
-                    {
+                    case 3://dunamite
                         _blockPos = hit.point;
-                        _blockPos.y += 0.5f;
-                    }
-                    else
-                        _blockPos = hit.collider.transform.position + hit.normal;
-                    _blocks[_selectBlock].transform.rotation = Quaternion.identity;
-                }
-                else if (_blocksCs[_selectBlock].Type == 5)
-                {
-                    _blockPos = hit.point;
-                    _blockPos.y += 0.05f;
-                    _blocks[_selectBlock].transform.up = hit.normal;
-                }
-                else
-                {
-                    if (_lastGreed)
-                    {
+                        _blocks[_selectBlock].transform.forward = -hit.normal;
+                        break;
+                    case 4:// barrel
                         _blockPos = hit.point;
-                        _blockPos.y += 0.5f;
-                    }
-                    else
-                        _blockPos = hit.collider.transform.position + hit.normal;
-                    _blocks[_selectBlock].transform.rotation = Quaternion.identity;
+                        _blocks[_selectBlock].transform.forward = hit.normal;
+                        break;
+                    case 5://mine
+                        _blockPos = hit.point;
+                        _blocks[_selectBlock].transform.forward = hit.normal;
+                        break;
+                    default:// other blocks
+                        if (_lastGreed)
+                        {
+                            _blockPos = hit.point;
+                            _blockPos.y += 0.5f;
+                        }
+                        else
+                            _blockPos = hit.collider.transform.position + hit.normal;
+                        _blocks[_selectBlock].transform.rotation = Quaternion.identity;
+                        break;
                 }
                 _blocks[_selectBlock].transform.position = _blockPos;
                 if (Input.GetMouseButtonDown(0))
@@ -184,12 +180,12 @@ public sealed class BuildHouse : MonoBehaviour
         }
         else if (_blocksCs[_selectBlock].Type == 4)// flame barrel
         {
-            block.AddComponent<FlameBarrel>();
+            block.AddComponent<Guns.FlameBarrel>();
             return;
         }
         else if (_blocksCs[_selectBlock].Type == 5)// mine
         {
-            block.AddComponent<Mine>();
+            block.AddComponent<Guns.Mine>();
             return;
         }
 
@@ -226,11 +222,11 @@ public sealed class BuildHouse : MonoBehaviour
                 explosive.AddComponent<Dunamites.DunamiteClon>();
                 break;
             case 4:
-                explosive.AddComponent<FlameBarrel>();
+                explosive.AddComponent<Guns.FlameBarrel>();
                 break;
 
             case 5:
-                explosive.AddComponent<Mine>();
+                explosive.AddComponent<Guns.Mine>();
                 break;
         }
 

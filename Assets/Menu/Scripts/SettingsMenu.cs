@@ -12,7 +12,6 @@ namespace MainMenu
         [SerializeField] private Slider _movingSpeedSlider;
         [SerializeField] private Slider _flyingSpeedSlider;
         [SerializeField] private Slider _soundsVolumeSlider;
-        private ErrorImage eI;
 
         [SerializeField] private Image _skyBoxButtonDesert;
         [SerializeField] private Image _skyBoxButtonMountains;
@@ -33,7 +32,6 @@ namespace MainMenu
         }
         private void Start()
         {
-            eI = ErrorImage.Instance;
             CountView.text = AdvancedSettings.ViewDistance.ToString();
             SliderView.value = AdvancedSettings.ViewDistance * 0.0333333f;
 
@@ -160,8 +158,7 @@ namespace MainMenu
             AdvancedSettings.SoundEffectsVolume = (byte)(_soundEffectsVolumeSlider.value * 100);
             AdvancedSettings.SaveSettings();
 
-            eI.enabled = true;
-            eI.OnEnableColor("Settings saved");         
+            ErrorImage.Instance.OnEnableColor("Settings saved");         
             ChangeVolumeSound?.Invoke();
 
             UpdateColorsSkyBoxes();

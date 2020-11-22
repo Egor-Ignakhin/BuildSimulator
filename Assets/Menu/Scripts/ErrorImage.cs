@@ -35,22 +35,34 @@ public sealed class ErrorImage : Singleton<ErrorImage>
             _myImage.color += color;
             TextError.color += color;
         }
-        else 
+        else
         {
             TextError.enabled = false;
             this.enabled = false;
             _myImage.enabled = false;
         }
     }
-    public void OnEnableColor(string titleEror)
+    public void OnEnableColor(string titleEror, bool isImportantInf = false)
     {
+        if (isImportantInf)
+        {
+            color = new Color(0, 0, 0, -0.0022375f);
+            TextError.color = Color.red;
+            _myImage.color = Color.white;
+        }
+        else
+        {
+            color = new Color(0, 0, 0, -0.0072375f);
+            TextError.color = Color.white;
+            _myImage.color = Color.red;
+        }
         if (!TextError)
             Awake();
+
+
+        this.enabled = true;
         TextError.enabled = true;
         TextError.text = titleEror;
         _myImage.enabled = true;
-
-        _myImage.color = Color.red;
-        TextError.color = Color.white;
     }
 }

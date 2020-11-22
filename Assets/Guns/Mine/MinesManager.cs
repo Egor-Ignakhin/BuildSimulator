@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public sealed class MinesManager : MonoBehaviour
+namespace Guns
 {
-    [SerializeField] internal AudioClip DetonationClip;
+    public sealed class MinesManager : MonoBehaviour
+    {
+        [SerializeField] internal AudioClip DetonationClip;
+    }
 }

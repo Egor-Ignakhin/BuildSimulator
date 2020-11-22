@@ -173,7 +173,6 @@ sealed class SaveObjectsManager : MonoBehaviour, IStorable
 
             WriteText(path + "\\" + _titleWorld + ".txt", save);//запишем лог
         }
-        ErrorImage.Instance.enabled = true;
         ErrorImage.Instance.OnEnableColor("Saved successfully");
         System.GC.Collect();
     }

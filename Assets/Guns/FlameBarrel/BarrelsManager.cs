@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public sealed class BarrelsManager : MonoBehaviour
+namespace Guns
 {
-    public AudioClip DetonationClip;
+    public sealed class BarrelsManager : MonoBehaviour
+    {
+        public AudioClip DetonationClip;
+    }
 }

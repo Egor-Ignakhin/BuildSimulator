@@ -125,9 +125,10 @@
     <Compile Include="Assets\Menu\Scripts\DayNightMenu.cs" />
     <Compile Include="Assets\Menu\Scripts\ErrorImage.cs" />
     <Compile Include="Assets\Menu\Scripts\FC.cs" />
+    <Compile Include="Assets\Menu\Scripts\MapsUploader.cs" />
     <Compile Include="Assets\Menu\Scripts\MenuManager.cs" />
+    <Compile Include="Assets\Menu\Scripts\ScrollBarController.cs" />
     <Compile Include="Assets\Menu\Scripts\SettingsMenu.cs" />
-    <Compile Include="Assets\Menu\Scripts\SrollBarController.cs" />
     <Compile Include="Assets\Menu\Scripts\WorldLabel.cs" />
     <Compile Include="Assets\Menu\Scripts\WorldLoader.cs" />
     <Compile Include="Assets\SHA1_Encode.cs" />

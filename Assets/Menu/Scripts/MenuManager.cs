@@ -75,10 +75,9 @@ namespace MainMenu
                 }
             }
             else
-            {
                 button.transform.parent.gameObject.SetActive(false);
-            }
-            button.ActiveObject.SetActive(true);
+            if(button.ActiveObject)
+                button.ActiveObject.SetActive(true);
         }
         public void Click(int num)
         {
@@ -94,27 +93,10 @@ namespace MainMenu
                     else
                     {
                         Debug.Log("World already exists");
-                        _errorImage.enabled = true;
-                        _errorImage.OnEnableColor("World already exists");
+                        ErrorImage.Instance.OnEnableColor("World already exists");
                     }
                     break;
 
-                case 10:
-
-                    string path = Directory.GetCurrentDirectory() + "\\Saves";
-                    Directory.Delete(path, true); //true - если директория не пуста удаляем все ее содержимое
-                    Directory.CreateDirectory(path);
-
-
-                    Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\BuildingSimulator\\Settings", true); // << открываем ключ с правами на запись
-                    if (RegKey.GetValue("LoadWorld", out _, "SOFTWARE\\BuildingSimulator\\Settings"))
-                        key.DeleteValue("LoadWorld");
-                    key.Close();
-
-                    _errorImage.enabled = true;
-                    _errorImage.OnEnableColor("All the worlds have been removed");
-
-                    break;
                 default:
                     break;
             }

@@ -85,8 +85,8 @@ namespace InventoryAndItems
         private AllLayingObjectsManager _layingManager;
 
         #region instruments
-        private RocketLauncher _rocketLauncher;
-        private Pistol _pistol;
+        private Guns.RocketLauncher _rocketLauncher;
+        private Guns.Pistol _pistol;
 
         #endregion
 
@@ -113,8 +113,8 @@ namespace InventoryAndItems
         {
             MainInput.input_DownAnyKey += this.HighLightItem;
             _bh = FindObjectOfType<BuildHouse>();
-            _rocketLauncher = _bh._instruments[2].GetComponent<RocketLauncher>();
-            _pistol = _bh._instruments[3].GetComponent<Pistol>();
+            _rocketLauncher = _bh._instruments[2].GetComponent<Guns.RocketLauncher>();
+            _pistol = _bh._instruments[3].GetComponent<Guns.Pistol>();
 
             for(int i = 0; i < ItemsCs.Count; i++)
             {
@@ -235,15 +235,13 @@ namespace InventoryAndItems
 
                 _dragObj = true;
             }
-            Vector2 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y); // переменной записываються координаты мыши по x and y
-
-            LastItem.position = mousePosition;
+            LastItem.position = Input.mousePosition;
         }
         private bool _dragObj;
 
         public void OnDragUp()
         {
-               ChangePositionItem?.Invoke();// вызывается событие, подписанные слоты будут проверять близко ли от них предмет
+            ChangePositionItem?.Invoke();// вызывается событие, подписанные слоты будут проверять близко ли от них предмет
             if (LastItem != null)
             {
                 if (LastItem.parent == transform)// если никакой из слотов не принял в себя предмет

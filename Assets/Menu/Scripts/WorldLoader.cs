@@ -1,11 +1,12 @@
 ﻿using Settings;
 using System.Collections.Generic;
 using System.IO;
+using TMPro;
 using UnityEngine;
 
 namespace MainMenu
 {
-    public sealed class WorldLoader : MonoBehaviour, IStorable
+    public sealed class WorldLoader : MonoBehaviour
     {
         private bool isStart = true;
         public List<WorldLabel> _labels;
@@ -13,6 +14,8 @@ namespace MainMenu
         [SerializeField] private RectTransform _objParent;
 
         private RectTransform _labelPref;
+
+        [SerializeField] private GameObject _deleteList;
         private void Start()
         {
             RectTransform[] MyObj = Resources.LoadAll<RectTransform>("Prefabs");
@@ -22,6 +25,7 @@ namespace MainMenu
                 if (MyObj[i].name == "WorldLabel")
                 {
                     _labelPref = MyObj[i];
+                    break;
                 }
             }
             if (_labelPref == null)
@@ -30,7 +34,7 @@ namespace MainMenu
                 return;
             }
 
-            _labels[0]._loader = this;
+            _labels[0].Loader = this;
             Load();
             isStart = false;
         }
@@ -46,11 +50,10 @@ namespace MainMenu
                 return;
             string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
             RegKey.GetValue("LoadWorld", out string titleWorld, keyPath);
-            Debug.Log(SHA1_Encode.Decryption(titleWorld, "z0s%b&I)Y%PW26A8") + "////////////////////////////////////");
+            //Debug.Log(SHA1_Encode.Decryption(titleWorld, "z0s%b&I)Y%PW26A8") + "////////////////////////////////////"); // last loaded world
 
             titleWorld = SHA1_Encode.Decryption(titleWorld, "z0s%b&I)Y%PW26A8");
-            _labels[0].Title = titleWorld;
-
+            
             string savePath = Directory.GetCurrentDirectory() + "\\Saves\\";
 
             DirectoryInfo directoryInfo = new DirectoryInfo(savePath);
@@ -68,6 +71,8 @@ namespace MainMenu
 
             if (allWorlds.Contains(titleWorld))
                 allWorlds.Remove(titleWorld);
+            else
+                titleWorld = "";
 
             for (int i = 0; i < allWorlds.Count; i++)
             {
@@ -75,15 +80,32 @@ namespace MainMenu
                     CreateFiled();
                 _labels[i + 1].Title = allWorlds[i];
             }
+            _labels[0].Title = titleWorld;
         }
 
-
-        public void Save()
+        private string _lastPossibleDeleteWorld;
+        internal void DeleteWorld(string title)
         {
+            _lastPossibleDeleteWorld = title;
+            _deleteList.SetActive(true);
+            _deleteList.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = $"Delete {title} ? "; 
         }
-        public void LoadWorld(WorldLabel world)
+
+        public void DestroyWorld()// метод полностью удаляет выбранный мир
         {
-            string titleWorld = world.Title;
+            Debug.Log("Destory");
+            string path = $"{Directory.GetCurrentDirectory()}\\Saves\\";
+            File.Delete(path + $"{_lastPossibleDeleteWorld}.txt");
+
+            if(File.Exists(path + "obj\\" + $"{_lastPossibleDeleteWorld}.txt"))
+                File.Delete(path + "obj\\" + $"{_lastPossibleDeleteWorld}.txt");
+
+            _deleteList.SetActive(false);
+            OnEnable();
+        }
+        public void LoadWorld(string title)
+        {
+            string titleWorld = title;
             if (string.IsNullOrEmpty(titleWorld))
                 return;
             Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser;
@@ -103,12 +125,11 @@ namespace MainMenu
 
         private void CreateFiled()
         {
-            RectTransform newLabel = Instantiate(_labelPref, new Vector2(0, 0), Quaternion.identity);
+            RectTransform newLabel = Instantiate(_labelPref, new Vector2(0, 0), Quaternion.identity,_objParent);
 
-            newLabel.SetParent(_objParent);
             newLabel.localScale = _labels[_labels.Count - 1].GetComponent<RectTransform>().localScale;
             newLabel.localPosition = new Vector2(_labels[_labels.Count - 1].GetComponent<RectTransform>().localPosition.x, _labels[_labels.Count - 1].GetComponent<RectTransform>().localPosition.y - 57.5f);
-            newLabel.GetComponent<WorldLabel>()._loader = this;
+            newLabel.GetComponent<WorldLabel>().Loader = this;
             newLabel.name = "WorldLabel" + _labels.Count;
             _labels.Add(newLabel.GetComponent<WorldLabel>());
         }
