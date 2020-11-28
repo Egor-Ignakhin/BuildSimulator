@@ -1,14 +1,11 @@
 ﻿using UnityEngine;
 
-public sealed class CameraMove : MonoBehaviour
+sealed class CameraMove : MonoBehaviour
 {
-    public float Speed { get; private set; }
+    private float Speed;
     private Vector3 _transfer;
 
-    private void Awake()
-    {
-        Camera.main.orthographic = false;
-    }
+    private void Awake() => Camera.main.orthographic = false;
 
     private void OnEnable()
     {
@@ -21,7 +18,7 @@ public sealed class CameraMove : MonoBehaviour
 
     private void Update()
     {
-        if (! GameMenu.ActiveGameMenu)
+        if (!GameMenu.ActiveGameMenu)
         {
             Vector3 Speed = new Vector3(0, this.Speed, 0);
 

@@ -42,6 +42,7 @@ namespace MainMenu
         private void OnEnable()
         {
             _camAud = Camera.main.GetComponents<AudioSource>()[0];
+            _normalVolume = 1;
             _normalVolume = AdvancedSettings.SoundVolume * 0.01f;
             ChangeTime();
         }
@@ -58,7 +59,7 @@ namespace MainMenu
             {
                 _sunMoon.transform.eulerAngles = new Vector3(54.3f, 0, 0);
                 _sunMoon.color = new Color(1, 0.95f, 0.83f);
-                _sunMoon.intensity = 1;
+                _sunMoon.intensity = 1.25f;
                 _spriter.sprite = _sun;
                 _myImage.color = new Color(0, 0, 0, 0.1f);
                 _nextTrack = _dayClip;

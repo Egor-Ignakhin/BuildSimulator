@@ -5,9 +5,10 @@ public sealed class BaseBlock : MonoBehaviour
     public bool IsBlock = true;
     [Range(0, 7)] public int Type;
     private Renderer myRend;
-    internal Rigidbody MyRb { get; private set; }
-    internal ObjectDown ObDown { get; set; }
+    private Rigidbody _myRb;
+    private ObjectDown ObDown;
 
+    private void Awake() => ObDown = ObjectDown.Instance;
     public void OnEnable() => myRend = GetComponent<Renderer>();
     private void Start()
     {
@@ -41,14 +42,14 @@ public sealed class BaseBlock : MonoBehaviour
         else if (Type == 7)// песок
             power *= 0.89f;
 
-        if (!MyRb)// если объект не был взорван
+        if (!_myRb)// если объект не был взорван
         {
             gameObject.isStatic = false;
-            MyRb = gameObject.AddComponent<Rigidbody>();
+            _myRb = gameObject.AddComponent<Rigidbody>();
             ObDown.ExplosivedObjects.Add(this);
             gameObject.AddComponent<RetentionObject>();
         }
-        MyRb.velocity = new Vector3(power, power, power);
+        _myRb.velocity = new Vector3(power, power, power);
     }
 
     private void OnDestroy()

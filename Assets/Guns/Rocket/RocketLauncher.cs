@@ -16,11 +16,13 @@ namespace Guns
         private InventoryAndItems.Inventory _inventory;
 
         private readonly int _maxLifeRocket = 10;
+
         private void OnEnable()
         {
             MainInput.input_MouseButtonDown0 += this.Fire;
             _objectDown = ObjectDown.Instance;
             _inventory = InventoryAndItems.Inventory.Instance;
+            _canFire = true;
         }
         private void Start()
         {
@@ -32,6 +34,8 @@ namespace Guns
         {
             if (Rockets > 0)
             {
+                if (!_canFire)
+                    return;
                 StartRocket();
                 _inventory.GetItem(13, 1);//"Покупка ракеты"
                 Rockets--;
@@ -41,12 +45,13 @@ namespace Guns
         internal void ChangeRocketLength(Rocket bullet) => _bullets.Remove(bullet);
 
         private Rigidbody _lastRocket;
+        private bool _canFire = true;
         private async void StartRocket()
         {
+            _canFire = false;
             Ray ray = _cam.ScreenPointToRay(Input.mousePosition);//получаем луч направления
             GameObject newRocket = Instantiate(_spawnRocket, _spawnRocket.transform.position, _spawnRocket.transform.rotation, _objectDown.transform);// создаём ракету
             newRocket.SetActive(true);
-
             Rocket newBullet = newRocket.GetComponent<Rocket>();// кеш
             newBullet.DetonationClip = _rocketDetonation;// устанавливаемый клип полёта
             newBullet.Launcher = this;
@@ -59,10 +64,11 @@ namespace Guns
             _lastRocket.AddForce(ray.direction * multiply, ForceMode.Impulse);// выстрел
             _bullets.Add(newBullet);
 
-
             await Task.Delay(100);
             newRocket.GetComponent<MeshCollider>().isTrigger = false;// включение коллайдера, что бы игрок не спотыкался
+            _canFire = true;
         }
+
         private void BulletChecker()
         {
             for (int i = 0; i < _bullets.Count; i++)// если ракета уже пролета максимально возможное время  

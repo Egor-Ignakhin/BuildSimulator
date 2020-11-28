@@ -12,8 +12,6 @@ public sealed class BuildHouse : MonoBehaviour
     [SerializeField] private List<AudioClip> SoundsDestroy;// и их уничтожения
     [Space(5)]
 
-    private ObjectDown _obDown;//скрипт взрыва всех блоков
-
     private Inventory _inventory;
     private Camera _cam;
 
@@ -29,8 +27,6 @@ public sealed class BuildHouse : MonoBehaviour
     private readonly List<Material> _changedMaterials = new List<Material>();
 
     private int _countBlocks;
-
-    private void Awake() => _obDown = ObjectDown.Instance;
 
     private void OnEnable()
     {
@@ -55,8 +51,24 @@ public sealed class BuildHouse : MonoBehaviour
         {
             if (materials[i])
             {
-                _changedMaterials.Add(new Material(materials[i]));
+                bool isAtlas = false;
+                for (int k = 0; k < _changedMaterials.Count; k++)
+                {
+                    if (k != i)
+                    { 
+                        if (materials[i] == _changedMaterials[k])
+                        {
+                            _changedMaterials.Add(_changedMaterials[k]);
+                            isAtlas = true;
+                            break;
+                        }
+                    }
+                }
+                if (!isAtlas)
+                {
+                    _changedMaterials.Add(new Material(materials[i]));
                     _changedMaterials[i].color = new Color(1, 0.75f, 0, 1);
+                }
             }
         }
     }
@@ -106,26 +118,35 @@ public sealed class BuildHouse : MonoBehaviour
             {
                 _lastType = _blocksCs[_selectBlock].Type;
 
+                _blockPos = hit.point;
+                _blocks[_selectBlock].transform.forward = hit.normal;
+
                 switch (_lastType)
                 {
                     case 3://dunamite
-                        _blockPos = hit.point;
-                        _blocks[_selectBlock].transform.forward = -hit.normal;
-                        break;
-                    case 4:// barrel
-                        _blockPos = hit.point;
-                        _blocks[_selectBlock].transform.forward = hit.normal;
-                        break;
-                    case 5://mine
-                        _blockPos = hit.point;
-                        _blocks[_selectBlock].transform.forward = hit.normal;
-                        break;
-                    default:// other blocks
                         if (_lastGreed)
                         {
-                            _blockPos = hit.point;
-                            _blockPos.y += 0.5f;
+                            _blocks[_selectBlock].transform.forward = Vector3.forward;
+                            _blockPos.y += 0.25f;
+                            _blocks[_selectBlock].transform.eulerAngles = new Vector3(0, 30, 0);
                         }
+                        else
+                        {
+                            _blocks[_selectBlock].transform.right = -hit.normal;
+                            _blockPos = hit.collider.transform.position + hit.normal*0.8f;
+                            _blocks[_selectBlock].transform.eulerAngles += new Vector3(0, 0, 30);
+                        }
+                        break;
+
+                    case 4:// barrel
+                        break;
+
+                    case 5://mine
+                        break;
+
+                    default:// other blocks
+                        if (_lastGreed)
+                            _blockPos.y += 0.5f;
                         else
                             _blockPos = hit.collider.transform.position + hit.normal;
                         _blocks[_selectBlock].transform.rotation = Quaternion.identity;
@@ -192,7 +213,6 @@ public sealed class BuildHouse : MonoBehaviour
         block.name = "Block" + ++_countBlocks;
         BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
         newBaseBlock.enabled = true;
-        newBaseBlock.ObDown = _obDown;
         block.GetComponent<BoxCollider>().isTrigger = false;
     }
     public void LoadBlock(Vector3 pos, Transform parent, byte type, string name)
@@ -204,7 +224,6 @@ public sealed class BuildHouse : MonoBehaviour
         BaseBlock newBaseBlock = block.GetComponent<BaseBlock>();//задатие тех деталей
         newBaseBlock.enabled = true;
         block.GetComponent<BoxCollider>().isTrigger = false;
-        newBaseBlock.ObDown = _obDown;
 
         block.gameObject.SetActive(true);
         block.name = name;
@@ -232,7 +251,7 @@ public sealed class BuildHouse : MonoBehaviour
 
         explosive.SetActive(true);
         explosive.name = name;
-        explosive.transform.localEulerAngles = eulerAngles;
+        explosive.transform.eulerAngles = eulerAngles;
         explosive.transform.localScale = scale;
     }
     private Material _lastSharedMaterial;// это для того, что бы память не выделялась для каждого отдельного объекта, а считывала все как один

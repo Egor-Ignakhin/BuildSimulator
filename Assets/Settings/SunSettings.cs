@@ -5,7 +5,7 @@ namespace Settings
 {
     public sealed class SunSettings : MonoBehaviour
     {
-        private void Awake()
+        private void Start()
         {
             Light light = GetComponent<Light>();
             byte sQ = AdvancedSettings.ShadowQuality, sR = AdvancedSettings.ShadowResolution;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -28,24 +29,23 @@ namespace MainMenu
 
 
         private string _lastPossibleWorld;
+
         private void Awake()
         {
-            _labelPref = Resources.Load<GameObject>("Prefabs\\UploadLabel").GetComponent<RectTransform>();
             _exportList = _allExportTitles.parent.gameObject;
             _importList = _allImportTitles.parent.gameObject;
-            Load();
+            _labelPref = Resources.Load<GameObject>("Prefabs\\UploadLabel").GetComponent<RectTransform>();
         }
-
         private void Load()// метод загружает миры для экспорта(из сохранений)
         {
-            string savePath = Directory.GetCurrentDirectory() + "\\Saves";
+            string savePath = Directory.GetCurrentDirectory() + "\\Saves\\obj";
             if (!Directory.Exists(savePath)) // если папка с сохранениями не существует
             {
                 Debug.Log("None Worlds");
                 return;
             }
 
-            DirectoryInfo directoryInfo = new DirectoryInfo($"{savePath}\\");
+            DirectoryInfo directoryInfo = new DirectoryInfo($"{savePath}");
 
             List<string> allWorlds = new List<string>();
             FileInfo[] dinfo = directoryInfo.GetFiles();
@@ -65,10 +65,9 @@ namespace MainMenu
                 if (File.Exists($"{Directory.GetCurrentDirectory()}\\Saves\\obj\\{allWorlds[i]}.txt"))
                 {
                     if (_labelsExport.Count < allWorlds.Count)
-                    {
                         CreateField(true);
-                        _labelsExport[labelCount++].GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = allWorlds[i];
-                    }
+
+                    _labelsExport[labelCount++].GetChild(0).GetComponent<TextMeshProUGUI>().text = allWorlds[i];
                 }
             }
         }
@@ -118,19 +117,33 @@ namespace MainMenu
             for (int i = 0; i < exportedSave.Count; i++)
                 save[i] = exportedSave[i];
 
-            File.WriteAllLines($"{Directory.GetCurrentDirectory()}\\Worlds\\ {_lastPossibleWorld}.bs", save);
+            if (!Directory.Exists(Directory.GetCurrentDirectory() + "\\Worlds"))
+                Directory.CreateDirectory(path);
+
+            File.WriteAllLines($"{Directory.GetCurrentDirectory()}\\Worlds\\{_lastPossibleWorld}.bs", save);
             Debug.Log($"Export world  - {_lastPossibleWorld}");
             _applyExport.SetActive(false);
 
             ErrorImage.Instance.OnEnableColor($"World was saved in {Directory.GetCurrentDirectory()}\\Worlds\\{_lastPossibleWorld}.bs",true);
         }
 
-        public void UpLoad() => _exportList.SetActive(true);
+        public async void UpLoad()
+        {
+            _exportList.SetActive(true);
+            
+            Load();
+            await Task.Delay(100);
+            for (int i = 0; i < _labelsExport.Count; i++)
+                _labelsExport[i].gameObject.SetActive(true);
 
-        public void DownLoad()// метод создаёт кнопки для импорта
+            for (int i = 0; i < _labelsImport.Count; i++)
+                _labelsImport[i].gameObject.SetActive(true);
+        }
+
+        public async void DownLoad()// метод создаёт кнопки для импорта
         {
             _importList.SetActive(true);
-            string path = Directory.GetCurrentDirectory() + "//Worlds";
+            string path = Directory.GetCurrentDirectory() + "\\Worlds";
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -151,9 +164,15 @@ namespace MainMenu
             {
                 if (_labelsImport.Count < allWorlds.Count)
                     CreateField(false);
-                _labelsImport[i].GetChild(0).GetComponent<TMPro.TextMeshProUGUI>().text = allWorlds[i];
+                _labelsImport[i].GetChild(0).GetComponent<TextMeshProUGUI>().text = allWorlds[i];
             }
 
+            await Task.Delay(100);
+            for (int i = 0; i < _labelsImport.Count; i++)
+                _labelsImport[i].gameObject.SetActive(true);
+
+            for (int i = 0; i < _labelsExport.Count; i++)
+                _labelsExport[i].gameObject.SetActive(true);
         }
         private void ImportWorld()
         {

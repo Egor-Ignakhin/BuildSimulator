@@ -31,13 +31,14 @@ namespace Guns
         } // подписка на событие клика нулевой кнопки
 
         private ExplosiveObject _lastExplosion;// кеш для оптимизации
-        private RetentionObject _lastRb;// кеш для оптимизации
+        private Rigidbody _lastRb;// кеш для оптимизации
         private BaseBlock _lastBlock;
         private bool _canFire = true;
         private async void Fire()
         {
             if (!_canFire)
                 return;
+
             if (Ammo > 0)
             {
                 _canFire = false;
@@ -58,8 +59,11 @@ namespace Guns
                 {
                     if (_lastExplosion = hit.transform.GetComponent<ExplosiveObject>())
                         Delay((int)(Vector3.Distance(hit.point, transform.position) * 2.5f), true);
-                    else if (_lastRb = hit.transform.GetComponent<RetentionObject>())
+                    else if (hit.transform.GetComponent<RetentionObject>())
+                    {
+                        _lastRb = hit.transform.GetComponent<Rigidbody>();
                         Delay((int)(Vector3.Distance(hit.point, transform.position) * 2.5f), false);
+                    }
 
                     await Task.Delay((int)(Vector3.Distance(hit.point, transform.position) * 2.5f));
                     if (!gameObject.activeInHierarchy)
@@ -86,8 +90,9 @@ namespace Guns
                     decalEffect.transform.forward = hit.normal;
                     decalEffect.GetComponent<ParticleSystem>().Play();
                     Destroy(decalEffect, decalEffect.GetComponent<ParticleSystem>().main.duration);
-                    _myAnimator.SetBool("IsFire", false);
                 }
+                _myAnimator.SetBool("IsFire", false);
+
                 Ammo--;
                 await Task.Delay(200);
                 _canFire = true;
@@ -109,15 +114,13 @@ namespace Guns
             if (isExplosion)// взорвём объект, если можно
                 _lastExplosion.Detonation();
             else
-                _lastRb._myRb.AddForce(transform.forward * Damage, ForceMode.Impulse);
+                _lastRb.AddForce(transform.forward * Damage, ForceMode.Impulse);
         }
-
 
         private void OnDisable()
         {
             _canFire = true;
             MainInput.input_MouseButtonDown0 -= this.Fire;
-            _myAnimator.SetBool("IsFire", false);
         }
     }
 }

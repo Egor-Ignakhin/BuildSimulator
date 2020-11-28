@@ -71,7 +71,6 @@ namespace InventoryAndItems
             TextCount.color = Color.black;
             _inventory.AddItems(Type, ItemsCount);
         }
-        public void AddItem(byte count) => ItemsCount += count;// метод добавляет в слот предмет, если тот пустует
 
         public void OnPointerDownDelegate()// вызывается при нажатии на предмет
         {

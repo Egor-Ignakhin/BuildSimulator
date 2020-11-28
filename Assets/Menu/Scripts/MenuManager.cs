@@ -70,13 +70,11 @@ namespace MainMenu
             if (button.OtherActiveObjects.Length > 0)
             {
                 for (int i = 0; i < button.OtherActiveObjects.Length; i++)
-                {
                     button.OtherActiveObjects[i].SetActive(false);
-                }
             }
             else
                 button.transform.parent.gameObject.SetActive(false);
-            if(button.ActiveObject)
+            if (button.ActiveObject)
                 button.ActiveObject.SetActive(true);
         }
         public void Click(int num)
@@ -140,9 +138,8 @@ namespace MainMenu
             saveLog[5] = "true";
 
             for (int i = 0; i < saveLog.Length; i++)
-            {
                 saveLog[i] = SHA1_Encode.Encryption(saveLog[i], "z0s%b&I)Y%PW26A8");
-            }
+
             File.WriteAllLines(savePath, saveLog);
 
             string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
@@ -159,9 +156,6 @@ namespace MainMenu
 
             return true;
         }
-        private void OnDestroy()
-        {
-            SettingsMenu.ChangeVolumeSound -= this.ChangeSoundVolume;
-        }
+        private void OnDestroy() => SettingsMenu.ChangeVolumeSound -= this.ChangeSoundVolume;
     }
 }

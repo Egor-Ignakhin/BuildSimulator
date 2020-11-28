@@ -64,9 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Buildings\Scripts\BaseBlock.cs" />
-    <Compile Include="Assets\Buildings\Scripts\BlocksLoader.cs" />
     <Compile Include="Assets\Buildings\Scripts\BuildHouse.cs" />
     <Compile Include="Assets\Buildings\Scripts\Greed.cs" />
+    <Compile Include="Assets\Buildings\Scripts\PersonSettingsLoader.cs" />
     <Compile Include="Assets\Buildings\Scripts\Platforms\PlatformLoader.cs" />
     <Compile Include="Assets\Buildings\Scripts\RetentionObject.cs" />
     <Compile Include="Assets\Buildings\Scripts\SaveObjectsManager.cs" />
@@ -77,7 +77,6 @@
     <Compile Include="Assets\FPSScripts\FirstPersonController.cs" />
     <Compile Include="Assets\FPSScripts\InputPlayer.cs" />
     <Compile Include="Assets\FPSScripts\Interacteble.cs" />
-    <Compile Include="Assets\FPSScripts\MusicManager.cs" />
     <Compile Include="Assets\FPSScripts\PlayerCheckPoint.cs" />
     <Compile Include="Assets\FPSScripts\PlayerStatements.cs" />
     <Compile Include="Assets\FpsCount.cs" />
@@ -97,7 +96,6 @@
     <Compile Include="Assets\Guns\Rocket\Rocket.cs" />
     <Compile Include="Assets\Guns\Rocket\RocketLauncher.cs" />
     <Compile Include="Assets\ILooking.cs" />
-    <Compile Include="Assets\IStorable.cs" />
     <Compile Include="Assets\Inventory\ImageInv.cs" />
     <Compile Include="Assets\Inventory\Inventory.cs" />
     <Compile Include="Assets\Inventory\Singleton.cs" />
@@ -120,7 +118,6 @@
     <Compile Include="Assets\JMO Assets\WarFX\Scripts\WFX_LightFlicker.cs" />
     <Compile Include="Assets\JMO Assets\WarFX\Spawn System\CFX_SpawnSystem.cs" />
     <Compile Include="Assets\MainInput.cs" />
-    <Compile Include="Assets\Menu\Missions\MissionsLoader.cs" />
     <Compile Include="Assets\Menu\Scripts\ButtonInMenu.cs" />
     <Compile Include="Assets\Menu\Scripts\DayNightMenu.cs" />
     <Compile Include="Assets\Menu\Scripts\ErrorImage.cs" />
@@ -135,6 +132,7 @@
     <Compile Include="Assets\Save\Saver.cs" />
     <Compile Include="Assets\Settings\AdvancedSettings.cs" />
     <Compile Include="Assets\Settings\GameMenu.cs" />
+    <Compile Include="Assets\Settings\MusicManager.cs" />
     <Compile Include="Assets\Settings\SoundEffect.cs" />
     <Compile Include="Assets\Settings\SunSettings.cs" />
     <Compile Include="Assets\Water Float\Core\WaterFloat.cs" />

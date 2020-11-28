@@ -40,9 +40,11 @@ namespace Dunamites
 
             _childAud = transform.GetChild(1).GetComponent<AudioSource>();
             MyBoxColl = transform.GetComponent<BoxCollider>();
-            _textTimer = transform.GetChild(0).GetChild(0).GetComponent<TMPro.TextMeshPro>();
+            _textTimer = transform.GetChild(0).GetComponent<TMPro.TextMeshPro>();
             _textTimer.color = new Color(0, 0.5f, 0);
             TimerToExplosion = 0;
+            GetComponent<MeshRenderer>().sharedMaterial.color= Color.white;
+
 
             _tick = _manager._timerTickClip;
             _boom = _manager._boomClip;

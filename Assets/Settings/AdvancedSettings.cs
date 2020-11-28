@@ -120,7 +120,8 @@ namespace Settings
 
                 return true;
             }
-            retValue = "";
+            else
+                retValue = "";
             return false;
         }
     }

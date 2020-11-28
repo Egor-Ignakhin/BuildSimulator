@@ -1,24 +1,33 @@
 ﻿using System.IO;
 using UnityEngine;
 
-sealed class SaveObjectsManager : MonoBehaviour, IStorable
+sealed class SaveObjectsManager : MonoBehaviour
 {
     private ObjectDown _objectDown;
     private BuildHouse _buildHouse;
     private string _titleWorld;
-    private void Start()
+
+    private readonly string path = Directory.GetCurrentDirectory() + "\\Saves\\obj";
+
+    private void OnEnable()
     {
         _buildHouse = FindObjectOfType<BuildHouse>();
-        Saver.saveGame += this.Save;
-        _titleWorld = GetComponent<BlocksLoader>().TitleWorld;
+
+        Saver.saveGame += this.Save;// сохраняет настройки мира и персонажа при вызове события
+
+        string keyPath = "SOFTWARE\\" + "BuildingSimulator" + "\\Settings";
+
+        Settings.RegKey.GetValue("LoadWorld", out string title, keyPath);
+
+
+        _titleWorld = SHA1_Encode.Decryption(title, "z0s%b&I)Y%PW26A8");
+
         _objectDown = ObjectDown.Instance;
 
         Load();
     }
 
-    private readonly string path = Directory.GetCurrentDirectory() + "\\Saves\\obj";
-
-    public void Load()
+    private void Load()
     {
         if (Directory.Exists(path))//если папка obj существует
         {
@@ -113,8 +122,9 @@ sealed class SaveObjectsManager : MonoBehaviour, IStorable
             }
         }
     }
-    public void Save()
+    private void Save()
     {
+        Debug.Log(_objectDown.Objects.Count);
         string[] save = new string[(_objectDown.Objects.Count * 7) + (_objectDown.Explosives.Count * 7)];
         long lastStr = 0;
         if (_objectDown.Objects.Count <= 0)
@@ -191,6 +201,12 @@ sealed class SaveObjectsManager : MonoBehaviour, IStorable
         for (int i = 0; i < save.Length; i++)
             save[i] = SHA1_Encode.Decryption(save[i], "z0s%b&I)Y%PW26A8");
         return save;
+    }
+
+
+    private void OnDisable()
+    {
+        Saver.saveGame -= this.Save;// сохраняет настройки мира и персонажа при вызове события
     }
 
     struct FindParent

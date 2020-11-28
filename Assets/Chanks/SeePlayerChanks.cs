@@ -34,7 +34,6 @@ public sealed class SeePlayerChanks : MonoBehaviour
     {
         while (true)
         {
-
             if (Collider.radius > _colliderRange)
             {
                 Collider.radius -= 15;

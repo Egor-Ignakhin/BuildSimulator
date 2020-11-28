@@ -26,16 +26,15 @@ namespace InventoryAndItems
             _myRt = GetComponent<RectTransform>();
             _myImage = GetComponent<UnityEngine.UI.Image>();
             Inventory.ChangePositionItem += this.NewDistance;
-            for (int i = 0; i < transform.childCount; i++)
-            {
-                if (transform.GetChild(i).GetComponent<ImageInv>())
-                    Item = transform.GetChild(i).GetComponent<RectTransform>();
-            }
+
+            Item = transform.GetChild(0).GetComponent<RectTransform>();
         }
 
         private void NewDistance()
         {
             float dist = Vector2.Distance(Input.mousePosition, _myRt.position);
+            if (_inventory.LastItem == null)
+                return;
             if (dist < 50f)
             {
                 if (Item == null)
@@ -46,12 +45,10 @@ namespace InventoryAndItems
                     Item = _newItem;
                 }
                 else//меняем местами предметы
-                {
-                    if (_inventory.LastItem == null)
-                        return;
+                {                   
                     ImageInv newItemCs = _inventory.LastItem.GetComponent<ImageInv>();
 
-                    sbyte isMerge = _itemCs.Merge(newItemCs.ItemsCount, newItemCs.Type);/////////
+                    sbyte isMerge = _itemCs.Merge(newItemCs.ItemsCount, newItemCs.Type);
 
                     if (isMerge == 0)//если нельзя слиять
                     {
@@ -60,7 +57,7 @@ namespace InventoryAndItems
                     else if (isMerge == 1)
                     {
                         // здесь баг 
-                        _inventory.MergeItems(ref _itemCs, ref newItemCs, true);
+                        _inventory.MergeItems(_itemCs, newItemCs, true);
                     }
                 }
             }
@@ -69,9 +66,6 @@ namespace InventoryAndItems
         internal void SelectMe(bool isLast) => _myImage.color = isLast ? _myImage.color = new Color(1, 1, 1) : _myImage.color = new Color(0.25f, 0.5f, 1);
 
         internal void ClearSlot() => _itemCs.ChangeItemImage(255);//code key for clear
-        private void OnDestroy()
-        {
-            Inventory.ChangePositionItem -= this.NewDistance;
-        }
+        private void OnDestroy() => Inventory.ChangePositionItem -= this.NewDistance;
     }
 }

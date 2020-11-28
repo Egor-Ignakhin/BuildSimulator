@@ -7,11 +7,11 @@ namespace InventoryAndItems
     {
         public const byte TypesCount = 8;//всего блоков в игре
 
-        private RectTransform _myRt;//рект-трансформ объекта
+        [HideInInspector] private RectTransform _myRt;//рект-трансформ объекта
 
         public delegate void ChangePosition();// событие  определения положения
         public static event ChangePosition ChangePositionItem;// событие  определения положения
-        private RectTransform _lastItem;
+       [HideInInspector] private RectTransform _lastItem;
         public RectTransform LastItem
         {
             get => _lastItem;
@@ -38,27 +38,21 @@ namespace InventoryAndItems
             {
                 _lastParentOfObject = value;
 
-                if (value == null)
-                    return;
-
-                _lastParentOfObjectSlot = value.GetComponent<SlotLocation>();
+                _lastParentOfObjectSlot = value ? value.GetComponent<SlotLocation>() : null;
             }
         }
 
-        private GameObject _activer; //активатор остальных слотов инвентаря
-        private RectTransform _activerRect;
+        [HideInInspector] private GameObject _activer; //активатор остальных слотов инвентаря
         public bool IsActive { get; private set; } = false;
 
         public Sprite[] AllImages = new Sprite[TypesCount + 10];//все спрайты для строительных объектов
 
         public List<ImageInv> ItemsCs = new List<ImageInv>(28);// все классы со слотов
 
-        public bool ActiveTrade { get; set; }
-
         [SerializeField] private SlotLocation[] _fastSlots = new SlotLocation[7];
 
-        private SlotLocation _selectedSlot;
-        public SlotLocation SelectedSlot
+       [HideInInspector] private SlotLocation _selectedSlot;
+       [HideInInspector] public SlotLocation SelectedSlot
         {
             get => _selectedSlot;
             set
@@ -79,14 +73,14 @@ namespace InventoryAndItems
         public delegate void ChangeSelectItem();
         public static event ChangeSelectItem changeItem;
 
-        public ImageInv SelectedItem { get; private set; }
+       [HideInInspector] public ImageInv SelectedItem { get; private set; }
 
-        private BuildHouse _bh;
-        private AllLayingObjectsManager _layingManager;
+        [HideInInspector] private BuildHouse _bh;
+        [HideInInspector] private AllLayingObjectsManager _layingManager;
 
         #region instruments
-        private Guns.RocketLauncher _rocketLauncher;
-        private Guns.Pistol _pistol;
+        [HideInInspector] private Guns.RocketLauncher _rocketLauncher;
+        [HideInInspector] private Guns.Pistol _pistol;
 
         #endregion
 
@@ -103,8 +97,6 @@ namespace InventoryAndItems
                     break;
                 }
             }
-
-            _activerRect = _activer.GetComponent<RectTransform>();
 
             TurnOffOn(false);
         }
@@ -135,7 +127,7 @@ namespace InventoryAndItems
                             _pistol.Ammo += count;
 
                         if (isLayeing)
-                            ItemsCs[i].AddItem(count);
+                            ItemsCs[i].ItemsCount += count;
 
                         return true;
                     }
@@ -155,7 +147,7 @@ namespace InventoryAndItems
                             _pistol.Ammo += count;
 
                         ItemsCs[i].ChangeItemImage(type);
-                        ItemsCs[i].AddItem(count);
+                        ItemsCs[i].ItemsCount += count;
                         _bh.ChangeSelectedBlock();
                         return true;
                     }
@@ -188,14 +180,6 @@ namespace InventoryAndItems
 
             _activer.SetActive(IsActive);
             GameMenu.ActiveGameMenu = IsActive;
-
-            if (ActiveTrade)
-            {
-                _activerRect.localPosition = new Vector2(-400, 175);
-                Cursor.visible = true;
-            }
-            else
-                _activerRect.localPosition = new Vector2(0, 0);
         }
 
         private void HighLightItem()
@@ -246,11 +230,16 @@ namespace InventoryAndItems
             {
                 if (LastItem.parent == transform)// если никакой из слотов не принял в себя предмет
                 {
+                    Debug.Log("123");
                     //выкидываем предмет
                     ImageInv item = LastItem.GetComponent<ImageInv>();
 
-                    _layingManager.AddNewItem(item.Type, item.ItemsCount, _bh.transform.position);
-                    item.GetItem(255);
+                    if (item.Type != 255)
+                    {
+                        _layingManager.AddNewItem(item.Type, item.ItemsCount, _bh.transform.position);
+                        item.ChangeItemImage(255);
+                    }
+                  
                     LastItem.SetParent(LastParentOfObject);
                     LastItem.position = LastParentOfObject.position;
                 }
@@ -271,7 +260,7 @@ namespace InventoryAndItems
             _lastParentOfObjectSlot.Item = clone;
             LastItem = null;
         }
-        public void MergeItems(ref ImageInv item, ref ImageInv newItem, bool isFullMerge)//сложение слотов
+        public void MergeItems(ImageInv item, ImageInv newItem, bool isFullMerge)//сложение слотов
         {
             if (isFullMerge)
             {
@@ -287,6 +276,7 @@ namespace InventoryAndItems
                 newItem.ItemsCount = countItems;
 
                 Debug.Log("Dont full merge success");
+         
             }
         }
 

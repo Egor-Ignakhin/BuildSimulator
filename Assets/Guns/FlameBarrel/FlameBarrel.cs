@@ -7,7 +7,6 @@ namespace Guns
     {
         private AudioSource _myAud;
         private Rigidbody _myRb;
-        internal CapsuleCollider MyCollider { get; private set; }
 
         internal override byte Type => 4;
         private void Awake()
@@ -22,7 +21,6 @@ namespace Guns
 
             transform.SetParent(_objectDown.transform);
             gameObject.layer = 10;
-            MyCollider = GetComponent<CapsuleCollider>();
             Destroy(GetComponent<BaseBlock>());
             GetComponent<MeshCollider>().isTrigger = false;
             _myAud = transform.GetChild(0).GetComponent<AudioSource>();

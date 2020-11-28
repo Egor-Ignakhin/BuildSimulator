@@ -2,12 +2,11 @@
 using UnityEngine;
 namespace Guns
 {
-
     public sealed class Mine : ExplosiveObject
     {
         private AudioSource _myAud;
         private Rigidbody _myRb;
-        private float _sensivity = 1;
+        private float _sensivity = 1;// чувствительность мины
 
         internal override byte Type => 5;
 

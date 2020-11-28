@@ -93,7 +93,6 @@ namespace MainMenu
 
         public void DestroyWorld()// метод полностью удаляет выбранный мир
         {
-            Debug.Log("Destory");
             string path = $"{Directory.GetCurrentDirectory()}\\Saves\\";
             File.Delete(path + $"{_lastPossibleDeleteWorld}.txt");
 

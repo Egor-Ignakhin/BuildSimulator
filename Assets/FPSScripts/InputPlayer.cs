@@ -8,18 +8,19 @@ public sealed class InputPlayer : MonoBehaviour
     private Ray ray;
     private RaycastHit hit;
     private Camera _cam;
-    [SerializeField] internal KeyCode _getItemKey = KeyCode.F;
+    [SerializeField] internal KeyCode _getItemKey = KeyCode.F;// клавиша для взаимодействия с предметами
     private Inventory _inventory;
     [SerializeField] private float _getItemDistance = 4f;
 
-    [SerializeField] internal Dunamites.DunamiteField DunamiteFieldCs;
+    [SerializeField] internal Dunamites.DunamiteField DunamiteFieldCs;// поле настройки таймера динамита
 
-    [SerializeField] private Transform _holderObject;
+    private Transform _holderObject;// объект-помощник, для удержания предметов
     [SerializeField] internal RectTransform _holdSlider;
+    internal GameObject HoldSliderParent { get; private set; }
 
-    private void OnEnable() => HelpingText.enabled = false;
     private void Start()
     {
+        HoldSliderParent = _holdSlider.parent.parent.gameObject;
         _inventory = Inventory.Instance;
         _cam = Camera.main;
         Cursor.visible = false;
@@ -27,26 +28,24 @@ public sealed class InputPlayer : MonoBehaviour
 
         MainInput.mouseSrollMax += () => { ScrollHoldobjects(true); };
         MainInput.mouseSrollMin += () => { ScrollHoldobjects(false); };
+
+        (_holderObject = new GameObject("Holder").transform).SetParent(transform);
     }
 
     private Interacteble _lastInterateble;
 
     internal bool CanHolding { get; set; } = true;
     internal bool IsStartHold { get; set; } = true;
-    bool checkHit = false;
     private void Update()
     {
         ray = _cam.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out hit, _getItemDistance))
         {
-            checkHit = false;
-
             if (_lastInterateble = hit.transform.GetComponent<Interacteble>())
             {
                 _lastInterateble.Interact(this);
-                checkHit = true;
+                HelpingText.enabled = true;
             }
-            HelpingText.enabled = checkHit;
         }
         else
         {
@@ -90,18 +89,14 @@ public sealed class InputPlayer : MonoBehaviour
         }
         retentionBlock.transform.position = _holderObject.position;
 
-        if (retentionBlock.velocity.x > 1 || retentionBlock.velocity.x < -1)
-            CanHolding = false;
-        else if (retentionBlock.velocity.y > 1 || retentionBlock.velocity.y < -1)
-            CanHolding = false;
-        else if (retentionBlock.velocity.z > 1 || retentionBlock.velocity.z < -1)
+        if(retentionBlock.velocity.magnitude > 2)
             CanHolding = false;
     }
     private void ScrollHoldobjects(bool upScroll)
     {
         if (!_holderObject)
             return;
-        _holderObject.localPosition = Vector3.MoveTowards(_holderObject.localPosition, new Vector3(0, 0, upScroll ? _getItemDistance : 1), 0.5f);
+        _holderObject.localPosition = Vector3.MoveTowards(_holderObject.localPosition, new Vector3(0, 0, upScroll ? _getItemDistance : 1), 0.5f);// возможность скроллить положение удерживаемого объекта
     }
     private void OnDestroy()
     {

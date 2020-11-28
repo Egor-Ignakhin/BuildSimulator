@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public sealed class PlayerStatements : MonoBehaviour
+sealed class PlayerStatements : MonoBehaviour
 {
     [SerializeField] private Transform _fPSPlayer;
     [SerializeField] private Transform _viewPlayer;
@@ -11,11 +11,11 @@ public sealed class PlayerStatements : MonoBehaviour
     [SerializeField] private GameObject[] _fPSObjects;
     [SerializeField] private GameObject[] _flyObjects;
 
-    public int Sensitivity { get; set; } = 3;
+    private int Sensitivity = 3;
 
     public (float minY, float maxY) MinMaxY { get; set; } = (-90f, 90f);
 
-    public bool FpsMode { get; set; }
+    public bool FpsMode { get; private set; } = true;
     private MainInput _input;
 
     private void Awake()
@@ -66,46 +66,33 @@ public sealed class PlayerStatements : MonoBehaviour
         {
             _viewPlayer.position = transform.position;//saving position 
             lastEulers = transform.eulerAngles;//saving eulers 
-
-            for (int i = 0; i < _fPSObjects.Length; i++)
-            {
-                _fPSObjects[i].SetActive(true);
-            }
-            for (int i = 0; i < _flyObjects.Length; i++)
-            {
-                _flyObjects[i].SetActive(false);
-            }
-            for (int i = 0; i < _flyScripts.Length; i++)
-            {
-                _flyScripts[i].enabled = false;
-            }
-
-            for (int i = 0; i < _fPSScripts.Length; i++)
-            {
-                _fPSScripts[i].enabled = true;
-            }
             transform.SetParent(_fPSPlayer);
             transform.localPosition = new Vector3(0, 0.7f, 0);
+            for (int i = 0; i < _fPSObjects.Length; i++)
+                _fPSObjects[i].SetActive(true);
+
+            for (int i = 0; i < _flyObjects.Length; i++)
+                _flyObjects[i].SetActive(false);
+
+            for (int i = 0; i < _flyScripts.Length; i++)
+                _flyScripts[i].enabled = false;
+
+            for (int i = 0; i < _fPSScripts.Length; i++)
+                _fPSScripts[i].enabled = true;           
         }
         else//fly mode
         {
-
             for (int i = 0; i < _fPSObjects.Length; i++)
-            {
                 _fPSObjects[i].SetActive(false);
-            }
+
             for (int i = 0; i < _flyObjects.Length; i++)
-            {
                 _flyObjects[i].SetActive(true);
-            }
+
             for (int i = 0; i < _flyScripts.Length; i++)
-            {
                 _flyScripts[i].enabled = true;
-            }
+
             for (int i = 0; i < _fPSScripts.Length; i++)
-            {
                 _fPSScripts[i].enabled = false;
-            }
 
             transform.SetParent(_viewPlayer);
             transform.localPosition = Vector3.zero;
@@ -113,8 +100,5 @@ public sealed class PlayerStatements : MonoBehaviour
         }
     }
 
-    private void OnDestroy()
-    {
-        MainInput.inputTab -= SetMode;
-    }
+    private void OnDestroy() => MainInput.inputTab -= SetMode;
 }

@@ -25,6 +25,7 @@ namespace Guns
             base.Start();
             _myRb = GetComponent<Rigidbody>();
             Falling();
+            _myRb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         }
 
         private Rigidbody _myRb;
